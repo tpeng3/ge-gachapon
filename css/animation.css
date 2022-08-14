@@ -1,0 +1,100 @@
+/*
+  All things that move belong here.
+*/
+
+/* animation classes */
+.bounce {
+  animation-duration: .5s;
+  animation-name: bounce;
+  animation-timing-function: ease;
+}
+
+.fadeout {
+opacity: 0;
+animation: fadeout 0.5s linear;
+}
+
+.open-modal {
+animation: open-modal 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.slide-card {
+animation: slide-card 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.spinchine {
+animation: spin infinite 10s linear;
+}
+
+.marquee {
+height: 50px;
+overflow: hidden;
+position: relative;
+}
+.marquee h3 {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ line-height: 50px;
+ text-align: center;
+ transform:translateX(-100%);
+ animation: example2 15s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes example2 {
+0%   { -moz-transform: translateX(-100%); }
+100% { -moz-transform: translateX(100%); }
+}
+@-webkit-keyframes example2 {
+0%   { -webkit-transform: translateX(-100%); }
+100% { -webkit-transform: translateX(100%); }
+}
+@keyframes example2 {
+0%   {
+-moz-transform: translateX(-100%); /* Firefox bug fix */
+-webkit-transform: translateX(-100%); /* Firefox bug fix */
+transform: translateX(-100%);
+}
+100% {
+-moz-transform: translateX(100%); /* Firefox bug fix */
+-webkit-transform: translateX(100%); /* Firefox bug fix */
+transform: translateX(100%);
+}
+}
+
+/* animation keyframes */
+@keyframes bounce {
+0%   { transform: scale(1,1)      translateY(0); }
+10%  { transform: scale(1.1,.9)   translateY(0); }
+30%  { transform: scale(.9,1.1)   translateY(-100px); }
+50%  { transform: scale(1.05,.95) translateY(0); }
+57%  { transform: scale(1,1)      translateY(-7px); }
+64%  { transform: scale(1,1)      translateY(0); }
+100% { transform: scale(1,1)      translateY(0); }
+}
+
+@keyframes fadeout {
+  0% { opacity:1; }
+  100% { opacity:0; }
+}
+
+@keyframes open-modal {
+0% { transform: scaleY(0.4); }
+100% { transform: scaleY(1); }
+}
+
+@keyframes slide-card {
+0% { transform: translateX(0); }
+100% { transform: translateX(100px); }
+}
+
+
+@keyframes spin {
+from {
+  transform: rotate(0deg);
+}
+to {
+  transform: rotate(360deg);
+}
+}

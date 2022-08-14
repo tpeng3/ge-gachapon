@@ -1,0 +1,224 @@
+<html lang="en">
+
+<head>
+  <title>Frogpon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <!--LOAD SCRIPTS-->
+  <script src="data/cards.js"></script>
+  <!--MUST BE FIRST-->
+  <script src="scripts/gacha.js"></script>
+  <script src="scripts/frogLibrary.js"></script>
+  <script src="scripts/animation.js"></script>
+  <script src="scripts/modal.js"></script>
+
+  <!--LOAD CSS-->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animation.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/mobile.css">
+
+  <!-- <link rel="stylesheet" href="css/bounce-temp.css"> -->
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.js"></script>
+  <style type="text/css">
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      filter: alpha(opacity=70);
+      -moz-opacity: 0.7;
+      -khtml-opacity: 0.7;
+      opacity: 0.7;
+      z-index: 100;
+      display: none;
+    }
+
+    .cnt223 a {
+      text-decoration: none;
+    }
+
+    .popup {
+      width: 100%;
+      margin: 0 auto;
+      display: none;
+      position: fixed;
+      z-index: 101;
+    }
+
+    .cnt223 {
+      max-width: 600px;
+      min-height: 150px;
+      margin: 100px auto;
+      background: #f3f3f3;
+      position: relative;
+      z-index: 103;
+      padding: 15px 35px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px #000;
+    }
+
+    .cnt223 p {
+      clear: both;
+      color: #555555;
+      /* text-align: justify; */
+      font-size: 20px;
+      font-family: sans-serif;
+    }
+
+    .cnt223 p a {
+      color: #d91900;
+      font-weight: bold;
+    }
+
+    .cnt223 .x {
+      float: right;
+      height: 35px;
+      left: 22px;
+      position: relative;
+      top: -25px;
+      width: 34px;
+    }
+
+    .cnt223 .x:hover {
+      cursor: pointer;
+    }
+  </style>
+  <script type="text/javascript">
+    $(function () {
+      var overlay = $('<div id="overlay"></div>');
+      overlay.show();
+      overlay.appendTo(document.body);
+      $('.popup').show();
+      $('.close').click(function () {
+        $('.popup').hide();
+        overlay.appendTo(document.body).remove();
+        return false;
+      });
+
+
+
+
+      $('.x').click(function () {
+        $('.popup').hide();
+        overlay.appendTo(document.body).remove();
+        return false;
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="popup" style="display: none;">
+    <div class="cnt223">
+      <h1>READ BEFORE PLAYING</h1>
+      <p>
+        FROG ART BELONGS TO FROG ARTISTS. DO NOT STEAL, TAKE, OR USE WITHOUT PERMISSION.
+        <br><br>
+        Special thanks to:
+
+        <br>
+        <a href="https://twitter.com/illufinch">@illufinch</a> for organizing the collab ??
+        <br>
+        <a href="https://twitter.com/kredgons">@kredgons</a> for coding!
+        <br>
+        <a href="https://twitter.com/kianamosser">@kianamosser</a> for coding help ??
+        <br>
+        <a href="https://codepen.io/pedrobenoit91/pen/aJGzYg">Pedro Benoit</a> for the popup!
+        <br>
+        <a href="" class="close">Close</a>
+      </p>
+    </div>
+  </div>
+
+
+
+  <!-- The Modal -->
+  <div class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">×</span>
+      <div class="frog-image">
+        <!--frog image appears here-->
+      </div>
+      <div class="frog-artist">
+        <!--frog artist's name appears here-->
+      </div>
+      <div class="list-artists">
+        <!--All artists appear here-->
+      </div>
+    </div>
+
+  </div>
+
+  <!--Change View Buttons-->
+  <div id="switch-layout-mode">
+    <button id="regular-mode">Dark Mode</button>
+    <button id="spacejam-mode">Let's get crazy</button>
+  </div>
+
+  <div class="spacejam marquee">
+    <h3>Everybody get up it's time to slam now We got a real jam goin'
+      down Welcome to the Space Jam Here's your chance, do your dance At the Space Jam Alright Come on and slam,
+      and welcome to the jam Come on and slam, if you wanna jam Hey you, watcha gonna do
+      Hey you, watcha gonna do Hey you, watcha gonna do Hey you, watcha gonna do Party people in the house lets go
+      It's your boy Jayski a'ight so Pass that thing and watch me flex Behind my back, you know what's next To the jam,
+      all in your face
+      Wassup, just feel the bass Drop it, rock it, down the room Shake it, quake it, space KABOOM Just work that body,
+      work that body
+      Make sure you don't hurt nobody Get wild and lose your mind Take this thing into over-time Hey DJ, TURN IT UP QCD,
+      goin' burn it up C'mon y'all get on…
+    </h3>
+    <div class="yellow-block"></div>
+  </div>
+  <div class="message-center">Thank you for playing. <br> <span class="support">Support</span> our artists!</div>
+
+
+  <div id="frogpon-container">
+    <div id="frogchine">
+      <div class="click-me fadeout" style="display: block;">CLICK ME</div>
+      <div class="machine">
+        <img src="images/machine.png"
+          alt="A green machine with a frog perched on top and purple flowers off to the side. There are colorful balls inside the machine."
+          tabindex="0" role="button" id="frogpon" class="bounce">
+      </div>
+      <!-- <p><button id="clearStorage">RESTART GAME - FOR TESTING ONLY</button></p> -->
+      <button id="switch-cards">See your collection</button>
+    </div>
+
+    <div id="card-library-container">
+      <div id="collection-container">
+        <div id="total-frogs">2 / 165</div>
+        <div id="saved-cards">
+          <!--frogs from localstorage-->
+          <div class="card slide-card"><img src="images/cards/snacklad.png"
+              alt="Card for Snack Lad. Description states, peak happiness +5 chip +10 snack" tabindex="0"></div>
+          <div class="card slide-card"><img src="images/cards/froggyramen.png"
+              alt="Card for Froggy Ramen. Description states, inner peace... +1 delicious ramen" tabindex="0"></div>
+        </div>
+      </div>
+      <div id="card-library-content">
+        <div class="card show-artist slide-card">
+          <div class="new-card-text">NEW</div><img src="images/cards/froggyramen.png"
+            alt="Card for Froggy Ramen. Description states, inner peace... +1 delicious ramen" tabindex="0"
+            name="froggyramen">
+        </div>
+        <div class="card show-artist slide-card">
+          <div class="new-card-text">NEW</div><img src="images/cards/snacklad.png"
+            alt="Card for Snack Lad. Description states, peak happiness +5 chip +10 snack" tabindex="0" name="snacklad">
+        </div>
+        <!--cards will appear here wahoo-->
+      </div>
+    </div>
+  </div>
+
+
+
+
+</body>
+
+</html>
