@@ -1,24 +1,105 @@
 {
   "beans": {
-    "cynn_1": {
-      "key": "cynn_1",
-      "name": "Cynn",
-      "mun": "Froggo",
-      "direction": "left",
-      "rarity": 1,
-      "imgurl": "https://cdn.discordapp.com/attachments/675243064075485196/1006637098889134282/Illustration2.png",
-      "revealed": "true",
-      "popularity": 0
-    },
-    "greta_1": {
-      "key": "greta_1",
-      "name": "Greta",
-      "mun": "Hina",
-      "direction": "right",
-      "rarity": 1,
-      "imgurl": "https://cdn.discordapp.com/attachments/675243064075485196/1006638361571766343/Illustration3.png",
-      "revealed": "true",
-      "popularity": 0
+    "one": {
+      "ambrose_default": {
+        "key": "ambrose_default",
+        "name": "Ambrose",
+        "mun": "Pandi",
+        "direction": "left",
+        "rarity": 1,
+        "revealed": false,
+        "popularity": 0
+      },
+      "ava_default": {
+        "key": "ava_default",
+        "name": "Ava",
+        "mun": "Dice",
+        "direction": "left",
+        "rarity": 1,
+        "revealed": false,
+        "popularity": 0
+      },
+      "bee_default": {
+        "key": "bee_default",
+        "name": "Bee",
+        "mun": "Pandi",
+        "direction": "right",
+        "rarity": 1,
+        "revealed": false,
+        "popularity": 0
+      },
+      "cynn_default": {
+        "key": "cynn_default",
+        "name": "Cynn",
+        "mun": "Froggo",
+        "direction": "left",
+        "rarity": 1,
+        "revealed": false,
+        "popularity": 0
+      },
+      "edison_default": {
+        "key": "edison_default",
+        "name": "Edison",
+        "mun": "anne",
+        "direction": "right",
+        "rarity": 1,
+        "revealed": false,
+        "popularity": 0
+      },
+      "ezra_default": {
+        "key": "ezra_default",
+        "name": "Ezra",
+        "mun": "Toasty",
+        "direction": "left",
+        "rarity": 1,
+        "revealed": false,
+        "popularity": 0
+      },
+      "greta_default": {
+        "key": "greta_default",
+        "name": "Greta",
+        "mun": "Hina",
+        "direction": "right",
+        "rarity": 1,
+        "revealed": false,
+        "popularity": 0
+      },
+      "sorrel_default": {
+        "key": "sorrel_default",
+        "name": "Sorrel",
+        "mun": "Ryn",
+        "direction": "right",
+        "rarity": 1,
+        "revealed": false,
+        "popularity": 0
+      },
+      "starlight_default": {
+        "key": "starlight_default",
+        "name": "Starlight",
+        "mun": "Lok",
+        "direction": "right",
+        "rarity": 1,
+        "revealed": false,
+        "popularity": 0
+      },
+      "tempi_default": {
+        "key": "tempi_default",
+        "name": "Tempi",
+        "mun": "Archie",
+        "direction": "right",
+        "rarity": 1,
+        "revealed": false,
+        "popularity": 0
+      },
+      "wren_default": {
+        "key": "wren_default",
+        "name": "Wren",
+        "mun": "Oggy",
+        "direction": "left",
+        "rarity": 1,
+        "revealed": false,
+        "popularity": 0
+      }
     }
   },
   "queue": {
@@ -27,8 +108,8 @@
   "history": {
     "1660512845187": {
       "time": 1660512845187,
-      "key": "cynn_1",
-      "user": "Froggo"
+      "key": "cynn_default",
+      "user": "froggo"
     }
   }
 }

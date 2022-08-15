@@ -1,12 +1,11 @@
 import create from "zustand";
 
-interface Bean {
+export interface Bean {
   key: string;
-  charaname: string;
+  name: string;
   mun: string,
   direction: "left" | "right",
   rarity: number,
-  imgurl: string,
   revealed: boolean,
   popularity: number
 }
@@ -49,7 +48,7 @@ const setRolls = (value: number) => ({ availableRolls: value });
  */
 const useSystemStore: any = create<SystemState>((set) => ({
   ...initialState,
-  initBeanDict: (value) => set(() => initBeanDict(value)),
+  initBeanDict: (value: {[key:string]: Bean}) => set(() => initBeanDict(value)),
   updateQueue: (value) => set(() => updateQueue(value)),
   updateHistory: (value) => set(() => updateHistory(value)),
   setUsername: (value) => set(() => setUsername(value)),

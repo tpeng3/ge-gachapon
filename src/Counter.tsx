@@ -1,6 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { getDatabase, ref, set, remove, onValue } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  runTransaction,
+  remove,
+  onValue,
+} from "firebase/database";
 import { slugify } from "./helpers";
 
 const buttonStyle =
@@ -25,16 +31,18 @@ const Counter = () => {
     e.preventDefault(); // prevent page refresh
     const db = getDatabase();
     const name = e.target[0].value;
-    const added = e.target[1].value || 1;
-    const amount = queue[slugify(name)]
-      ? parseInt(queue[slugify(name)]) + added
-      : added;
+    const amount = e.target[1].value || 1;
     if (!name || isNaN(amount) || amount < 1 || amount > 1000) {
       setMessage("Invalid ticket form.");
       setTimeout(() => setMessage(""), 5000);
       return;
     }
-    set(ref(db, "queue/" + slugify(name)), amount);
+    runTransaction(ref(db, "queue/" + slugify(name)), (currentData) => {
+      if (currentData) {
+        currentData += amount;
+      }
+      return currentData;
+    });
   };
 
   const removeTicket = (username) => {
