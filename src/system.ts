@@ -10,49 +10,78 @@ export interface Bean {
   popularity: number
 }
 
-interface SystemState {
-  beanDict: {[key:string]: Bean};
-  queue: {[user:string]: number};
-  history: {
+export interface UserData {
+  key?: string;
+  tickets?: number;
+  collectedBeans?: {[key:string]: number}
+}
+
+export interface History {
     key: string;
     user: string;
-    timestamp: Date;
-  }[];
-  currentUser: string | null;
-  availableRolls: number;
+    timestamp: number;
+}
+
+interface SystemState {
+  beanDict: {[key:string]: Bean};
+  sortedBeans: Bean[];
+  beansOne: Bean[];
+  beansThree: Bean[];
+  beansFive: Bean[];
+  queue: {[user:string]: number};
+  history: History[];
+  currentUser: UserData;
+  selectedBean: Bean | null;
+  initBeanDict: Function;
+  updateHistory: Function;
+  setCurrentUser: Function;
+  setSelectedBean: Function;
 }
 
 const initialState = {
   beanDict: {},
+  sortedBeans: [],
+  beansOne: [],
+  beansThree: [],
+  beansFive: [],
   queue: {},
   history: [],
-  currentUser: window.localStorage.getItem("currentuser"),
-  availableRolls: 0,
+  currentUser: {},
+  selectedBean: null
 };
 
 /**
  * Bean functions
  */
 // only on page load
-const initBeanDict = (value: {[key:string]: Bean}) => ({ beanDict: value });
+const initBeanDict = (value: {[key:string]: Bean}) => {
+  const beansOne = Object.values(value).filter(i => i.rarity === 1);
+  const beansThree = Object.values(value).filter(i => i.rarity === 3);
+  const beansFive = Object.values(value).filter(i => i.rarity === 5);
+  const sortedBeans = Object.values(value).sort((a, b) => a.key.localeCompare(b.key));
+  return {
+    beanDict: value,
+    beansOne,
+    beansThree,
+    beansFive,
+    sortedBeans
+  }
+};
 
 // after an action
-const updateQueue = (value: {[key:string]: Bean}) => ({ beanDict: value });
-const updateHistory = (value: {[key:string]: Bean}) => ({ beanDict: value });
-
-const setUsername = (value: string) => ({ currentUser: value });
-const setRolls = (value: number) => ({ availableRolls: value });
+const updateHistory = (value: History[]) => ({ history: value });
+const setCurrentUser = (value: UserData) => ({ currentUser: value });
+const setSelectedBean = (value: Bean) => ({ selectedBean: value });
 
 /**
  * Init store
  */
-const useSystemStore: any = create<SystemState>((set) => ({
+const useSystemStore = create<SystemState>((set) => ({
   ...initialState,
   initBeanDict: (value: {[key:string]: Bean}) => set(() => initBeanDict(value)),
-  updateQueue: (value) => set(() => updateQueue(value)),
-  updateHistory: (value) => set(() => updateHistory(value)),
-  setUsername: (value) => set(() => setUsername(value)),
-  setRolls: (value) => set(() => setRolls(value)),
+  updateHistory: (value: History[]) => set(() => updateHistory(value)),
+  setCurrentUser: (value: UserData) => set(() => setCurrentUser(value)),
+  setSelectedBean: (value: Bean) => set(() => setSelectedBean(value)),
 }));
 
 export default useSystemStore;

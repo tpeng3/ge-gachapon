@@ -4,7 +4,7 @@ import {
   getDatabase,
   ref,
   runTransaction,
-  remove,
+  set,
   onValue,
 } from "firebase/database";
 import { slugify } from "./helpers";
@@ -14,13 +14,12 @@ const buttonStyle =
 
 const Counter = () => {
   const [errorMessage, setMessage] = useState("");
-  const [showModal, toggleModal] = useState(false);
   const [selectedUser, setUser] = useState("");
   const [queue, setQueue] = useState({});
 
   useEffect(() => {
     const db = getDatabase();
-    const userRef = ref(db, "queue/");
+    const userRef = ref(db, "users/");
     onValue(userRef, (snapshot) => {
       const data = snapshot.val();
       data ? setQueue(data) : setQueue({});
@@ -37,30 +36,38 @@ const Counter = () => {
       setTimeout(() => setMessage(""), 5000);
       return;
     }
-    runTransaction(ref(db, "queue/" + slugify(name)), (currentData) => {
+    runTransaction(ref(db, "users/" + slugify(name)), (currentData) => {
       if (currentData) {
-        currentData += amount;
+        currentData.tickets = parseInt(currentData.tickets) + parseInt(amount);
+        return currentData;
+      } else {
+        return {
+          key: slugify(name),
+          tickets: amount,
+          // collectedBeans: {} add in another transaction
+        };
       }
-      return currentData;
     });
   };
 
   const removeTicket = (username) => {
     const db = getDatabase();
-    remove(ref(db, "queue/" + slugify(username)));
-    toggleModal(false);
+    set(ref(db, `users/${slugify(username)}/tickets`), 0);
+    setUser("");
   };
 
   const renderQueueTicket = (username) => {
+    console.log(username, queue);
+    if (!queue[username] || queue[username].tickets < 1) return <div></div>;
     return (
       <div key={username}>
         {username}
-        {queue[username]}
+        {queue[username].tickets}
         <button
+          key={username}
           className={buttonStyle}
           onClick={() => {
             setUser(username);
-            toggleModal(true);
           }}
         >
           Remove
@@ -86,10 +93,16 @@ const Counter = () => {
       {/* can remove people in queue */}
       {Object.keys(queue).map((i) => renderQueueTicket(i))}
       {/* Confirmation modal */}
-      <div className={`${showModal ? "modal-show" : "modal-hidden"}`}>
-        {`Are you sure you want to remove all tickets for ${selectedUser}?`}
-        <button onClick={() => removeTicket(selectedUser)}>Yes</button>
-        <button onClick={() => toggleModal(false)}>No</button>
+      <div className={`modal ${selectedUser !== "" ? "display" : "hidden"}`}>
+        <div className="modal-content">
+          <h1>{`Are you sure you want to remove all tickets for ${selectedUser}?`}</h1>
+          <button className="button" onClick={() => removeTicket(selectedUser)}>
+            Yes
+          </button>
+          <button className="button" onClick={() => setUser("")}>
+            No
+          </button>
+        </div>
       </div>
     </div>
   );

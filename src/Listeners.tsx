@@ -6,8 +6,8 @@ import { slugify } from "./helpers";
 
 function Listeners() {
   const initBeanDict = useSystemStore((state) => state.initBeanDict);
-  const updateHistory = useSystemStore((state) => state.updateQueue);
-  const setRolls = useSystemStore((state) => state.setRolls);
+  const updateHistory = useSystemStore((state) => state.updateHistory);
+  const setCurrentUser = useSystemStore((state) => state.setCurrentUser);
   const currentUser = useSystemStore((state) => state.currentUser);
 
   useEffect(() => {
@@ -17,7 +17,6 @@ function Listeners() {
       ref(db, "/beans"),
       (snapshot) => {
         const data = snapshot.val();
-        console.log("beandata", data);
         initBeanDict(data);
       },
       {
@@ -29,19 +28,17 @@ function Listeners() {
     const historyRef = ref(db, "history/");
     onValue(historyRef, (snapshot) => {
       const data = snapshot.val();
-      console.log(data, "historyref");
-      updateHistory(data);
+      if (data) updateHistory(Object.values(data));
     });
   }, []);
 
   useEffect(() => {
     if (!currentUser) return;
     const db = getDatabase();
-    const userRef = ref(db, "queue/" + slugify(currentUser));
+    const userRef = ref(db, "queue/" + slugify(currentUser.key));
     onValue(userRef, (snapshot) => {
       const data = snapshot.val();
-      console.log(data, "queuerefffff");
-      if (data) setRolls(data);
+      if (data) setCurrentUser(data);
     });
   }, [currentUser]);
 

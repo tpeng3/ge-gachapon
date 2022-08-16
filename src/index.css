@@ -4,14 +4,84 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Lato;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.pixellated {
+  image-rendering: pixelated;
+}
+
+@layer components {
+  .modal {
+    position: fixed;
+    z-index: 50;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+    -webkit-transition: 0.5s;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255,255,255,.8);
+    margin: auto;
+    border: 1px solid #888;
+    -webkit-transition: 0.5s;
+    @apply border-[3px] rounded-lg border-pink bg-beige p-8
+  }
+
+  .button {
+    /* Please style this better */
+    -webkit-transition: 0.5s;
+    @apply rounded-lg px-2 py-3 border-pink border-[3px] cursor-pointer hover:bg-silver hover:scale-105
+  }
+
+  .input {
+    /* Please style this better */
+    -webkit-transition: 0.5s;
+    @apply border-pink border-[3px] text-center;
+  }
+
+  .footnote {
+    font-size: 12px;
+    line-height: 10px;
+    @apply text-red text-left;
+  }
+  .footnote > a {
+    font-size: 12px;
+    @apply underline text-redlink font-semibold;
+  }
+  .footnote::before {
+    content: ' * ';
+  }
+
+  .banner {
+    @apply font-display uppercase font-bold text-[25px] bg-pink px-2 py-2 rounded-xl mt-6
+  }
+
+  .card {
+    display: flex;
+    -webkit-transition: 0.5s;
+    @apply relative border-[3px] hover:bg-silver cursor-pointer flex-col items-center bg-beige border-pink rounded-xl;
+  }
+
+  .blank-card {
+    /* Please style this better */
+    display: flex;
+    -webkit-transition: 0.5s;
+    @apply relative border-[3px] flex-col items-center bg-grey border-pink rounded-xl;
+  }
+
+  .cardtitle {
+    @apply font-display uppercase text-red font-bold text-[25px]
+  }
 }
