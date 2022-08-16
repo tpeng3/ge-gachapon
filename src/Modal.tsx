@@ -74,8 +74,8 @@ function Modal() {
           endless supply of colorful capsules, along with a sign:
           <br />
           <br />"<strong>25 gald per roll.</strong> Please speak to the cashier
-          to exchange for a ticket. Choking hazard, adult supervision is
-          required around children!"
+          to exchange for a ticket. WARNING: Choking hazard. Adult supervision
+          required!"
           <br />
           <br />
           An employee (whether it's Cynn or Greta) politely greets the customer
