@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import Counter from "./Counter";
 import { initializeApp } from "firebase/app";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Listeners from "./Listeners";
 
 const firebaseConfig = {
@@ -25,11 +25,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Listeners />
-    <Router>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/counter" element={<Counter />} />
       </Routes>
-    </Router>
+    </HashRouter>
   </React.StrictMode>
 );
