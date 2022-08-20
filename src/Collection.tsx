@@ -6,6 +6,12 @@ function Modal() {
   const selectedBean = useSystemStore((state) => state.selectedBean);
   const currentUser = useSystemStore((state) => state.currentUser);
   const sortedBeans = useSystemStore((state) => state.sortedBeans);
+  const censusData = useSystemStore((state) => state.censusData);
+
+  const findAppLink = () => {
+    const data = censusData.find((i) => i.ResidentName === selectedBean.census);
+    return data && data.appurl;
+  };
 
   const calculateBeanCount = () => {
     const total = sortedBeans.length;
@@ -25,7 +31,10 @@ function Modal() {
       return (
         <button
           key={"col" + bean.key}
-          className="card"
+          className={`card ${
+            selectedBean && selectedBean.key === bean.key ? "bg-rose" : ""
+          }`}
+          id={bean.key}
           onClick={() => setSelectedBean(bean)}
         >
           <img
@@ -66,7 +75,7 @@ function Modal() {
     const rarity =
       bean.rarity === 1 ? "one" : bean.rarity === 3 ? "three" : "five";
     return (
-      <div className="relative">
+      <div className="relative pb-4 flex flex-col items-center">
         <img
           src={require(`../images/${rarity}/${bean.key}.png`)}
           className="w-64 pixellated"
@@ -77,11 +86,13 @@ function Modal() {
         />
         <div className="cardtitle">{bean.name}</div>
         <div className="cardtitle">Belongs to {bean.mun}</div>
-        <div className="cardtitle">
-          Found {currentUser?.collectedBeans[bean.key]} times
+        <div className="cardtitle mb-4">
+          {currentUser?.collectedBeans[bean.key] &&
+            `Found ${currentUser?.collectedBeans[bean.key]} time(s)`}
         </div>
-        {/* TODO: do... something with this button... idk maybe link app */}
-        {/* <button className="button">Save Bean</button> */}
+        <a className="button" href={findAppLink()}>
+          View App
+        </a>
       </div>
     );
   };
@@ -92,7 +103,7 @@ function Modal() {
         className="w-full h-full"
         onClick={() => setSelectedBean(null)}
       ></div>
-      <div className="modal-content w-full max-w-[800px] flex flex-col gap-2">
+      <div className="modal-content w-full max-w-[800px] flex flex-col gap-2 mt-[8rem] md:mt-0">
         <button
           className="absolute top-1 right-4 p-2 cursor-pointer text-2xl hover:text-red"
           onClick={() => setSelectedBean(null)}
@@ -102,11 +113,11 @@ function Modal() {
         <div className="uppercase font-display font-bold text-3xl">
           Collected Beans {sortedBeans && calculateBeanCount()}
         </div>
-        <div className="flex gap-10">
+        <div className="flex flex-col-reverse md:flex-row gap-10">
           <div className="flex flex-wrap gap-2 overflow-y-auto max-h-[500px] justify-center py-[5px]">
             {sortedBeans.map((i) => renderCollectionCard(i))}
           </div>
-          <div className="min-w-[40%] border-[3px] border-pink rounded-xl p-4">
+          <div className="min-w-[200px] h-fit border-[3px] border-pink rounded-xl p-4">
             {selectedBean && showSelectedBean()}
           </div>
         </div>

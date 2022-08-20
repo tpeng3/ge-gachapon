@@ -8,8 +8,9 @@ function Card() {
   const beansThree = useSystemStore((state) => state.beansThree);
   const beansFive = useSystemStore((state) => state.beansFive);
   const currentUser = useSystemStore((state) => state.currentUser);
+  const setCurrentUser = useSystemStore((state) => state.setCurrentUser);
 
-  const calculateRandom = () => {
+  const calculateRandom = (pity = false) => {
     const elems = ["common", "rare", "super rare"]; // add rarity later
     const weights = [1, 0, 0];
     const totalWeight = weights.reduce((a, b) => a + b, 0);
@@ -21,18 +22,27 @@ function Card() {
       currentElem++;
     }
     const rarity = weighedElems[Math.floor(Math.random() * totalWeight)];
+    let selectedArray = beansOne;
     switch (rarity) {
       case "common":
-        return beansOne[Math.floor(Math.random() * beansOne.length)];
+        // TODO: add pity logic for other rarity
+        selectedArray = pity
+          ? beansOne.filter((i) => !currentUser.collectedBeans[i.key])
+          : beansOne;
+        break;
       case "rare":
-        return beansThree[Math.floor(Math.random() * beansThree.length)];
+        selectedArray = beansThree;
+        break;
       case "super rare":
-        return beansFive[Math.floor(Math.random() * beansFive.length)];
+        selectedArray = beansFive;
+        break;
     }
+    return selectedArray[Math.floor(Math.random() * beansOne.length)];
   };
 
-  const rollBean = () => {
-    const roll = calculateRandom();
+  const rollBean = (infinite = false) => {
+    const pity = currentUser.pity > 9 && !infinite;
+    const roll = calculateRandom(pity);
     const db = getDatabase();
     // update popularity
     runTransaction(ref(db, `beans/${roll.key}`), (currentData) => {
@@ -48,14 +58,20 @@ function Card() {
       ref(db, `users/${slugify(currentUser.key)}`),
       (currentData) => {
         if (currentData) {
-          currentData.tickets--;
+          if (!infinite) currentData.tickets--;
           if (currentData.collectedBeans) {
-            currentData.collectedBeans[roll.key]
-              ? currentData.collectedBeans[roll.key]++
-              : (currentData.collectedBeans[roll.key] = 1);
+            if (currentData.collectedBeans[roll.key]) {
+              currentData.collectedBeans[roll.key]++;
+              currentData.pity++;
+            } else {
+              currentData.collectedBeans[roll.key] = 1;
+              currentData.pity = 0;
+            }
           } else {
             currentData.collectedBeans = { [roll.key]: 1 };
+            currentData.pity = 0;
           }
+          setCurrentUser(currentData);
         }
         return currentData;
       }

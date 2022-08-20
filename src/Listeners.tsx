@@ -26,7 +26,6 @@ function Listeners() {
         if (JSON.stringify(csv) !== localStorage.getItem("census")) {
           updateCatalogue(csv);
           localStorage.setItem("census", JSON.stringify(csv));
-          console.log(csv);
         }
       });
 

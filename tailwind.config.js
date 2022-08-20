@@ -10,7 +10,9 @@ module.exports = {
       'beige': "#FBF7E3",
       'pink': "#F0AC97",
       'red': "#D16863",
-      'redlink': "#CE5A59"
+      'redlink': "#CE5A59",
+      "olive": "#DBDBB6",
+      'rose': "#f3d7d7"
     },
     fontFamily: {
       'display': ['"Amatic SC"'],

@@ -2,6 +2,7 @@ import create from "zustand";
 
 export interface Bean {
   key: string;
+  census: string;
   name: string;
   mun: string,
   direction: "left" | "right",
@@ -13,6 +14,7 @@ export interface Bean {
 export interface UserData {
   key?: string;
   tickets?: number;
+  pity?: number;
   collectedBeans?: {[key:string]: number}
 }
 
