@@ -25,11 +25,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Listeners />
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/counter" element={<Counter />} />
-      </Routes>
-    </HashRouter>
+    {window.location.pathname === "/counter" ? <Counter /> : <App />}
   </React.StrictMode>
 );
