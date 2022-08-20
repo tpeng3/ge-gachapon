@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  background: url('../images/background.png')
+  background: url('./images/background.png')
 }
 
 body {
@@ -49,6 +49,24 @@ body {
     @apply rounded-lg px-2 py-3 border-pink border-[3px] cursor-pointer hover:bg-olive hover:scale-105
   }
 
+  .toggle-button {
+    text-align: center;
+    border: none;
+    outline: none;
+    background-color: #D16864;
+    border-radius: 20px;
+    padding: 10px;
+    margin: auto;
+    color: #FBF7E3;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Amatic SC', cursive;
+    font-size: 24px;
+    letter-spacing: 1px;
+    -webkit-transition: 0.5s;
+    @apply hover:scale-105
+  }
+
   .input {
     /* Please style this better */
     -webkit-transition: 0.5s;
@@ -69,13 +87,28 @@ body {
   }
 
   .banner {
-    @apply font-display uppercase font-bold text-[25px] bg-pink px-2 py-2 rounded-xl mt-6
+    max-width: 800px;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    letter-spacing: 2px;
+    padding: 3px;
+    text-align: center;
+    color: white;
+    @apply uppercase font-bold text-[25px] bg-pink px-2 py-2 rounded-xl mt-6
   }
 
   .card {
     display: flex;
     -webkit-transition: 0.5s;
     @apply relative border-[3px] hover:bg-olive cursor-pointer flex-col items-center bg-beige border-pink rounded-xl;
+  }
+
+  .global-card {
+    display: flex;
+    -webkit-transition: 0.5s;
+    @apply relative border-[3px] bg-silver flex-col items-center border-pink rounded-xl;
   }
 
   .blank-card {
@@ -90,6 +123,23 @@ body {
     @apply font-display uppercase text-red font-bold text-[25px]
   }
 
+  .new {
+    background: #FBF7E3;
+    border-radius: 15px;
+    padding: 5px;
+    color: #CE5A59;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    font-size: 20px;
+    width: fit-content;
+    margin-top: -15px;
+    right: -10px;
+    font-family: 'Amatic SC', cursive;
+    -webkit-transition: 0.5s;
+    line-height: 30px;
+    position: absolute;
+  }
+
   /* Scrollbar styles */
   ::-webkit-scrollbar {
     width: 10px;
@@ -102,6 +152,10 @@ body {
   }
   ::-webkit-scrollbar-track {
     background: white;
+  }
+
+  .transparent-clip {
+    -webkit-mask-image: -webkit-gradient(linear, left 80%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
   }
 
 }

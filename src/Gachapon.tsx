@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { getDatabase, ref, runTransaction, set } from "firebase/database";
 import { slugify } from "./helpers";
 import useSystemStore from "./system";
+import { motion } from "framer-motion";
+import gachapic from "./images/gachapon.png";
 
-function Card() {
+function Gachapon({ toggleHistory, completed }) {
   const beansOne = useSystemStore((state) => state.beansOne);
   const beansThree = useSystemStore((state) => state.beansThree);
   const beansFive = useSystemStore((state) => state.beansFive);
   const currentUser = useSystemStore((state) => state.currentUser);
   const setCurrentUser = useSystemStore((state) => state.setCurrentUser);
+  const [isRolling, toggleRolling] = useState(false);
+  const disabled = currentUser.tickets < 1 && !completed;
+
+  const variants = {
+    rolling: { y: [0, -25, 0], transition: { duration: 0.3 } },
+    // You can do whatever you want here, if you just want it to stop completely use `rotate: 0`
+    rolled: {
+      y: 0,
+      scale: 1,
+    },
+  };
 
   const calculateRandom = (pity = false) => {
     const elems = ["common", "rare", "super rare"]; // add rarity later
@@ -26,9 +39,10 @@ function Card() {
     switch (rarity) {
       case "common":
         // TODO: add pity logic for other rarity
-        selectedArray = pity
-          ? beansOne.filter((i) => !currentUser.collectedBeans[i.key])
-          : beansOne;
+        selectedArray =
+          pity && !completed
+            ? beansOne.filter((i) => !currentUser.collectedBeans[i.key])
+            : beansOne;
         break;
       case "rare":
         selectedArray = beansThree;
@@ -37,13 +51,17 @@ function Card() {
         selectedArray = beansFive;
         break;
     }
-    return selectedArray[Math.floor(Math.random() * beansOne.length)];
+    return selectedArray[Math.floor(Math.random() * selectedArray.length)];
   };
 
   const rollBean = (infinite = false) => {
+    toggleHistory(true);
+    toggleRolling(true);
+    setTimeout(() => toggleRolling(false), 500);
     const pity = currentUser.pity > 9 && !infinite;
     const roll = calculateRandom(pity);
     const db = getDatabase();
+    let isNew = false;
     // update popularity
     runTransaction(ref(db, `beans/${roll.key}`), (currentData) => {
       if (currentData) {
@@ -64,40 +82,45 @@ function Card() {
               currentData.collectedBeans[roll.key]++;
               currentData.pity++;
             } else {
+              isNew = true;
               currentData.collectedBeans[roll.key] = 1;
               currentData.pity = 0;
             }
           } else {
+            isNew = true;
             currentData.collectedBeans = { [roll.key]: 1 };
             currentData.pity = 0;
           }
           setCurrentUser(currentData);
+          // update history
+          const timestamp = Date.now();
+          const record = {
+            timestamp,
+            key: roll.key,
+            user: currentUser.key,
+            isNew: isNew,
+          };
+          set(ref(db, `history/${timestamp}`), record);
         }
         return currentData;
       }
     );
-    // update history
-    const timestamp = Date.now();
-    const record = {
-      timestamp,
-      key: roll.key,
-      user: currentUser.key,
-    };
-    set(ref(db, `history/${timestamp}`), record);
   };
 
   return (
     <div>
-      <button onClick={() => rollBean()}>
-        {/* TODO: change later to an actual gachapon sprite */}
-        <img
-          src="https://galesend.twohoot.net/catalogue/assets/i_quingee.png"
-          id="frogpon"
-          className="bounce"
-        />
-      </button>
+      <motion.button
+        className={`${disabled ? "brightness-75" : ""}`}
+        onClick={() => rollBean()}
+        disabled={disabled}
+        animate={isRolling ? "rolling" : "rolled"}
+        variants={variants}
+        whileHover={!disabled && { scale: 1.1 }}
+      >
+        <img src={gachapic} />
+      </motion.button>
     </div>
   );
 }
 
-export default Card;
+export default Gachapon;

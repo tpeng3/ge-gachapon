@@ -22,6 +22,7 @@ export interface History {
     key: string;
     user: string;
     timestamp: number;
+    isNew: boolean;
 }
 
 interface SystemState {

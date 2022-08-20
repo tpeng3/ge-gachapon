@@ -8,6 +8,25 @@ function Modal() {
   const sortedBeans = useSystemStore((state) => state.sortedBeans);
   const censusData = useSystemStore((state) => state.censusData);
 
+  const variants = {
+    open: {
+      x: [-50, 0],
+      opacity: 1,
+      transition: {
+        ease: "easeOut",
+        duration: 0.5,
+      },
+    },
+    closed: {
+      x: [50, 0],
+      opacity: 1,
+      transition: {
+        ease: "easeOut",
+        duration: 0.5,
+      },
+    },
+  };
+
   const findAppLink = () => {
     const data = censusData.find((i) => i.ResidentName === selectedBean.census);
     return data && data.appurl;
@@ -38,14 +57,14 @@ function Modal() {
           onClick={() => setSelectedBean(bean)}
         >
           <img
-            src={require(`../images/${rarity}/${bean.key}.png`)}
-            className="w-20 pixellated"
+            src={require(`./images/${rarity}/${bean.key}.png`)}
+            className="w-[6rem] pixellated"
           />
           <div className="font-display uppercase text-red font-bold text-[25px]">
             {bean.name}
           </div>
           <img
-            src={require(`../images/star_${rarity}.png`)}
+            src={require(`./images/star_${rarity}.png`)}
             className=" pixellated top-0 left-0 absolute scale-[1.5]"
           />
         </button>
@@ -54,14 +73,14 @@ function Modal() {
       return (
         <div key={"col" + bean.key} className="blank-card">
           <img
-            src={require(`../images/${rarity}/${bean.key}.png`)}
-            className="w-20 pixellated brightness-0"
+            src={require(`./images/${rarity}/${bean.key}.png`)}
+            className="w-[6rem] pixellated brightness-0"
           />
           <div className="font-display uppercase font-bold text-[25px]">
             ???
           </div>
           <img
-            src={require(`../images/star_${rarity}.png`)}
+            src={require(`./images/star_${rarity}.png`)}
             className="pixellated top-0 left-0 brightness-50 absolute scale-[1.5]"
           />
         </div>
@@ -77,21 +96,21 @@ function Modal() {
     return (
       <div className="relative pb-4 flex flex-col items-center">
         <img
-          src={require(`../images/${rarity}/${bean.key}.png`)}
+          src={require(`./images/${rarity}/${bean.key}.png`)}
           className="w-64 pixellated"
         />
         <img
-          src={require(`../images/star_${rarity}.png`)}
+          src={require(`./images/star_${rarity}.png`)}
           className="pixellated top-0 left-0 absolute scale-[2] top-2"
         />
         <div className="cardtitle">{bean.name}</div>
         <div className="cardtitle">Belongs to {bean.mun}</div>
         <div className="cardtitle mb-4">
           {currentUser?.collectedBeans[bean.key] &&
-            `Found ${currentUser?.collectedBeans[bean.key]} time(s)`}
+            `Found ${currentUser?.collectedBeans[bean.key]} times`}
         </div>
-        <a className="button" href={findAppLink()}>
-          View App
+        <a target="_blank" className="toggle-button" href={findAppLink()}>
+          View Link
         </a>
       </div>
     );
@@ -103,7 +122,7 @@ function Modal() {
         className="w-full h-full"
         onClick={() => setSelectedBean(null)}
       ></div>
-      <div className="modal-content w-full max-w-[800px] flex flex-col gap-2 mt-[8rem] md:mt-0">
+      <div className="modal-content w-full max-w-[900px] flex flex-col gap-2 mt-[8rem] md:mt-0">
         <button
           className="absolute top-1 right-4 p-2 cursor-pointer text-2xl hover:text-red"
           onClick={() => setSelectedBean(null)}

@@ -2,34 +2,33 @@ import React from "react";
 import useSystemStore from "./system";
 import { motion } from "framer-motion";
 
-function Card({ bean, index, isNew }) {
-  const setSelectedBean = useSystemStore((state) => state.setSelectedBean);
+function GlobalCard({ bean, index, user }) {
   const rarity =
     bean.rarity === 1 ? "one" : bean.rarity === 3 ? "three" : "five";
 
   return (
-    <motion.button
+    <motion.div
       key={`button-${bean.key}`}
       animate={index === 0 && { opacity: [0.2, 1], scale: [0.2, 1] }}
       transition={index === 0 && { duration: 0.05, ease: "easeIn" }}
-      whileHover={{ scale: 1.1, transition: { duration: 0.1 } }}
-      className="card"
-      onClick={() => setSelectedBean(bean)}
+      className="global-card"
     >
-      {isNew && <span className="new">NEW!</span>}
       <img
         src={require(`./images/${rarity}/${bean.key}.png`)}
         className="w-32 pixellated"
       />
+      <div className="font-display uppercase text-red font-bold text-[25px]"></div>
       <div className="font-display uppercase text-red font-bold text-[25px]">
-        {bean.name}
+        Rolled by
+        <br />
+        {user}
       </div>
       <img
         src={require(`./images/star_${rarity}.png`)}
         className=" pixellated top-0 left-0 absolute scale-[2]"
       />
-    </motion.button>
+    </motion.div>
   );
 }
 
-export default Card;
+export default GlobalCard;
