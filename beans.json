@@ -2,6 +2,7 @@
   "beans": {
     "ambrose_default": {
       "key": "ambrose_default",
+      "census": "Ambrose Dupont",
       "name": "Ambrose",
       "mun": "Pandi",
       "direction": "left",
@@ -9,8 +10,39 @@
       "revealed": false,
       "popularity": 0
     },
+    "andras_default": {
+      "key": "andras_default",
+      "census": "Andras Asaiya",
+      "name": "Andras",
+      "mun": "pea",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "apricot_default": {
+      "key": "apricot_default",
+      "census": "Lin Xing Apricot",
+      "name": "Apricot",
+      "mun": "Jint",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "astrea_default": {
+      "key": "astrea_default",
+      "census": "Astrea Polaris",
+      "name": "Astrea",
+      "mun": "Koo",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
     "ava_default": {
       "key": "ava_default",
+      "census": "Avalon Santoya",
       "name": "Ava",
       "mun": "Dice",
       "direction": "left",
@@ -20,6 +52,7 @@
     },
     "bee_default": {
       "key": "bee_default",
+      "census": "Bonnibel Barnbrooke",
       "name": "Bee",
       "mun": "Pandi",
       "direction": "right",
@@ -27,8 +60,39 @@
       "revealed": false,
       "popularity": 0
     },
+    "bullfrog_default": {
+      "key": "bullfrog_default",
+      "census": "Bullfrog",
+      "name": "Bullfrog",
+      "mun": "pai",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "caelis_default": {
+      "key": "caelis_default",
+      "census": "Caelis Arvel",
+      "name": "Caelis",
+      "mun": "vani",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "chickaree_default": {
+      "key": "chickaree_default",
+      "census": "Chickaree Huxtable",
+      "name": "Chickaree",
+      "mun": "Gabbo",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
     "cynn_default": {
       "key": "cynn_default",
+      "census": "Xinghuo Huang",
       "name": "Cynn",
       "mun": "Froggo",
       "direction": "left",
@@ -36,8 +100,59 @@
       "revealed": false,
       "popularity": 0
     },
+    "cyrille_default": {
+      "key": "cyrille_default",
+      "census": "Cyrille Moirae",
+      "name": "Cyrille",
+      "mun": "pea",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "cyrille_blindfold": {
+      "key": "cyrille_blindfold",
+      "census": "Cyrille Moirae",
+      "name": "Cyrille",
+      "mun": "pea",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "cyrus_default": {
+      "key": "cyrus_default",
+      "census": "Cyrus Steele",
+      "name": "Cyrus",
+      "mun": "Fizz",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "deko_default": {
+      "key": "deko_default",
+      "census": "Deko Falkenberg",
+      "name": "Deko",
+      "mun": "teeri",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "delphi_default": {
+      "key": "delphi_default",
+      "census": "Delphinium Larkenspurr",
+      "name": "Delphi",
+      "mun": "Moni",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
     "edison_default": {
       "key": "edison_default",
+      "census": "Edison Kazu",
       "name": "Edison",
       "mun": "anne",
       "direction": "right",
@@ -47,6 +162,7 @@
     },
     "ezra_default": {
       "key": "ezra_default",
+      "census": "Ezra Islwyn Monts",
       "name": "Ezra",
       "mun": "Toasty",
       "direction": "left",
@@ -56,6 +172,7 @@
     },
     "greta_default": {
       "key": "greta_default",
+      "census": "Greta Dalca",
       "name": "Greta",
       "mun": "Hina",
       "direction": "right",
@@ -63,8 +180,129 @@
       "revealed": false,
       "popularity": 0
     },
+    "hawke_default": {
+      "key": "hawke_default",
+      "census": "Hawke Morillo",
+      "name": "Hawke",
+      "mun": "Hissy",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "hiraya_default": {
+      "key": "hiraya_default",
+      "census": "Hiraya Panahon",
+      "name": "Hiraya",
+      "mun": "Vice",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "ira_default": {
+      "key": "ira_default",
+      "census": "Ira Forrest",
+      "name": "Ira",
+      "mun": "haylee",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "iris_default": {
+      "key": "iris_default",
+      "census": "Iris Solares",
+      "name": "Iris",
+      "mun": "nie",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "legretta_default": {
+      "key": "legretta_default",
+      "census": "Legretta Soriano",
+      "name": "Legretta",
+      "mun": "Lani",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "macha_default": {
+      "key": "macha_default",
+      "census": "Macha Edelcrantz",
+      "name": "Macha",
+      "mun": "Ash",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "maelys_default": {
+      "key": "maelys_default",
+      "census": "Maelys Wyfell",
+      "name": "Maelys",
+      "mun": "Sachi",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "maelys_nohat": {
+      "key": "maelys_nohat",
+      "census": "Maelys Wyfell",
+      "name": "Maelys",
+      "mun": "Sachi",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "mengji_default": {
+      "key": "mengji_default",
+      "census": "Mengji Huyan",
+      "name": "Mengji",
+      "mun": "geeck",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "mira_default": {
+      "key": "mira_default",
+      "census": "Mira Song",
+      "name": "Mira",
+      "mun": "Kaitlin",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "nikita_default": {
+      "key": "nikita_default",
+      "census": "Nikita Zolotov",
+      "name": "Nikita",
+      "mun": "Mikey",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "panqing_default": {
+      "key": "panqing_default",
+      "census": "Tian Pan Qing",
+      "name": "Pan Qing",
+      "mun": "Yu",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
     "sorrel_default": {
       "key": "sorrel_default",
+      "census": "Sorrel",
       "name": "Sorrel",
       "mun": "Ryn",
       "direction": "right",
@@ -74,6 +312,7 @@
     },
     "starlight_default": {
       "key": "starlight_default",
+      "census": "Starlight Polaris",
       "name": "Starlight",
       "mun": "Lok",
       "direction": "right",
@@ -81,8 +320,29 @@
       "revealed": false,
       "popularity": 0
     },
+    "sylvie_default": {
+      "key": "sylvie_default",
+      "census": "Sylvie Ceylonia",
+      "name": "Sylvie",
+      "mun": "nelle",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "tao_default": {
+      "key": "tao_default",
+      "census": "Tao",
+      "name": "Tao",
+      "mun": "song",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
     "tempi_default": {
       "key": "tempi_default",
+      "census": "Tempi Blackbourne",
       "name": "Tempi",
       "mun": "Archie",
       "direction": "right",
@@ -90,10 +350,81 @@
       "revealed": false,
       "popularity": 0
     },
+    "teri_default": {
+      "key": "teri_default",
+      "census": "Wisteria Shortte",
+      "name": "Teri",
+      "mun": "lanna",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "thorn_default": {
+      "key": "thorn_default",
+      "census": "Hawthorn Oshige",
+      "name": "Thorn",
+      "mun": "gel",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "violet_default": {
+      "key": "violet_default",
+      "census": "Violet Frost",
+      "name": "Violet",
+      "mun": "Dog",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "wander_default": {
+      "key": "wander_default",
+      "census": "Wanderlust Espera",
+      "name": "Wander",
+      "mun": "Coco",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "wander_nohat": {
+      "key": "wander_nohat",
+      "census": "Wanderlust Espera",
+      "name": "Wander",
+      "mun": "Coco",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
     "wren_default": {
       "key": "wren_default",
+      "census": "Hendrickson Grey",
       "name": "Wren",
       "mun": "Oggy",
+      "direction": "left",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "yun_default": {
+      "key": "yun_default",
+      "census": "Yun",
+      "name": "Yun",
+      "mun": "Goose",
+      "direction": "right",
+      "rarity": 1,
+      "revealed": false,
+      "popularity": 0
+    },
+    "zane_default": {
+      "key": "zane_default",
+      "census": "Zanadiel Czwyck",
+      "name": "Zane",
+      "mun": "Kiyo",
       "direction": "left",
       "rarity": 1,
       "revealed": false,
@@ -104,7 +435,12 @@
     "froggo": {
       "key": "froggo",
       "tickets": 0,
-      "collectedBeans": {}
+      "collectedBeans": false
+    },
+    "guest": {
+      "key": "guest",
+      "tickets": 0,
+      "collectedBeans": false
     }
   },
   "history": {

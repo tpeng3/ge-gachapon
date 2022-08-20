@@ -78,6 +78,7 @@ body {
     /* Please style this better */
     display: flex;
     -webkit-transition: 0.5s;
+    pointer-events: none;
     @apply relative border-[3px] flex-col items-center bg-grey border-pink rounded-xl;
   }
 

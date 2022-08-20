@@ -23,6 +23,7 @@ export interface History {
 }
 
 interface SystemState {
+  censusData: any;
   beanDict: {[key:string]: Bean};
   sortedBeans: Bean[];
   beansOne: Bean[];
@@ -32,6 +33,7 @@ interface SystemState {
   history: History[];
   currentUser: UserData;
   selectedBean: Bean | null;
+  updateCatalogue: Function;
   initBeanDict: Function;
   updateHistory: Function;
   setCurrentUser: Function;
@@ -39,6 +41,7 @@ interface SystemState {
 }
 
 const initialState = {
+  censusData: {},
   beanDict: {},
   sortedBeans: [],
   beansOne: [],
@@ -54,6 +57,7 @@ const initialState = {
  * Bean functions
  */
 // only on page load
+const updateCatalogue = (value: {[key:string]: Bean}) => ({ censusData: value });
 const initBeanDict = (value: {[key:string]: Bean}) => {
   const beansOne = Object.values(value).filter(i => i.rarity === 1);
   const beansThree = Object.values(value).filter(i => i.rarity === 3);
@@ -78,6 +82,7 @@ const setSelectedBean = (value: Bean) => ({ selectedBean: value });
  */
 const useSystemStore = create<SystemState>((set) => ({
   ...initialState,
+  updateCatalogue: (value) => set(() => updateCatalogue(value)),
   initBeanDict: (value: {[key:string]: Bean}) => set(() => initBeanDict(value)),
   updateHistory: (value: History[]) => set(() => updateHistory(value)),
   setCurrentUser: (value: UserData) => set(() => setCurrentUser(value)),
