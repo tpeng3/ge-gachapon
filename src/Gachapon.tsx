@@ -54,11 +54,11 @@ function Gachapon({ toggleHistory, completed }) {
     return selectedArray[Math.floor(Math.random() * selectedArray.length)];
   };
 
-  const rollBean = (infinite = false) => {
+  const rollBean = () => {
     toggleHistory(true);
     toggleRolling(true);
     setTimeout(() => toggleRolling(false), 500);
-    const pity = currentUser.pity > 9 && !infinite;
+    const pity = currentUser.pity > 9 && !completed;
     const roll = calculateRandom(pity);
     const db = getDatabase();
     let isNew = false;
@@ -76,22 +76,24 @@ function Gachapon({ toggleHistory, completed }) {
       ref(db, `users/${slugify(currentUser.key)}`),
       (currentData) => {
         if (currentData) {
-          if (!infinite) currentData.tickets--;
-          if (currentData.collectedBeans) {
-            if (currentData.collectedBeans[roll.key]) {
-              currentData.collectedBeans[roll.key]++;
-              currentData.pity++;
+          if (!completed) {
+            currentData.tickets--;
+            if (currentData.collectedBeans) {
+              if (currentData.collectedBeans[roll.key]) {
+                currentData.collectedBeans[roll.key]++;
+                currentData.pity++;
+              } else {
+                isNew = true;
+                currentData.collectedBeans[roll.key] = 1;
+                currentData.pity = 0;
+              }
             } else {
               isNew = true;
-              currentData.collectedBeans[roll.key] = 1;
+              currentData.collectedBeans = { [roll.key]: 1 };
               currentData.pity = 0;
             }
-          } else {
-            isNew = true;
-            currentData.collectedBeans = { [roll.key]: 1 };
-            currentData.pity = 0;
+            setCurrentUser(currentData);
           }
-          setCurrentUser(currentData);
           // update history
           const timestamp = Date.now();
           const record = {

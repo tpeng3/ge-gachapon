@@ -4,8 +4,17 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import useSystemStore from "./system";
 import { slugify } from "./helpers";
 import csvtojson from "csvtojson";
+import WebFont from "webfontloader";
 
 function Listeners() {
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ["Amatic SC", "Lato"],
+      },
+    });
+  }, []);
+
   const initBeanDict = useSystemStore((state) => state.initBeanDict);
   const updateHistory = useSystemStore((state) => state.updateHistory);
   const setCurrentUser = useSystemStore((state) => state.setCurrentUser);

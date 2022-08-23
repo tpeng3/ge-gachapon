@@ -8,7 +8,8 @@ export interface Bean {
   direction: "left" | "right",
   rarity: number,
   revealed: boolean,
-  popularity: number
+  popularity: number,
+  artist?: string
 }
 
 export interface UserData {

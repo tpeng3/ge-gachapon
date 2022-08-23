@@ -58,7 +58,7 @@ function Modal() {
         >
           <img
             src={require(`./images/${rarity}/${bean.key}.png`)}
-            className="w-[6rem] pixellated"
+            className="w-[5rem] md:w-[6rem] pixellated"
           />
           <div className="font-display uppercase text-red font-bold text-[25px]">
             {bean.name}
@@ -97,7 +97,7 @@ function Modal() {
       <div className="relative pb-4 flex flex-col items-center">
         <img
           src={require(`./images/${rarity}/${bean.key}.png`)}
-          className="w-64 pixellated"
+          className="w-32 md:w-64 pixellated"
         />
         <img
           src={require(`./images/star_${rarity}.png`)}
@@ -109,9 +109,19 @@ function Modal() {
           {currentUser?.collectedBeans[bean.key] &&
             `Found ${currentUser?.collectedBeans[bean.key]} times`}
         </div>
-        <a target="_blank" className="toggle-button" href={findAppLink()}>
+        <a
+          target="_blank"
+          rel="noreferrer noopener"
+          className="toggle-button"
+          href={findAppLink()}
+        >
           View Link
         </a>
+        {bean.artist && (
+          <span className="footnote absolute top-0 right-0">
+            Contributed by {bean.artist}
+          </span>
+        )}
       </div>
     );
   };
@@ -122,7 +132,7 @@ function Modal() {
         className="w-full h-full"
         onClick={() => setSelectedBean(null)}
       ></div>
-      <div className="modal-content w-full max-w-[900px] flex flex-col gap-2 mt-[8rem] md:mt-0">
+      <div className="modal-content w-full max-w-[900px] flex flex-col gap-2 max-h-screen">
         <button
           className="absolute top-1 right-4 p-2 cursor-pointer text-2xl hover:text-red"
           onClick={() => setSelectedBean(null)}
@@ -132,7 +142,7 @@ function Modal() {
         <div className="uppercase font-display font-bold text-3xl">
           Collected Beans {sortedBeans && calculateBeanCount()}
         </div>
-        <div className="flex flex-col-reverse md:flex-row gap-10">
+        <div className="flex flex-col-reverse md:flex-row gap-10 overflow-hidden">
           <div className="flex flex-wrap gap-2 overflow-y-auto max-h-[500px] justify-center py-[5px]">
             {sortedBeans.map((i) => renderCollectionCard(i))}
           </div>

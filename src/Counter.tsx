@@ -9,9 +9,6 @@ import {
 } from "firebase/database";
 import { slugify } from "./helpers";
 
-const buttonStyle =
-  "transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300";
-
 const Counter = () => {
   const [errorMessage, setMessage] = useState("");
   const [selectedUser, setUser] = useState("");
@@ -39,6 +36,8 @@ const Counter = () => {
     runTransaction(ref(db, "users/" + slugify(name)), (currentData) => {
       if (currentData) {
         currentData.tickets = parseInt(currentData.tickets) + parseInt(amount);
+        setMessage(`Added ${amount} tickets to ${name}!`);
+        setTimeout(() => setMessage(""), 5000);
         return currentData;
       } else {
         return {
@@ -69,7 +68,7 @@ const Counter = () => {
             setUser(username);
           }}
         >
-          Remove
+          Reset
         </button>
       </div>
     );
@@ -105,7 +104,7 @@ const Counter = () => {
         <div className="grid grid-cols-3">
           <span>Username</span>
           <span>Ticket</span>
-          <span>Remove?</span>
+          <span>Reset?</span>
         </div>
         {/* can remove people in queue */}
         {Object.keys(queue).map((i) => renderQueueTicket(i))}

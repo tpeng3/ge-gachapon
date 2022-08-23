@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./App.css";
 import Modal from "./Modal";
 import Collection from "./Collection";
 import Gachapon from "./Gachapon";
@@ -19,6 +18,7 @@ function App() {
     sortedBeans.filter(
       (i) => currentUser?.collectedBeans && currentUser.collectedBeans[i.key]
     ).length;
+  const [isOpen, toggleModal] = useState(false);
 
   const variants = {
     open: {
@@ -57,16 +57,18 @@ function App() {
 
   return (
     <div className="App">
-      <div className="max-w-[900px] mx-auto relative">
-        <button
-          className="toggle-button absolute right-6 top-20"
-          onClick={() => toggleHistory(!userHistory)}
-        >
-          {userHistory ? "See everyone's rolls" : "See your rolls"}
-        </button>
-        <div className="banner">{getBannerText()}</div>
+      <div className="max-w-[900px] mx-auto relative text-center">
+        <div className="banner mb-4">
+          <span className="bannertext">{getBannerText()}</span>
+          <button
+            className="buttontext uppercase mx-auto underline"
+            onClick={() => toggleModal(true)}
+          >
+            Change user?
+          </button>
+        </div>
         <Gachapon toggleHistory={toggleHistory} completed={completed} />
-        <div className="cardtitle">
+        <div className="cardtitle mb-4">
           Available Tickets:{" "}
           {completed ? (
             <span>&infin;</span>
@@ -76,6 +78,12 @@ function App() {
             0
           )}
         </div>
+        <button
+          className="toggle-button md:absolute right-6 top-20"
+          onClick={() => toggleHistory(!userHistory)}
+        >
+          {userHistory ? "See everyone's rolls" : "See your rolls"}
+        </button>
         <div className="transparent-clip h-[500px] overflow-auto">
           <motion.div
             animate={userHistory ? "open" : "closed"}
@@ -104,7 +112,7 @@ function App() {
           </motion.div>
         </div>
       </div>
-      <Modal />
+      <Modal isOpen={isOpen} toggleModal={toggleModal} />
       <Collection />
     </div>
   );

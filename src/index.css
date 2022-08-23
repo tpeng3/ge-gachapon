@@ -98,6 +98,15 @@ body {
     color: white;
     @apply uppercase font-bold text-[25px] bg-pink px-2 py-2 rounded-xl mt-6
   }
+  .banner:hover .bannertext {
+    display: none;
+  }
+  .banner .buttontext {
+    display: none
+  }
+  .banner:hover .buttontext {
+    display: block;
+  }
 
   .card {
     display: flex;
