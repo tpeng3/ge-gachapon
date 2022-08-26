@@ -25,6 +25,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Listeners />
-    {window.location.pathname === "/counter" ? <Counter /> : <App />}
+    {window.location.pathname === "/counter" ||
+    window.location.pathname === "/counter/" ? (
+      <Counter />
+    ) : (
+      <App />
+    )}
   </React.StrictMode>
 );
