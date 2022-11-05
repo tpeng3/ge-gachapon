@@ -28,7 +28,7 @@ function Modal() {
   };
 
   const findAppLink = () => {
-    const data = censusData.find((i) => i.ResidentName === selectedBean.census);
+    const data = censusData.find((i) => i.IdNUM == selectedBean.idnum);
     return data && data.appurl;
   };
 
@@ -41,8 +41,8 @@ function Modal() {
   };
 
   const renderCollectionCard = (bean) => {
-    const rarity =
-      bean.rarity === 1 ? "one" : bean.rarity === 3 ? "three" : "five";
+    const pack =
+      bean.pack === 1 ? "one" : bean.pack === 2 ? "two" : "two";
     const collected =
       currentUser?.collectedBeans && currentUser?.collectedBeans[bean.key];
 
@@ -57,14 +57,14 @@ function Modal() {
           onClick={() => setSelectedBean(bean)}
         >
           <img
-            src={require(`./images/${rarity}/${bean.key}.png`)}
+            src={require(`./images/${pack}/${bean.key}.png`)}
             className="w-[5rem] md:w-[6rem] pixellated"
           />
           <div className="font-display uppercase text-red font-bold text-[25px]">
             {bean.name}
           </div>
           <img
-            src={require(`./images/star_${rarity}.png`)}
+            src={require(`./images/star_one.png`)}
             className=" pixellated top-0 left-0 absolute scale-[1.5]"
           />
         </button>
@@ -73,14 +73,14 @@ function Modal() {
       return (
         <div key={"col" + bean.key} className="blank-card">
           <img
-            src={require(`./images/${rarity}/${bean.key}.png`)}
+            src={require(`./images/${pack}/${bean.key}.png`)}
             className="w-[6rem] pixellated brightness-0"
           />
           <div className="font-display uppercase font-bold text-[25px]">
             ???
           </div>
           <img
-            src={require(`./images/star_${rarity}.png`)}
+            src={require(`./images/star_one.png`)}
             className="pixellated top-0 left-0 brightness-50 absolute scale-[1.5]"
           />
         </div>
@@ -90,17 +90,16 @@ function Modal() {
 
   const showSelectedBean = () => {
     const bean = selectedBean;
-    // TODO: im lazy, make a helper function for this later
-    const rarity =
-      bean.rarity === 1 ? "one" : bean.rarity === 3 ? "three" : "five";
+    const pack =
+      bean.pack === 1 ? "one" : bean.pack === 2 ? "two" : "two";
     return (
       <div className="relative pb-4 flex flex-col items-center">
         <img
-          src={require(`./images/${rarity}/${bean.key}.png`)}
+          src={require(`./images/${pack}/${bean.key}.png`)}
           className="w-32 md:w-64 pixellated"
         />
         <img
-          src={require(`./images/star_${rarity}.png`)}
+          src={require(`./images/star_one.png`)}
           className="pixellated top-0 left-0 absolute scale-[2] top-2"
         />
         <div className="cardtitle">{bean.name}</div>
@@ -109,14 +108,14 @@ function Modal() {
           {currentUser?.collectedBeans[bean.key] &&
             `Found ${currentUser?.collectedBeans[bean.key]} times`}
         </div>
-        <a
+        {bean.idnum > 0 && <a
           target="_blank"
           rel="noreferrer noopener"
           className="toggle-button"
           href={findAppLink()}
         >
           View Link
-        </a>
+        </a>}
         {bean.artist && (
           <span className="footnote absolute top-0 right-0">
             Contributed by {bean.artist}

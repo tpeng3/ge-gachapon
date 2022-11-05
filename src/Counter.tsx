@@ -63,7 +63,7 @@ const Counter = () => {
   const renderQueueTicket = (username) => {
     if (!queue[username]) return <div></div>;
     return (
-      <div key={username} className="grid grid-cols-3 items-center">
+      <div key={username} className="grid grid-cols-4 items-center">
         <span>{username}</span>
         <div>{queue[username].tickets}</div>
         <div>{queue[username].specialTickets}</div>
@@ -114,9 +114,10 @@ const Counter = () => {
 
       <div className="rounded-lg bg-beige border-2 border-red p-10 m-10 flex flex-col gap-2">
         <h1 className="cardtitle">Current Users</h1>
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-4">
           <span>Username</span>
           <span>Ticket</span>
+          <span>Special Ticket</span>
           <span>Reset?</span>
         </div>
         {/* can remove people in queue */}

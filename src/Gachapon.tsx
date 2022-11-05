@@ -10,7 +10,7 @@ function Gachapon({ toggleHistory, completed }) {
   const currentUser = useSystemStore((state) => state.currentUser);
   const setCurrentUser = useSystemStore((state) => state.setCurrentUser);
   const [isRolling, toggleRolling] = useState(false);
-  const disabled = currentUser.tickets < 1 && !completed;
+  const disabled = currentUser.tickets < 1 && currentUser.specialTickets < 1 && !completed;
 
   const variants = {
     rolling: { y: [0, -25, 0], transition: { duration: 0.3 } },
@@ -25,6 +25,9 @@ function Gachapon({ toggleHistory, completed }) {
     let pool = beans;
     if (filter) {
       pool = beans.filter(i => i.pack === filter)
+      // if user has collected all the special beans, use tickets for regular pool
+      const check = pool.filter((i) => !currentUser.collectedBeans[i.key]);
+      if (check.length < 1) pool = beans;
     }
     let selectedArray =
           pity && !completed

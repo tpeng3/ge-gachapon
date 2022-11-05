@@ -1,10 +1,9 @@
 import React from "react";
-import useSystemStore from "./system";
 import { motion } from "framer-motion";
 
 function GlobalCard({ bean, index, user }) {
-  const rarity =
-    bean.rarity === 1 ? "one" : bean.rarity === 3 ? "three" : "five";
+  const pack =
+    bean.pack === 1 ? "one" : bean.pack === 2 ? "two" : "two";
 
   return (
     <motion.div
@@ -14,7 +13,7 @@ function GlobalCard({ bean, index, user }) {
       className="global-card"
     >
       <img
-        src={require(`./images/${rarity}/${bean.key}.png`)}
+        src={require(`./images/${pack}/${bean.key}.png`)}
         className="w-32 pixellated"
       />
       <div className="font-display uppercase text-red font-bold text-[25px]"></div>
@@ -24,7 +23,7 @@ function GlobalCard({ bean, index, user }) {
         {user}
       </div>
       <img
-        src={require(`./images/star_${rarity}.png`)}
+        src={require(`./images/star_one.png`)}
         className=" pixellated top-0 left-0 absolute scale-[2]"
       />
     </motion.div>

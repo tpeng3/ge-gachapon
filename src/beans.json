@@ -105,7 +105,7 @@
     "name": "Cynn",
     "idnum": 101,
     "mun": "Froggo",
-    "pack": 1,
+    "pack": 2,
     "direction": "Left",
     "creator": ""
   },
@@ -137,16 +137,6 @@
     "mun": "Fizz",
     "pack": 1,
     "direction": "Right",
-    "creator": ""
-  },
-  {
-    "bean": "",
-    "key": "decim_default",
-    "name": "Decim",
-    "idnum": 148,
-    "mun": "anne",
-    "pack": 1,
-    "direction": "Left",
     "creator": ""
   },
   {
@@ -205,7 +195,7 @@
     "name": "Greta",
     "idnum": 197,
     "mun": "Hina",
-    "pack": 1,
+    "pack": 2,
     "direction": "Right",
     "creator": ""
   },
@@ -321,7 +311,7 @@
   },
   {
     "bean": "",
-    "key": "pan qing_default",
+    "key": "panqing_default",
     "name": "Pan Qing",
     "idnum": 6,
     "mun": "Yu",
@@ -331,7 +321,7 @@
   },
   {
     "bean": "",
-    "key": "pan qing_scar",
+    "key": "panqing_scar",
     "name": "Pan Qing",
     "idnum": 6,
     "mun": "Yu",
@@ -531,16 +521,6 @@
   },
   {
     "bean": "",
-    "key": "tiger_default",
-    "name": "Tiger",
-    "idnum": 187,
-    "mun": "tree",
-    "pack": 2,
-    "direction": "Either",
-    "creator": ""
-  },
-  {
-    "bean": "",
     "key": "irey_default",
     "name": "Irey",
     "idnum": 247,
@@ -604,7 +584,7 @@
     "key": "lucky_default",
     "name": "Lucky",
     "idnum": 0,
-    "mun": "Tao",
+    "mun": "Tao and Cynn",
     "pack": 2,
     "direction": "left",
     "creator": ""
@@ -612,7 +592,7 @@
   {
     "bean": "",
     "key": "bullfrogjr_default",
-    "name": "BullfrogJr",
+    "name": "Bullfrog Jr.",
     "idnum": 0,
     "mun": "Trading Post",
     "pack": 2,

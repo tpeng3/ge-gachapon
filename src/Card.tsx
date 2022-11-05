@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 function Card({ bean, index, isNew }) {
   const setSelectedBean = useSystemStore((state) => state.setSelectedBean);
-  const rarity =
-    bean.rarity === 1 ? "one" : bean.rarity === 3 ? "three" : "five";
+  const pack =
+    bean.pack === 1 ? "one" : bean.pack === 2 ? "two" : "two";
 
   return (
     <motion.button
@@ -18,14 +18,14 @@ function Card({ bean, index, isNew }) {
     >
       {isNew && <span className="new">NEW!</span>}
       <img
-        src={require(`./images/${rarity}/${bean.key}.png`)}
+        src={require(`./images/${pack}/${bean.key}.png`)}
         className="w-32 pixellated"
       />
       <div className="font-display uppercase text-red font-bold text-[25px]">
         {bean.name}
       </div>
       <img
-        src={require(`./images/star_${rarity}.png`)}
+        src={require(`./images/star_one.png`)}
         className=" pixellated top-0 left-0 absolute scale-[2]"
       />
     </motion.button>

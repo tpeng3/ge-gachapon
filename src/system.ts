@@ -17,6 +17,7 @@ export interface Bean {
 export interface UserData {
   key?: string;
   tickets?: number;
+  specialTickets?: number;
   pity?: number;
   collectedBeans?: { [key: string]: number }
 }
@@ -71,7 +72,7 @@ const initBeanDict = (value: { [key: string]: Bean }) => {
   const sortedBeans = Object.values(beans).sort((a, b) => a.key.localeCompare(b.key));
   return {
     beanDict: beans,
-    beanList: Object.values(beans),
+    beans: Object.values(beans),
     sortedBeans
   }
 };
