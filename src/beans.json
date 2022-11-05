@@ -1,0 +1,682 @@
+[
+  {
+    "bean": "",
+    "key": "ambrose_default",
+    "name": "Ambrose",
+    "idnum": 61,
+    "mun": "pandi",
+    "pack": 1,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "andras_default",
+    "name": "Andras",
+    "idnum": 23,
+    "mun": "Peapup",
+    "pack": 1,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "apricot_default",
+    "name": "Apricot",
+    "idnum": 21,
+    "mun": "Jint",
+    "pack": 1,
+    "direction": "right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "astrea_default",
+    "name": "Astrea",
+    "idnum": 128,
+    "mun": "Koo",
+    "pack": 1,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "ava_default",
+    "name": "Ava",
+    "idnum": 25,
+    "mun": "Dice",
+    "pack": 1,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "bee_default",
+    "name": "Bee",
+    "idnum": 154,
+    "mun": "Pandi",
+    "pack": 1,
+    "direction": "Right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "bullfrog_default",
+    "name": "bullfrog",
+    "idnum": 2,
+    "mun": "pai",
+    "pack": 1,
+    "direction": "Right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "caelis_default",
+    "name": "Caelis",
+    "idnum": 190,
+    "mun": "vani",
+    "pack": 1,
+    "direction": "right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "chickaree_default",
+    "name": "Chickaree",
+    "idnum": 29,
+    "mun": "Gabbo",
+    "pack": 1,
+    "direction": "right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "cynn_default",
+    "name": "Cynn",
+    "idnum": 101,
+    "mun": "Froggo",
+    "pack": 1,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "cynn_spring",
+    "name": "Cynn",
+    "idnum": 101,
+    "mun": "Froggo",
+    "pack": 1,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "cyrille_default",
+    "name": "Cyrille",
+    "idnum": 145,
+    "mun": "pea",
+    "pack": 1,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "cyrille_blindfold",
+    "name": "Cyrille",
+    "idnum": 145,
+    "mun": "pea",
+    "pack": 1,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "cyrus_default",
+    "name": "Cyrus",
+    "idnum": 172,
+    "mun": "Fizz",
+    "pack": 1,
+    "direction": "Right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "decim_default",
+    "name": "Decim",
+    "idnum": 148,
+    "mun": "anne",
+    "pack": 1,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "deko_default",
+    "name": "Deko",
+    "idnum": 140,
+    "mun": "teeri",
+    "pack": 1,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "delphi_default",
+    "name": "Delphi",
+    "idnum": 44,
+    "mun": "Moni",
+    "pack": 1,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "edison_default",
+    "name": "Edison",
+    "idnum": 67,
+    "mun": "anne",
+    "pack": 1,
+    "direction": "Right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "ezra_default",
+    "name": "Ezra",
+    "idnum": 13,
+    "mun": "Toasty",
+    "pack": 1,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "greta_default",
+    "name": "Greta",
+    "idnum": 197,
+    "mun": "Hina",
+    "pack": 1,
+    "direction": "Right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "greta_spring",
+    "name": "Greta",
+    "idnum": 197,
+    "mun": "Hina",
+    "pack": 1,
+    "direction": "Right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "hawke_default",
+    "name": "Hawke",
+    "idnum": 162,
+    "mun": "Hissy",
+    "pack": 1,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "hiraya_default",
+    "name": "Hiraya",
+    "idnum": 134,
+    "mun": "Vice",
+    "pack": 1,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "ira_default",
+    "name": "Ira",
+    "idnum": 25,
+    "mun": "haylee",
+    "pack": 1,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "iris_default",
+    "name": "Iris",
+    "idnum": 107,
+    "mun": "nie",
+    "pack": 1,
+    "direction": "Right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "legretta_default",
+    "name": "Legretta",
+    "idnum": 63,
+    "mun": "Lani",
+    "pack": 1,
+    "direction": "right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "macha_default",
+    "name": "Macha",
+    "idnum": 130,
+    "mun": "Ash",
+    "pack": 1,
+    "direction": "right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "maelys_default",
+    "name": "Maelys",
+    "idnum": 18,
+    "mun": "Sachi",
+    "pack": 1,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "maelys_nohat",
+    "name": "Maelys",
+    "idnum": 18,
+    "mun": "Sachi",
+    "pack": 1,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "mengji_default",
+    "name": "Mengji",
+    "idnum": 114,
+    "mun": "geeck",
+    "pack": 1,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "mira_default",
+    "name": "Mira",
+    "idnum": 73,
+    "mun": "Kaitlin",
+    "pack": 1,
+    "direction": "Either!",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "nikita_default",
+    "name": "Nikita",
+    "idnum": 95,
+    "mun": "Mikey",
+    "pack": 1,
+    "direction": "either",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "pan qing_default",
+    "name": "Pan Qing",
+    "idnum": 6,
+    "mun": "Yu",
+    "pack": 1,
+    "direction": "right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "pan qing_scar",
+    "name": "Pan Qing",
+    "idnum": 6,
+    "mun": "Yu",
+    "pack": 2,
+    "direction": "right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "queengee_default",
+    "name": "Queengee",
+    "idnum": 0,
+    "mun": "Kiyo",
+    "pack": 2,
+    "direction": "Either!",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "sina_default",
+    "name": "Sina",
+    "idnum": 146,
+    "mun": "Archie",
+    "pack": 1,
+    "direction": "Right",
+    "creator": "haylee"
+  },
+  {
+    "bean": "",
+    "key": "sorrel_default",
+    "name": "Sorrel",
+    "idnum": 100,
+    "mun": "Ryn",
+    "pack": 1,
+    "direction": "Right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "starlight_default",
+    "name": "Starlight",
+    "idnum": 137,
+    "mun": "Lok",
+    "pack": 1,
+    "direction": "Right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "sylvie_default",
+    "name": "Sylvie",
+    "idnum": 173,
+    "mun": "nelle",
+    "pack": 1,
+    "direction": "right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "tao_default",
+    "name": "Tao",
+    "idnum": 12,
+    "mun": "song",
+    "pack": 1,
+    "direction": "right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "tempi_default",
+    "name": "Tempi",
+    "idnum": 68,
+    "mun": "Archie",
+    "pack": 1,
+    "direction": "Right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "teri_default",
+    "name": "teri",
+    "idnum": 1,
+    "mun": "lanna",
+    "pack": 1,
+    "direction": "right",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "thorn_default",
+    "name": "Thorn",
+    "idnum": 57,
+    "mun": "gel",
+    "pack": 1,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "violet_default",
+    "name": "Violet",
+    "idnum": 142,
+    "mun": "Dog",
+    "pack": 1,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "wander_default",
+    "name": "Wander",
+    "idnum": 103,
+    "mun": "Coco",
+    "pack": 1,
+    "direction": "UHH WHATEVER IS EASIEST he is so asymmetrical",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "wander_nohat",
+    "name": "Wander",
+    "idnum": 103,
+    "mun": "Coco",
+    "pack": 1,
+    "direction": "UHH WHATEVER IS EASIEST he is so asymmetrical",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "wren_default",
+    "name": "Wren",
+    "idnum": 34,
+    "mun": "Oggy",
+    "pack": 1,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "yun_default",
+    "name": "Yun",
+    "idnum": 150,
+    "mun": "Goose",
+    "pack": 1,
+    "direction": "either!",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "zane_default",
+    "name": "Zane",
+    "idnum": 110,
+    "mun": "Kiyo",
+    "pack": 1,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "sinclair_default",
+    "name": "Sinclair",
+    "idnum": 45,
+    "mun": "Grey",
+    "pack": 2,
+    "direction": "Left? ",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "piper_default",
+    "name": "Piper",
+    "idnum": 215,
+    "mun": "Bec",
+    "pack": 2,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "kyoko_default",
+    "name": "Kyoko",
+    "idnum": 181,
+    "mun": "EMU.",
+    "pack": 2,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "tomoko_default",
+    "name": "Tomoko",
+    "idnum": 111,
+    "mun": "tree",
+    "pack": 2,
+    "direction": "Either",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "tiger_default",
+    "name": "Tiger",
+    "idnum": 187,
+    "mun": "tree",
+    "pack": 2,
+    "direction": "Either",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "irey_default",
+    "name": "Irey",
+    "idnum": 247,
+    "mun": "Benn",
+    "pack": 2,
+    "direction": "Either",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "tadhana_default",
+    "name": "Tadhana",
+    "idnum": 231,
+    "mun": "tea",
+    "pack": 2,
+    "direction": "left1",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "odell_default",
+    "name": "Odell",
+    "idnum": 52,
+    "mun": "noot",
+    "pack": 2,
+    "direction": "Either",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "wynne_default",
+    "name": "Wynne",
+    "idnum": 248,
+    "mun": "Toma",
+    "pack": 2,
+    "direction": "Either",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "noah_default",
+    "name": "Noah",
+    "idnum": 246,
+    "mun": "cae",
+    "pack": 2,
+    "direction": "either",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "quingee_default",
+    "name": "Quingee",
+    "idnum": 0,
+    "mun": "GE",
+    "pack": 2,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "lucky_default",
+    "name": "Lucky",
+    "idnum": 0,
+    "mun": "Tao",
+    "pack": 2,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "bullfrogjr_default",
+    "name": "BullfrogJr",
+    "idnum": 0,
+    "mun": "Trading Post",
+    "pack": 2,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "cameron_default",
+    "name": "Cameron",
+    "idnum": 71,
+    "mun": "Leroy",
+    "pack": 2,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "oleander_default",
+    "name": "Oleander",
+    "idnum": 31,
+    "mun": "King",
+    "pack": 2,
+    "direction": "left",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "rosendo_default",
+    "name": "Rosendo",
+    "idnum": 149,
+    "mun": "Kenny",
+    "pack": 2,
+    "direction": "Whatever is easiest / Either",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "sou_default",
+    "name": "Sou",
+    "idnum": 87,
+    "mun": "chu",
+    "pack": 2,
+    "direction": "",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "enoch_default",
+    "name": "Enoch",
+    "idnum": 183,
+    "mun": "li",
+    "pack": 2,
+    "direction": "Either.. ilu",
+    "creator": ""
+  },
+  {
+    "bean": "",
+    "key": "caspiana_default",
+    "name": "Caspiana",
+    "idnum": 151,
+    "mun": "mochi",
+    "pack": 2,
+    "direction": "Left (or right if thats easier) <3",
+    "creator": ""
+  }
+]
