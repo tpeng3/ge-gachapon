@@ -49,6 +49,16 @@ function App() {
     }
   };
 
+  const renderTicketInfo = () => {
+    if (completed) {
+      return <span>&infin;</span>
+    } else if (currentUser.specialTickets > 0) {
+      return `Available Tickets: ${currentUser.specialTickets} (Special), ${currentUser.tickets} (Regular)`
+    } else {
+      return `Available Tickets: ${currentUser.tickets}`
+    }
+  }
+
   const getCardHistory = () => {
     return history
       .filter((i) => (userHistory ? i.user === currentUser.key : true))
@@ -69,14 +79,7 @@ function App() {
         </div>
         <Gachapon toggleHistory={toggleHistory} completed={completed} />
         <div className="cardtitle mb-4">
-          Available Tickets:{" "}
-          {completed ? (
-            <span>&infin;</span>
-          ) : currentUser.tickets ? (
-            currentUser.tickets
-          ) : (
-            0
-          )}
+          {renderTicketInfo()}
         </div>
         <button
           className="toggle-button md:absolute right-6 top-20"

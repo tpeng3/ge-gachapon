@@ -6,9 +6,7 @@ import { motion } from "framer-motion";
 import gachapic from "./images/gachapon.png";
 
 function Gachapon({ toggleHistory, completed }) {
-  const beansOne = useSystemStore((state) => state.beansOne);
-  const beansThree = useSystemStore((state) => state.beansThree);
-  const beansFive = useSystemStore((state) => state.beansFive);
+  const beans = useSystemStore((state) => state.beans);
   const currentUser = useSystemStore((state) => state.currentUser);
   const setCurrentUser = useSystemStore((state) => state.setCurrentUser);
   const [isRolling, toggleRolling] = useState(false);
@@ -23,34 +21,15 @@ function Gachapon({ toggleHistory, completed }) {
     },
   };
 
-  const calculateRandom = (pity = false) => {
-    const elems = ["common", "rare", "super rare"]; // add rarity later
-    const weights = [1, 0, 0];
-    const totalWeight = weights.reduce((a, b) => a + b, 0);
-    const weighedElems = [];
-    let currentElem = 0;
-    while (currentElem < elems.length) {
-      for (let i = 0; i < weights[currentElem]; i++)
-        weighedElems[weighedElems.length] = elems[currentElem];
-      currentElem++;
+  const calculateRandom = (pity = false, filter = null) => {
+    let pool = beans;
+    if (filter) {
+      pool = beans.filter(i => i.pack === filter)
     }
-    const rarity = weighedElems[Math.floor(Math.random() * totalWeight)];
-    let selectedArray = beansOne;
-    switch (rarity) {
-      case "common":
-        // TODO: add pity logic for other rarity
-        selectedArray =
+    let selectedArray =
           pity && !completed
-            ? beansOne.filter((i) => !currentUser.collectedBeans[i.key])
-            : beansOne;
-        break;
-      case "rare":
-        selectedArray = beansThree;
-        break;
-      case "super rare":
-        selectedArray = beansFive;
-        break;
-    }
+            ? pool.filter((i) => !currentUser.collectedBeans[i.key])
+            : pool;
     return selectedArray[Math.floor(Math.random() * selectedArray.length)];
   };
 
@@ -59,7 +38,12 @@ function Gachapon({ toggleHistory, completed }) {
     toggleRolling(true);
     setTimeout(() => toggleRolling(false), 500);
     const pity = currentUser.pity > 9 && !completed;
-    const roll = calculateRandom(pity);
+    let roll;
+    if (currentUser.specialTickets > 0) {
+      roll = calculateRandom(pity, 2); // TODO: better filters later
+    } else {
+      roll = calculateRandom(pity);
+    }
     const db = getDatabase();
     let isNew = false;
     // update popularity
@@ -77,7 +61,11 @@ function Gachapon({ toggleHistory, completed }) {
       (currentData) => {
         if (currentData) {
           if (!completed) {
-            currentData.tickets--;
+            if (currentData.specialTickets > 0) {
+              currentData.specialTickets--;
+            } else {
+              currentData.tickets--;
+            }
             if (currentData.collectedBeans) {
               if (currentData.collectedBeans[roll.key]) {
                 currentData.collectedBeans[roll.key]++;

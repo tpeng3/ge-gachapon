@@ -7,7 +7,8 @@ export interface Bean {
   name: string;
   mun: string,
   direction: "left" | "right",
-  rarity: number,
+  idnum: number,
+  pack: number,
   revealed: boolean,
   popularity: number,
   artist?: string
@@ -31,9 +32,7 @@ interface SystemState {
   censusData: any;
   beanDict: { [key: string]: Bean };
   sortedBeans: Bean[];
-  beansOne: Bean[];
-  beansThree: Bean[];
-  beansFive: Bean[];
+  beans: Bean[];
   queue: { [user: string]: number };
   history: History[];
   currentUser: UserData;
@@ -49,9 +48,7 @@ const initialState = {
   censusData: {},
   beanDict: {},
   sortedBeans: [],
-  beansOne: [],
-  beansThree: [],
-  beansFive: [],
+  beans: [],
   queue: {},
   history: [],
   currentUser: {},

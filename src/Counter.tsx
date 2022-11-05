@@ -28,6 +28,7 @@ const Counter = () => {
     const db = getDatabase();
     const name = e.target[0].value;
     const amount = e.target[1].value || 1;
+    const isSpecial = e.target[2].value || false;
     if (!name || isNaN(amount) || amount < 1 || amount > 1000) {
       setMessage("Invalid ticket form.");
       setTimeout(() => setMessage(""), 5000);
@@ -35,14 +36,18 @@ const Counter = () => {
     }
     runTransaction(ref(db, "users/" + slugify(name)), (currentData) => {
       if (currentData) {
-        currentData.tickets = parseInt(currentData.tickets) + parseInt(amount);
+        if (isSpecial) {
+          currentData.specialTickets = parseInt(currentData.specialTickets) + parseInt(amount);
+        } else {
+          currentData.tickets = parseInt(currentData.tickets) + parseInt(amount);
+        }
         setMessage(`Added ${amount} tickets to ${name}!`);
         setTimeout(() => setMessage(""), 5000);
         return currentData;
       } else {
         return {
           key: slugify(name),
-          tickets: amount,
+          ...isSpecial ? {specialTickets: amount, tickets: 0} : {tickets: amount, specialTickets: 0}
           // collectedBeans: {} add in another transaction
         };
       }
@@ -61,6 +66,7 @@ const Counter = () => {
       <div key={username} className="grid grid-cols-3 items-center">
         <span>{username}</span>
         <div>{queue[username].tickets}</div>
+        <div>{queue[username].specialTickets}</div>
         <button
           key={username}
           className="border-2 border-red rounded-lg hover:bg-red"
@@ -93,6 +99,13 @@ const Counter = () => {
             htmlFor="amount"
           >{`Ticket amount`}</label>
           <input type="number" id="amount" name="amount" placeholder="1" />
+        </div>
+        <div>
+          <label
+            className="mr-8 md:text-right"
+            htmlFor="amount"
+          >{`Special ticket?`}</label>
+          <input type="checkbox" id="special" name="special" />
         </div>
         <input className="toggle-button" type="submit" value="Submit" />
         {/* Error Message */}
