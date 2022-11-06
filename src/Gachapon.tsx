@@ -26,8 +26,10 @@ function Gachapon({ toggleHistory, completed }) {
     if (filter) {
       pool = beans.filter(i => i.pack === filter)
       // if user has collected all the special beans, use tickets for regular pool
-      const check = pool.filter((i) => !currentUser.collectedBeans[i.key]);
-      if (check.length < 1) pool = beans;
+      if (currentUser?.collectedBeans) {
+        const check = pool.filter((i) => !currentUser?.collectedBeans[i.key]);
+        if (check.length < 1) pool = beans;
+      }
     }
     let selectedArray =
           pity && !completed
