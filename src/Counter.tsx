@@ -28,7 +28,8 @@ const Counter = () => {
     const db = getDatabase();
     const name = e.target[0].value;
     const amount = e.target[1].value || 1;
-    const isSpecial = e.target[2].value || false;
+    const isSpecial = e.target[2].checked || false;
+
     if (!name || isNaN(amount) || amount < 1 || amount > 1000) {
       setMessage("Invalid ticket form.");
       setTimeout(() => setMessage(""), 5000);
@@ -41,7 +42,7 @@ const Counter = () => {
         } else {
           currentData.tickets = parseInt(currentData.tickets) + parseInt(amount);
         }
-        setMessage(`Added ${amount} tickets to ${name}!`);
+        setMessage(`Added ${amount} ${isSpecial? "special" : ""} tickets to ${name}!`);
         setTimeout(() => setMessage(""), 5000);
         return currentData;
       } else {
@@ -57,6 +58,7 @@ const Counter = () => {
   const removeTicket = (username) => {
     const db = getDatabase();
     set(ref(db, `users/${slugify(username)}/tickets`), 0);
+    set(ref(db, `users/${slugify(username)}/specialTickets`), 0);
     setUser("");
   };
 
