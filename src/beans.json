@@ -111,6 +111,16 @@
   },
   {
     "bean": "",
+    "key": "cynn_lucky",
+    "name": "Cynn",
+    "idnum": 101,
+    "mun": "Froggo",
+    "pack": 2,
+    "direction": "Left",
+    "creator": ""
+  },
+  {
+    "bean": "",
     "key": "cyrille_default",
     "name": "Cyrille",
     "idnum": 145,
