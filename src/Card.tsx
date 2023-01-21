@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 
 function Card({ bean, index, isNew }) {
   const setSelectedBean = useSystemStore((state) => state.setSelectedBean);
-  const pack =
-    bean.pack === 1 ? "one" : bean.pack === 2 ? "two" : "two";
+  const pack = bean.pack;
 
   return (
     <motion.button
