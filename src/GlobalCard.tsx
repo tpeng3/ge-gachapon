@@ -2,8 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 function GlobalCard({ bean, index, user }) {
-  const pack =
-    bean.pack === 1 ? "one" : bean.pack === 2 ? "two" : "two";
+  const pack = bean.pack;
 
   return (
     <motion.div

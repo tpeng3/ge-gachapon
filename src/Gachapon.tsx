@@ -32,9 +32,9 @@ function Gachapon({ toggleHistory, completed }) {
       }
     }
     let selectedArray =
-          pity && !completed
-            ? pool.filter((i) => !currentUser.collectedBeans[i.key])
-            : pool;
+      pity && !completed
+        ? pool.filter((i) => !currentUser.collectedBeans[i.key])
+        : pool;
     return selectedArray[Math.floor(Math.random() * selectedArray.length)];
   };
 

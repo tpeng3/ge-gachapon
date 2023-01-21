@@ -41,8 +41,7 @@ function Modal() {
   };
 
   const renderCollectionCard = (bean) => {
-    const pack =
-      bean.pack === 1 ? "one" : bean.pack === 2 ? "two" : "two";
+    const pack = bean.pack;
     const collected =
       currentUser?.collectedBeans && currentUser?.collectedBeans[bean.key];
 
@@ -50,9 +49,8 @@ function Modal() {
       return (
         <button
           key={"col" + bean.key}
-          className={`card ${
-            selectedBean && selectedBean.key === bean.key ? "bg-rose" : ""
-          }`}
+          className={`card ${selectedBean && selectedBean.key === bean.key ? "bg-rose" : ""
+            }`}
           id={bean.key}
           onClick={() => setSelectedBean(bean)}
         >
@@ -90,8 +88,7 @@ function Modal() {
 
   const showSelectedBean = () => {
     const bean = selectedBean;
-    const pack =
-      bean.pack === 1 ? "one" : bean.pack === 2 ? "two" : "two";
+    const pack = bean.pack;
     return (
       <div className="relative pb-4 flex flex-col items-center">
         <img
