@@ -416,6 +416,215 @@ eval("\n\nvar has = Object.prototype.hasOwnProperty\n  , prefix = '~';\n\n/**\n 
 
 /***/ }),
 
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _js_system__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/system */ \"./js/system.js\");\n/* harmony import */ var _js_load__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/load */ \"./js/load/index.js\");\n/* harmony import */ var vanilla_colorful__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vanilla-colorful */ \"../node_modules/vanilla-colorful/hex-color-picker.js\");\n/* harmony import */ var vanilla_colorful_hex_input_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vanilla-colorful/hex-input.js */ \"../node_modules/vanilla-colorful/hex-input.js\");\n\n\n\n\n\nconst app = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Application({\n  width: 800,\n  height: 600,\n  resizeTo: window,\n  backgroundColor: 0x636662,\n  view: document.querySelector('#scene'),\n  resolution: window.devicePixelRatio || 1,\n  autoDensity: true,\n  antialias: true\n});\napp.stage.sortChildren = true;\n_js_system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({\n  pixiApp: app\n});\n(0,_js_load__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\nwindow.onresize = () => {\n  alert(\"Housebuilder does not support window resizing. Please save your work and refresh the page if the UI looks off!\");\n};\n\n// hide context menu\ndocument.oncontextmenu = function (event) {\n  event.preventDefault();\n};\n\n// color picker listener\nconst picker = document.querySelector('hex-color-picker');\nconst input = document.querySelector('hex-input');\npicker.addEventListener('color-changed', event => {\n  _js_system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({\n    currentColor: event.detail.value\n  });\n  input.color = event.detail.value;\n});\ninput.addEventListener('color-changed', event => {\n  _js_system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({\n    currentColor: event.detail.value\n  });\n  picker.color = event.detail.value;\n});\n\n// pixi.js inspector tool\nfunction registerPixiInspector() {\n  window.__PIXI_INSPECTOR_GLOBAL_HOOK__ && window.__PIXI_INSPECTOR_GLOBAL_HOOK__.register({\n    PIXI: pixi_js__WEBPACK_IMPORTED_MODULE_0__\n  });\n}\nregisterPixiInspector();\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ }),
+
+/***/ "./js/add/addStore.js":
+/*!****************************!*\
+  !*** ./js/add/addStore.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var zustand_vanilla__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zustand/vanilla */ \"../node_modules/zustand/esm/vanilla.mjs\");\n/* harmony import */ var zustand_middleware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! zustand/middleware */ \"../node_modules/zustand/esm/middleware.mjs\");\n\n\nconst initialState = {\n  currentContainerRef: null,\n  wallContainerRef: null,\n  previewContainerRef: null,\n  activeTab: \"current\",\n  // current | catalogue | custom\n  activeCategory: \"all\",\n  // active tab for adding furniture\n  filterText: \"\",\n  selectedFurni: []\n};\nconst useAddStore = (0,zustand_vanilla__WEBPACK_IMPORTED_MODULE_0__[\"default\"])((0,zustand_middleware__WEBPACK_IMPORTED_MODULE_1__.subscribeWithSelector)(set => ({\n  ...initialState\n})));\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useAddStore);\n\n//# sourceURL=webpack:///./js/add/addStore.js?");
+
+/***/ }),
+
+/***/ "./js/add/furnitureTab.js":
+/*!********************************!*\
+  !*** ./js/add/furnitureTab.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"renderFurnitureTab\": () => (/* binding */ renderFurnitureTab)\n/* harmony export */ });\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../system */ \"./js/system.js\");\n/* harmony import */ var _addStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addStore */ \"./js/add/addStore.js\");\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var pixi_scrollbox__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! pixi-scrollbox */ \"../node_modules/pixi-scrollbox/dist/scrollbox.es.js\");\n/* harmony import */ var _renderCanvas__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../renderCanvas */ \"./js/renderCanvas.js\");\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles */ \"./js/styles.js\");\n\n\n\n\n\n\nfunction renderFurnitureTab(config, containerRef) {\n  const {\n    furniList,\n    addonList,\n    recolorList,\n    beanList,\n    savedSprites,\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const {\n    addTooltipContainer\n  } = _addStore__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const isCurrent = containerRef.name === 'Owned Controller';\n\n  // catalogue title\n  const titlename = isCurrent ? 'ADD FURNITURE' : 'ADD FROM CATALOGUE';\n  const title = new pixi_js__WEBPACK_IMPORTED_MODULE_2__.Text(titlename, _styles__WEBPACK_IMPORTED_MODULE_5__.titleStyle);\n  title.anchor.set(0.5, 0);\n  title.x = config.boxWidth / 2;\n  title.y = 30;\n  containerRef.addChild(title);\n\n  // filter icons\n  const icons = ['all', 'indoor', 'wall', 'misc', 'outdoor', 'addon', 'bean'];\n  const iconContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_2__.Container();\n  icons.forEach((key, i) => {\n    const icon = new pixi_js__WEBPACK_IMPORTED_MODULE_2__.Sprite(savedSprites[`icon_${key}`].texture);\n    icon.scale.set(0.5);\n    icon.x = i * 36;\n    icon.y = 80;\n    icon.key = key;\n    if (i === 0) icon.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.darkgreen; // all is selected by default\n    icon.interactive = true;\n    icon.cursor = \"pointer\";\n    icon.on('pointerdown', onIconClick).on('pointerover', onIconHover).on('pointerout', onIconOut);\n    iconContainer.addChild(icon);\n  });\n  iconContainer.x = 32; // i hate math\n  containerRef.addChild(iconContainer);\n\n  // text input\n  const textInput = (0,_styles__WEBPACK_IMPORTED_MODULE_5__.drawTextInput)();\n  textInput.on('input', text => _addStore__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({\n    filterText: text\n  }));\n  textInput.x = 50;\n  textInput.y = config.padding * 2;\n  textInput.placeholder = \"start searching...\";\n  containerRef.addChild(textInput);\n\n  // scroll containerRef\n  const scrollContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_2__.Container();\n  scrollContainer.y = config.titleHeight;\n  const scrollbox = new pixi_scrollbox__WEBPACK_IMPORTED_MODULE_3__.Scrollbox({\n    boxWidth: config.boxWidth,\n    boxHeight: pixiApp.screen.height - config.titleHeight\n  });\n  scrollbox.options.scrollbarForeground = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.pink;\n  scrollbox.options.scrollbarBackground = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white;\n\n  // catalogue items\n  const catalogueList = [...furniList, ...addonList];\n  catalogueList.forEach((item, i) => {\n    // furniture sprite\n    const furni = new pixi_js__WEBPACK_IMPORTED_MODULE_2__.Sprite(savedSprites[item.imgname].texture);\n    furni.x = i % config.col * config.padding;\n    furni.y = Math.floor(i / config.col) * config.padding;\n    furni.key = item.imgname;\n    furni.name = item.imgname;\n    furni.imagekey = item.imgname;\n    furni.interactive = true;\n    furni.cursor = \"pointer\";\n    furni.info = item;\n    furni.on('click', onFurniClick).on('rightclick', onFurniRightClick) // long hold on mobile?\n    .on('pointermove', onFurniHover);\n    furni.scale.set(50 / furni._texture.orig.width);\n\n    // add recolor options\n    furni.recolors = recolorList.filter(r => r.item === item.ItemName);\n    furni.recolorsIndex = 0;\n    if (furni.recolors.length > 0) {\n      const star = new pixi_js__WEBPACK_IMPORTED_MODULE_2__.Sprite(savedSprites['comic'].texture);\n      star.x = -5;\n      furni.addChild(star);\n    }\n\n    // tooltip\n    const tooltipContainer = (0,_styles__WEBPACK_IMPORTED_MODULE_5__.drawTooltip)(item.ItemName);\n    furni.tooltipRef = tooltipContainer;\n    addTooltipContainer.addChild(tooltipContainer);\n    scrollbox.content.addChild(furni);\n  });\n\n  // beans items\n  beanList.forEach((item, i) => {\n    // skip non-default items since they're added as a recolor\n    if (!item.key.endsWith(\"_default\")) return;\n\n    // bean sprite\n    const furni = new pixi_js__WEBPACK_IMPORTED_MODULE_2__.Sprite(savedSprites[item.key].texture);\n    furni.x = 0;\n    furni.y = 0;\n    furni.key = item.key;\n    furni.name = item.key;\n    furni.imagekey = item.key;\n    furni.interactive = true;\n    furni.cursor = \"pointer\";\n    furni.info = item;\n    furni.on('click', onFurniClick).on('rightclick', onFurniRightClick) // long hold on mobile?\n    .on('pointermove', onFurniHover);\n\n    // add recolor options\n    furni.recolors = beanList.filter(r => r.name === item.name && !r.key.endsWith(\"_default\"));\n    furni.recolorsIndex = 0;\n    if (furni.recolors.length > 0) {\n      const star = new pixi_js__WEBPACK_IMPORTED_MODULE_2__.Sprite(savedSprites['comic'].texture);\n      star.x = -5;\n      furni.addChild(star);\n    }\n\n    // tooltip\n    const tooltipContainer = (0,_styles__WEBPACK_IMPORTED_MODULE_5__.drawTooltip)(item.name);\n    furni.tooltipRef = tooltipContainer;\n    addTooltipContainer.addChild(tooltipContainer);\n    scrollbox.content.addChild(furni);\n  });\n  scrollContainer.addChild(scrollbox);\n  containerRef.addChild(scrollContainer);\n  _addStore__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({\n    catalogueScrollRef: scrollbox\n  });\n  scrollbox.update();\n  setTimeout(() => {\n    scrollbox.content.clamp({\n      direction: \"all\"\n    });\n  }, 500);\n\n  // hack to hide tooltips when mouse is away from scrollbox\n  scrollbox.containsPoint = point => {\n    resetHovers();\n  };\n\n  // add listener for filters\n  const unsub2 = _addStore__WEBPACK_IMPORTED_MODULE_1__[\"default\"].subscribe(state => [state.filterText, state.activeCategory], () => filterItemList(config));\n  filterItemList(config);\n}\nfunction onIconClick() {\n  this.parent.children.forEach(icon => {\n    icon.tint = icon.key === this.key ? _styles__WEBPACK_IMPORTED_MODULE_5__.colors.darkgreen : _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white;\n  });\n  _addStore__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({\n    activeCategory: this.key\n  });\n}\nfunction onIconHover() {\n  if (_addStore__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState().activeCategory === this.key) {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.darkpink;\n  } else {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.pink;\n  }\n}\nfunction onIconOut() {\n  if (_addStore__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState().activeCategory === this.key) {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.grey;\n  } else {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white;\n  }\n}\nfunction resetHovers() {\n  const {\n    catalogueScrollRef\n  } = _addStore__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  catalogueScrollRef.content.children.forEach(i => {\n    i.scale.set(50 / i._texture.orig.width);\n    i.tooltipRef.visible = false;\n  });\n}\n\n// hack to handle pointer edge cases\nfunction onFurniHover(e) {\n  const {\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  if (this.containsPoint(e.data.global)) {\n    this.scale.set(75 / this._texture.orig.width);\n    const globalCoord = this.getGlobalPosition();\n    if (globalCoord.x + this.tooltipRef.width - 25 >= pixiApp.screen.width) {\n      this.tooltipRef.x = pixiApp.screen.width - this.tooltipRef.width / 2;\n    } else {\n      this.tooltipRef.x = globalCoord.x + 25;\n    }\n    this.tooltipRef.y = globalCoord.y;\n    this.tooltipRef.visible = true;\n  } else {\n    this.scale.set(50 / this._texture.orig.width);\n    this.tooltipRef.visible = false;\n  }\n}\nfunction onFurniRightClick() {\n  const {\n    savedSprites\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const {\n    activeCategory\n  } = _addStore__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  if (this.recolors.length > 0) {\n    if (activeCategory === \"bean\") {\n      if (this.recolorsIndex >= this.recolors.length) {\n        this.recolorsIndex = 0;\n        this.texture = savedSprites[this.key].texture;\n        this.scale.set(75 / this._texture.orig.width);\n        this.imagekey = this.key;\n      } else {\n        const recolor = this.recolors[this.recolorsIndex];\n        this.texture = savedSprites[recolor.key].texture;\n        this.recolorsIndex += 1;\n        this.scale.set(75 / this._texture.orig.width);\n        this.imagekey = recolor.key;\n      }\n    } else {\n      if (this.recolorsIndex >= this.recolors.length) {\n        this.recolorsIndex = 0;\n        this.texture = savedSprites[this.key].texture;\n        this.tooltipRef.children[1].text = this.info.ItemName;\n        this.tooltipRef.children[0].width = this.tooltipRef.children[1].width + 25;\n        this.scale.set(75 / this._texture.orig.width);\n        this.imagekey = this.key;\n      } else {\n        const recolor = this.recolors[this.recolorsIndex];\n        this.texture = savedSprites[recolor.rcname].texture;\n        this.tooltipRef.children[1].text = recolor.rcname;\n        this.tooltipRef.children[0].width = this.tooltipRef.children[1].width + 25;\n        this.recolorsIndex += 1;\n        this.scale.set(75 / this._texture.orig.width);\n        this.imagekey = recolor.rcname;\n      }\n    }\n  }\n}\nfunction onFurniClick() {\n  const name = this.imagekey;\n  (0,_renderCanvas__WEBPACK_IMPORTED_MODULE_4__.addItemToLayer)(name);\n}\nfunction filterItemList(config) {\n  const {\n    sortedCategories\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const {\n    filterText,\n    catalogueScrollRef,\n    activeCategory\n  } = _addStore__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const scrollbox = activeCategory === \"current\" ? catalogueScrollRef : catalogueScrollRef;\n  const children = scrollbox.children[0].children;\n  const sortedChildren = children.sort((a, b) => sortedCategories[activeCategory].indexOf(a.info) - sortedCategories[activeCategory].indexOf(b.info));\n  resetHovers();\n  const checkActiveFilter = furni => {\n    if (activeCategory === \"bean\") {\n      return furni.info.name.toLowerCase().includes(filterText.toLowerCase()) || filterText === \"\";\n    } else {\n      return furni.info.ItemName.toLowerCase().includes(filterText.toLowerCase()) || filterText === \"\";\n    }\n  };\n  let counter = 0;\n  for (let i in sortedChildren) {\n    const furni = children[i];\n    if (sortedCategories[activeCategory].includes(furni.info) && checkActiveFilter(furni)) {\n      furni.visible = true;\n      furni.x = counter % config.col * config.padding;\n      furni.y = Math.floor(counter / config.col) * config.padding;\n      counter++;\n    } else {\n      furni.visible = false;\n    }\n  }\n  scrollbox.update();\n\n  // turn off scroll when there is no overflow\n  if (Math.ceil(counter / config.col) * config.padding <= scrollbox.boxHeight) {\n    scrollbox.content.pause = true;\n    scrollbox.content.y = 0;\n  } else {\n    scrollbox.content.pause = false;\n  }\n}\n\n//# sourceURL=webpack:///./js/add/furnitureTab.js?");
+
+/***/ }),
+
+/***/ "./js/add/renderController.js":
+/*!************************************!*\
+  !*** ./js/add/renderController.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../system */ \"./js/system.js\");\n/* harmony import */ var _addStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./addStore */ \"./js/add/addStore.js\");\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles */ \"./js/styles.js\");\n/* harmony import */ var _furnitureTab__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./furnitureTab */ \"./js/add/furnitureTab.js\");\n\n\n\n\n\nconst config = {\n  padding: 64,\n  col: 4,\n  titleHeight: 200,\n  boxWidth: 300\n};\nfunction renderController() {\n  const {\n    savedSprites,\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n\n  // catalogue container\n  const container = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  container.name = \"Add Controller\";\n  container.x = pixiApp.screen.width - config.boxWidth;\n\n  // background\n  const bg = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.WHITE);\n  bg.width = config.boxWidth;\n  bg.height = pixiApp.screen.height;\n  bg.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.beige;\n  bg.alpha = 0.8;\n  container.addChild(bg);\n\n  // add tabs\n  const icons = ['current', 'catalogue', 'custom'];\n  const tabContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  tabContainer.name = \"Tab Container\";\n  icons.forEach((key, i) => {\n    const bgTab = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(savedSprites[`bg_tab`].texture);\n    bgTab.x = -60;\n    bgTab.y = 75 * i;\n    bgTab.name = key;\n    bgTab.interactive = true;\n    bgTab.cursor = \"pointer\";\n    bgTab.on('pointerdown', onIconClick).on('pointerover', onIconHover).on('pointerout', onIconOut);\n    const icon = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(savedSprites[`tabs_${key}`].texture);\n    icon.x = bgTab.width / 2;\n    icon.y = bgTab.height / 2;\n    icon.anchor.set(0.5);\n    bgTab.scale.set(0.75);\n    bgTab.addChild(icon);\n    if (i > 0) {\n      bgTab.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.pink; // inactive tabs are pink\n      icon.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.lightgrey;\n    }\n    tabContainer.addChild(bgTab);\n  });\n  tabContainer.y = 10;\n  container.addChild(tabContainer);\n  const addTooltipContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  addTooltipContainer.name = \"Add Tooltips\";\n  _addStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({\n    addTooltipContainer: addTooltipContainer\n  });\n  const ownedTabContainerRef = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  ownedTabContainerRef.name = \"Owned Controller\";\n  // renderFurnitureTab(config, ownedTabContainerRef);\n  container.addChild(ownedTabContainerRef);\n  ownedTabContainerRef.visible = false;\n  const catalogueTabContainerRef = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  catalogueTabContainerRef.name = \"Catalogue Controller\";\n  (0,_furnitureTab__WEBPACK_IMPORTED_MODULE_4__.renderFurnitureTab)(config, catalogueTabContainerRef);\n  container.addChild(catalogueTabContainerRef);\n  catalogueTabContainerRef.visible = false;\n  const customTabContainerRef = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  customTabContainerRef.name = \"Custom Controller\";\n  container.addChild(customTabContainerRef);\n  customTabContainerRef.visible = false;\n  pixiApp.stage.addChild(container);\n  pixiApp.stage.addChild(addTooltipContainer);\n  _addStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({\n    ownedTabContainerRef,\n    catalogueTabContainerRef,\n    customTabContainerRef\n  });\n}\nfunction onIconClick() {\n  const {\n    ownedTabContainerRef,\n    catalogueTabContainerRef,\n    customTabContainerRef\n  } = _addStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState();\n  this.parent.children.forEach(icon => {\n    icon.tint = icon.name === this.name ? _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white : _styles__WEBPACK_IMPORTED_MODULE_3__.colors.pink;\n    this.children[0].tint = icon.name === this.name ? _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white : _styles__WEBPACK_IMPORTED_MODULE_3__.colors.lightgrey;\n  });\n  const colorTool = document.getElementById('colortool');\n  if (this.name === \"current\") {\n    ownedTabContainerRef.visible = true;\n    catalogueTabContainerRef.visible = false;\n    customTabContainerRef.visible = false;\n  } else if (this.name === \"catalogue\") {\n    ownedTabContainerRef.visible = false;\n    catalogueTabContainerRef.visible = true;\n    customTabContainerRef.visible = false;\n  } else {\n    ownedTabContainerRef.visible = false;\n    catalogueTabContainerRef.visible = false;\n    customTabContainerRef.visible = true;\n  }\n  _addStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({\n    activeTab: this.name\n  });\n}\nfunction onIconHover() {\n  if (_addStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState().activeTab === this.name) {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white;\n    this.children[0].tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.grey;\n  } else {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white;\n    this.children[0].tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.grey;\n  }\n}\nfunction onIconOut() {\n  if (_addStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState().activeTab === this.name) {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white;\n    this.children[0].tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white;\n  } else {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.pink;\n    this.children[0].tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.lightgrey;\n  }\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderController);\n\n//# sourceURL=webpack:///./js/add/renderController.js?");
+
+/***/ }),
+
+/***/ "./js/build/buildStore.js":
+/*!********************************!*\
+  !*** ./js/build/buildStore.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var zustand_vanilla__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zustand/vanilla */ \"../node_modules/zustand/esm/vanilla.mjs\");\n/* harmony import */ var zustand_middleware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! zustand/middleware */ \"../node_modules/zustand/esm/middleware.mjs\");\n\n\nconst initialState = {\n  floorContainerRef: null,\n  wallContainerRef: null,\n  previewContainerRef: null,\n  activeTab: \"addfloor\",\n  // addfloor | addwall | addroom\n  activeTile: null\n};\nconst useBuildStore = (0,zustand_vanilla__WEBPACK_IMPORTED_MODULE_0__[\"default\"])((0,zustand_middleware__WEBPACK_IMPORTED_MODULE_1__.subscribeWithSelector)(set => ({\n  ...initialState\n})));\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useBuildStore);\n\n//# sourceURL=webpack:///./js/build/buildStore.js?");
+
+/***/ }),
+
+/***/ "./js/build/helpers/floorTile.js":
+/*!***************************************!*\
+  !*** ./js/build/helpers/floorTile.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addFloorTile\": () => (/* binding */ addFloorTile),\n/* harmony export */   \"onTileClick\": () => (/* binding */ onTileClick)\n/* harmony export */ });\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../styles */ \"./js/styles.js\");\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../system */ \"./js/system.js\");\n/* harmony import */ var _buildStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../buildStore */ \"./js/build/buildStore.js\");\n\n\n\n\n\nfunction addFloorTile(i, config, isWall) {\n  const {\n    savedSprites\n  } = _system__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState();\n  const {\n    buildTooltipContainer\n  } = _buildStore__WEBPACK_IMPORTED_MODULE_3__[\"default\"].getState();\n  const textureKey = isWall ? `tile_wall_1` : `tile_floor_1`;\n  const tile = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(savedSprites[textureKey].texture);\n  tile.texturekey = textureKey;\n  tile.x = i % config.col * config.padding;\n  tile.y = Math.floor(i / config.col) * config.padding;\n  tile.name = `${isWall ? 'wall' : 'floor'}-${getUniqueId(i)}`;\n  tile.displayname = `${isWall ? 'Wall' : 'Floor'} ${parseInt(i + 1)}`;\n  tile.interactive = true;\n  tile.cursor = \"pointer\";\n  tile.on('click', onTileClick).on('pointermove', onTileHover);\n\n  // tooltip\n  const tooltipContainer = (0,_styles__WEBPACK_IMPORTED_MODULE_1__.drawTooltip)(tile.displayname);\n  tile.tooltipRef = tooltipContainer;\n  buildTooltipContainer.addChild(tooltipContainer);\n  return tile;\n}\nfunction onTileHover(e) {\n  const {\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState();\n  if (this.containsPoint(e.data.global)) {\n    const globalCoord = this.getGlobalPosition();\n    if (globalCoord.x + this.tooltipRef.width - 32 >= pixiApp.screen.width) {\n      this.tooltipRef.x = pixiApp.screen.width - this.tooltipRef.width / 2;\n    } else {\n      this.tooltipRef.x = globalCoord.x + 32;\n    }\n    this.tooltipRef.y = globalCoord.y;\n    this.tooltipRef.visible = true;\n  } else {\n    this.tooltipRef.visible = false;\n  }\n}\nfunction onTileClick() {\n  // update selected background position\n  this.parent.children[0].x = this.x;\n  this.parent.children[0].y = this.y;\n  this.parent.children[0].activeTileRef = this;\n\n  // update input name\n  this.parent.parent.parent.parent.children[3].text = this.displayname;\n\n  // update color\n  const picker = document.querySelector('hex-color-picker');\n  picker.color = pixi_js__WEBPACK_IMPORTED_MODULE_0__.utils.hex2string(this.tint);\n  const input = document.querySelector('hex-input');\n  input.color = pixi_js__WEBPACK_IMPORTED_MODULE_0__.utils.hex2string(this.tint);\n  const tileTexture = document.getElementById(\"tiletexture\");\n  tileTexture.value = this.texturekey.split(\"_\").at(-1);\n  _buildStore__WEBPACK_IMPORTED_MODULE_3__[\"default\"].setState({\n    activeTile: this\n  });\n}\nconst getUniqueId = i => {\n  const dateString = Date.now().toString(36);\n  return i + dateString;\n};\n\n//# sourceURL=webpack:///./js/build/helpers/floorTile.js?");
+
+/***/ }),
+
+/***/ "./js/build/initBuildMode.js":
+/*!***********************************!*\
+  !*** ./js/build/initBuildMode.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../system */ \"./js/system.js\");\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles */ \"./js/styles.js\");\n/* harmony import */ var _renderController__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./renderController */ \"./js/build/renderController.js\");\n/* harmony import */ var _buildStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./buildStore */ \"./js/build/buildStore.js\");\n\n\n\n\n\nfunction initBuildMode() {\n  // add ui panel\n  (0,_renderController__WEBPACK_IMPORTED_MODULE_3__[\"default\"])();\n  const {\n    viewport,\n    savedSprites,\n    activeTile\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const wallContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  wallContainer.name = \"Wall Layer\";\n  wallContainer.sortableChildren = true;\n  wallContainer.zIndex = -100;\n  const floorContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  floorContainer.name = \"Floor Layer\";\n  floorContainer.sortableChildren = true;\n  floorContainer.zIndex = -100;\n  const previewContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  previewContainer.name = \"Preview Tile Layer\";\n  const tile = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(savedSprites['tile_floor_1'].texture);\n  tile.texturekey = \"tile_floor_1\";\n  tile.blendMode = pixi_js__WEBPACK_IMPORTED_MODULE_0__.BLEND_MODES.MULTIPLY;\n  tile.name = \"Preview Floor\";\n  tile.tint = 0xffffff;\n  tile.x = -9999, tile.y = -9999;\n  tile.alpha = 0.5;\n  tile.interactive = true;\n  tile.cursor = \"pointer\";\n  tile.visible = true;\n  tile.anchor.set(0.5);\n  tile.on('rightclick', removeTile).on('click', placeTile).on('pointermove', tileHover);\n  previewContainer.addChild(tile);\n  viewport.addChild(floorContainer);\n  viewport.addChild(wallContainer);\n  viewport.addChild(previewContainer);\n  _buildStore__WEBPACK_IMPORTED_MODULE_4__[\"default\"].setState({\n    floorContainerRef: floorContainer,\n    wallContainerRef: wallContainer,\n    previewContainerRef: previewContainer\n  });\n  viewport.floorContainer = floorContainer;\n  viewport.wallContainer = wallContainer;\n  viewport.previewContainer = previewContainer;\n}\n\n// floor functions\nfunction placeTile() {\n  const {\n    floorContainerRef,\n    wallContainerRef,\n    activeTab,\n    activeTile\n  } = _buildStore__WEBPACK_IMPORTED_MODULE_4__[\"default\"].getState();\n  const containerRef = activeTab === \"addwall\" ? wallContainerRef : floorContainerRef;\n  const existingTile = containerRef.getChildByName(`${this.x}:${this.y}`);\n  if (existingTile) {\n    existingTile.texture = activeTile.texture;\n    existingTile.texturekey = activeTile.texturekey;\n    existingTile.tint = activeTile.tint;\n    existingTile.tiletype = activeTile.name;\n    existingTile.scale.x = activeTile.scale.x;\n  } else {\n    const tile = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(activeTile.texture);\n    tile.texturekey = activeTile.texturekey;\n    tile.tint = activeTile.tint;\n    tile.x = this.x;\n    tile.y = this.y;\n    tile.name = `${this.x}:${this.y}`;\n    tile.tiletype = activeTile.name;\n    tile.zIndex = tile.y;\n    tile.anchor.set(0.5);\n    tile.scale.x = activeTile.scale.x;\n    containerRef.addChild(tile);\n  }\n}\nfunction removeTile() {\n  const {\n    floorContainerRef,\n    wallContainerRef,\n    activeTab\n  } = _buildStore__WEBPACK_IMPORTED_MODULE_4__[\"default\"].getState();\n  const containerRef = activeTab === \"addwall\" ? wallContainerRef : floorContainerRef;\n  const existingTile = containerRef.getChildByName(`${this.x}:${this.y}`);\n  if (existingTile) {\n    existingTile.parent.removeChild(existingTile);\n  }\n}\nfunction tileHover(e) {\n  const {\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const {\n    activeTile,\n    activeTab\n  } = _buildStore__WEBPACK_IMPORTED_MODULE_4__[\"default\"].getState();\n  const isWall = activeTab === \"addwall\";\n  const coord = this.parent.toLocal(e.data.global);\n  this.texture = activeTile.texture;\n  this.tint = activeTile.tint;\n  this.scale.x = activeTile.scale.x;\n\n  // if tint is white or black, change blend to normal\n  if (this.tint === _styles__WEBPACK_IMPORTED_MODULE_2__.colors.white || this.tint === _styles__WEBPACK_IMPORTED_MODULE_2__.colors.black) {\n    this.blendMode = pixi_js__WEBPACK_IMPORTED_MODULE_0__.BLEND_MODES.NORMAL;\n  } else {\n    this.blendMode = pixi_js__WEBPACK_IMPORTED_MODULE_0__.BLEND_MODES.MULTIPLY;\n  }\n\n  // hide tile if coord hits the ui\n  if (e.data.global.x < pixiApp.screen.width - 310) {\n    let x, y;\n    if (isWall) {\n      x = Math.round(coord.x / 16) * 16;\n      y = Math.round(coord.y / 8) * 8;\n    } else {\n      x = Math.round(coord.x / 32) * 32;\n      y = Math.round(coord.y / 16) * 16;\n    }\n    this.x = x;\n    this.y = y;\n  } else {\n    this.x = -9999;\n    this.y = -9999;\n  }\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (initBuildMode);\n\n//# sourceURL=webpack:///./js/build/initBuildMode.js?");
+
+/***/ }),
+
+/***/ "./js/build/renderController.js":
+/*!**************************************!*\
+  !*** ./js/build/renderController.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../system */ \"./js/system.js\");\n/* harmony import */ var _buildStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./buildStore */ \"./js/build/buildStore.js\");\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles */ \"./js/styles.js\");\n/* harmony import */ var _wallFloorTab__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./wallFloorTab */ \"./js/build/wallFloorTab.js\");\n\n\n\n\n\nconst config = {\n  padding: 64,\n  col: 4,\n  titleHeight: 100,\n  boxWidth: 300,\n  infoHeight: 380,\n  tLength: 7\n};\nfunction renderController() {\n  const {\n    savedSprites,\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n\n  // catalogue container\n  const container = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  container.name = \"Build Controller\";\n  container.x = pixiApp.screen.width - config.boxWidth;\n\n  // background\n  const bg = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.WHITE);\n  bg.width = config.boxWidth;\n  bg.height = pixiApp.screen.height;\n  bg.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.beige;\n  bg.alpha = 0.8;\n  container.addChild(bg);\n\n  // add tabs\n  const icons = ['addfloor', 'addwall', 'addroom'];\n  const tabContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  tabContainer.name = \"Tab Container\";\n  icons.forEach((key, i) => {\n    const bgTab = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(savedSprites[`bg_tab`].texture);\n    bgTab.x = -60;\n    bgTab.y = 75 * i;\n    bgTab.name = key;\n    bgTab.interactive = true;\n    bgTab.cursor = \"pointer\";\n    bgTab.on('pointerdown', onIconClick).on('pointerover', onIconHover).on('pointerout', onIconOut);\n    const icon = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(savedSprites[`tabs_${key}`].texture);\n    icon.x = bgTab.width / 2;\n    icon.y = bgTab.height / 2;\n    icon.anchor.set(0.5);\n    bgTab.scale.set(0.75);\n    bgTab.addChild(icon);\n    if (i > 0) {\n      bgTab.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.pink; // inactive tabs are pink\n      icon.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.lightgrey;\n    }\n    tabContainer.addChild(bgTab);\n  });\n  tabContainer.y = 10;\n  container.addChild(tabContainer);\n  const buildTooltipContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  buildTooltipContainer.name = \"Build Tooltips\";\n  _buildStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({\n    buildTooltipContainer: buildTooltipContainer\n  });\n  const floorTabContainerRef = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  floorTabContainerRef.name = \"Floor Controller\";\n  (0,_wallFloorTab__WEBPACK_IMPORTED_MODULE_4__.renderWallFloorTab)(config, floorTabContainerRef);\n  container.addChild(floorTabContainerRef);\n  const wallTabContainerRef = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  wallTabContainerRef.name = \"Wall Controller\";\n  (0,_wallFloorTab__WEBPACK_IMPORTED_MODULE_4__.renderWallFloorTab)(config, wallTabContainerRef);\n  container.addChild(wallTabContainerRef);\n  wallTabContainerRef.visible = false;\n  const roomTabContainerRef = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  roomTabContainerRef.name = \"Room Controller\";\n  container.addChild(roomTabContainerRef);\n  roomTabContainerRef.visible = false;\n  pixiApp.stage.addChild(container);\n  pixiApp.stage.addChild(buildTooltipContainer);\n  _buildStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({\n    floorTabContainerRef,\n    wallTabContainerRef,\n    roomTabContainerRef,\n    activeTile: floorTabContainerRef.children[1].children[0].children[0].children[1]\n  });\n\n  // add listener for when the color tools change\n  const unsub2 = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].subscribe(state => state.currentColor, updateTileColor);\n  const tileTexture = document.getElementById('tiletexture');\n  tileTexture.addEventListener('change', event => updateTileTexture(event.target.value));\n}\nfunction onIconClick() {\n  const {\n    floorTabContainerRef,\n    wallTabContainerRef,\n    roomTabContainerRef,\n    previewContainerRef,\n    wallContainerRef,\n    floorContainerRef\n  } = _buildStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState();\n  this.parent.children.forEach(icon => {\n    icon.tint = icon.name === this.name ? _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white : _styles__WEBPACK_IMPORTED_MODULE_3__.colors.pink;\n    this.children[0].tint = icon.name === this.name ? _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white : _styles__WEBPACK_IMPORTED_MODULE_3__.colors.lightgrey;\n  });\n  const picker = document.querySelector('hex-color-picker');\n  const input = document.querySelector('hex-input');\n  const tileTexture = document.getElementById('tiletexture');\n  if (this.name === \"addfloor\") {\n    floorTabContainerRef.visible = true;\n    floorContainerRef.alpha = 1;\n    wallTabContainerRef.visible = false;\n    wallContainerRef.alpha = 0.5;\n    roomTabContainerRef.visible = false;\n    previewContainerRef.visible = true;\n    const activeTile = floorTabContainerRef.children[1].children[0].content.children[0].activeTileRef;\n    _buildStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({\n      activeTile: activeTile\n    });\n    picker.hidden = false;\n    input.hidden = false;\n    tileTexture.hidden = false;\n    input.color = pixi_js__WEBPACK_IMPORTED_MODULE_0__.utils.hex2string(activeTile.tint);\n    picker.color = pixi_js__WEBPACK_IMPORTED_MODULE_0__.utils.hex2string(activeTile.tint);\n    tileTexture.value = activeTile.texturekey.split(\"_\").at(-1);\n  } else if (this.name === \"addwall\") {\n    floorTabContainerRef.visible = false;\n    floorContainerRef.alpha = 0.5;\n    wallTabContainerRef.visible = true;\n    wallContainerRef.alpha = 1;\n    roomTabContainerRef.visible = false;\n    previewContainerRef.visible = true;\n    const activeTile = wallTabContainerRef.children[1].children[0].content.children[0].activeTileRef;\n    _buildStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({\n      activeTile: activeTile\n    });\n    picker.hidden = false;\n    input.hidden = false;\n    tileTexture.hidden = false;\n    input.color = pixi_js__WEBPACK_IMPORTED_MODULE_0__.utils.hex2string(activeTile.tint);\n    picker.color = pixi_js__WEBPACK_IMPORTED_MODULE_0__.utils.hex2string(activeTile.tint);\n    tileTexture.value = activeTile.texturekey.split(\"_\").at(-1);\n  } else {\n    floorTabContainerRef.visible = false;\n    floorContainerRef.alpha = 1;\n    wallTabContainerRef.visible = false;\n    floorContainerRef.alpha = 1;\n    roomTabContainerRef.visible = true;\n    previewContainerRef.visible = false;\n    picker.hidden = true;\n    input.hidden = true;\n    tileTexture.hidden = true;\n  }\n  _buildStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({\n    activeTab: this.name\n  });\n}\nfunction onIconHover() {\n  if (_buildStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState().activeTab === this.name) {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white;\n    this.children[0].tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.grey;\n  } else {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white;\n    this.children[0].tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.grey;\n  }\n}\nfunction onIconOut() {\n  if (_buildStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState().activeTab === this.name) {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white;\n    this.children[0].tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white;\n  } else {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.pink;\n    this.children[0].tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.lightgrey;\n  }\n}\nfunction updateTileColor() {\n  const {\n    currentColor\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const {\n    activeTile,\n    activeTab,\n    floorContainerRef,\n    wallContainerRef\n  } = _buildStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState();\n  activeTile.tint = parseInt(`0x` + currentColor.slice(1));\n  if (activeTile) {\n    const containerRef = activeTab === \"addwall\" ? wallContainerRef : floorContainerRef;\n    for (let i in containerRef.children) {\n      if (containerRef.children[i].tiletype === activeTile.name) {\n        containerRef.children[i].tint = activeTile.tint;\n      }\n    }\n  }\n}\nfunction updateTileTexture(selectedTileTexture) {\n  const {\n    savedSprites\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const {\n    activeTile,\n    activeTab,\n    floorContainerRef,\n    wallContainerRef\n  } = _buildStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState();\n  const tileType = activeTab === \"addwall\" ? \"wall\" : \"floor\";\n  activeTile.texture = savedSprites[`tile_${tileType}_${selectedTileTexture}`].texture;\n  activeTile.texturekey = `tile_${tileType}_${selectedTileTexture}`;\n  if (activeTile) {\n    const containerRef = activeTab === \"addwall\" ? wallContainerRef : floorContainerRef;\n    for (let i in containerRef.children) {\n      if (containerRef.children[i].tiletype === activeTile.name) {\n        containerRef.children[i].texture = activeTile.texture;\n        containerRef.children[i].texturekey = `tile_${tileType}_${selectedTileTexture}`;\n      }\n    }\n  }\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderController);\n\n//# sourceURL=webpack:///./js/build/renderController.js?");
+
+/***/ }),
+
+/***/ "./js/build/wallFloorTab.js":
+/*!**********************************!*\
+  !*** ./js/build/wallFloorTab.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"renderWallFloorTab\": () => (/* binding */ renderWallFloorTab)\n/* harmony export */ });\n/* harmony import */ var pixi_scrollbox__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi-scrollbox */ \"../node_modules/pixi-scrollbox/dist/scrollbox.es.js\");\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../system */ \"./js/system.js\");\n/* harmony import */ var _buildStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./buildStore */ \"./js/build/buildStore.js\");\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles */ \"./js/styles.js\");\n/* harmony import */ var _helpers_floorTile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helpers/floorTile */ \"./js/build/helpers/floorTile.js\");\n\n\n\n\n\n\nfunction renderWallFloorTab(config, containerRef) {\n  const {\n    savedSprites,\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState();\n  const {\n    buildTooltipContainer\n  } = _buildStore__WEBPACK_IMPORTED_MODULE_3__[\"default\"].getState();\n  const isWall = containerRef.name === 'Wall Controller';\n\n  // tab title\n  const titlename = isWall ? 'BUILD WALLS' : 'BUILD FLOORS';\n  const title = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Text(titlename, _styles__WEBPACK_IMPORTED_MODULE_4__.titleStyle);\n  title.anchor.set(0.5, 0);\n  title.x = config.boxWidth / 2;\n  title.y = 30;\n  containerRef.addChild(title);\n\n  // scroll container\n  const scrollContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  scrollContainer.y = config.titleHeight;\n  // scrollContainer.y = 0;\n  const scrollbox = new pixi_scrollbox__WEBPACK_IMPORTED_MODULE_0__.Scrollbox({\n    boxWidth: config.boxWidth,\n    // boxHeight: pixiApp.screen.height - config.infoHeight\n    boxHeight: config.padding * 2\n  });\n  scrollbox.options.scrollbarForeground = _styles__WEBPACK_IMPORTED_MODULE_4__.colors.pink;\n  scrollbox.options.scrollbarBackground = _styles__WEBPACK_IMPORTED_MODULE_4__.colors.white;\n\n  // selected background\n  const selectedTile = (0,_styles__WEBPACK_IMPORTED_MODULE_4__.drawRoundedRect)(0, 0, config.padding, config.padding, _styles__WEBPACK_IMPORTED_MODULE_4__.colors.selectgreen, 10);\n  selectedTile.name = \"selectIndicator\";\n  selectedTile.alpha = 1;\n  selectedTile.x = 0;\n  selectedTile.y = 0;\n  scrollbox.content.addChild(selectedTile);\n\n  // catalogue items\n  for (let i = 0; i < config.tLength; i++) {\n    const tile = (0,_helpers_floorTile__WEBPACK_IMPORTED_MODULE_5__.addFloorTile)(i, config, isWall);\n    scrollbox.content.addChild(tile);\n  }\n  selectedTile.activeTileRef = scrollbox.content.children[1];\n\n  // Add More tiles button\n  const addmore = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Sprite(savedSprites['icon_addmore'].texture);\n  addmore.x = (scrollbox.content.children.length - 1) % config.col * config.padding;\n  addmore.y = Math.floor((scrollbox.content.children.length - 1) / config.col) * config.padding;\n  addmore.name = 'addmore';\n  addmore.displayname = `+Add More`;\n  addmore.cursor = \"pointer\";\n  addmore.interactive = true;\n  addmore.on('click', () => {\n    const index = scrollbox.content.children.length - 2;\n    const tile = (0,_helpers_floorTile__WEBPACK_IMPORTED_MODULE_5__.addFloorTile)(index, config, isWall);\n    scrollbox.content.addChildAt(tile, index);\n\n    // hide delete button if there's only one tile left\n    if (containerRef.children.length <= 3) {\n      scrollbox.content.getChildByName('addmore').deleteButtonRef.visible = true;\n    }\n    addmore.x = (index + 1) % config.col * config.padding;\n    addmore.y = Math.floor((index + 1) / config.col) * config.padding;\n\n    // set new tile as the active tile\n    _helpers_floorTile__WEBPACK_IMPORTED_MODULE_5__.onTileClick.call(tile);\n    checkScrollbar();\n  }).on('pointermove', addMoreHover);\n\n  // check scrollbar\n  function checkScrollbar() {\n    // turn off scroll when there is no overflow\n    if (Math.ceil(scrollbox.content.children.length / config.col) * config.padding <= scrollbox.boxHeight) {\n      scrollbox.content.pause = true;\n      scrollbox.content.y = 0;\n    } else {\n      scrollbox.content.pause = false;\n    }\n    scrollbox.update();\n  }\n  scrollbox.update();\n\n  // tooltip\n  const addmoreTooltip = (0,_styles__WEBPACK_IMPORTED_MODULE_4__.drawTooltip)(addmore.displayname);\n  addmore.tooltipRef = addmoreTooltip;\n  buildTooltipContainer.addChild(addmoreTooltip);\n  scrollbox.content.addChild(addmore);\n  scrollContainer.addChild(scrollbox);\n  containerRef.addChild(scrollContainer);\n  pixiApp.stage.addChild(containerRef);\n  containerRef.zIndex = 5;\n\n  // divider\n  const divider = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Sprite(savedSprites['divider'].texture);\n  divider.name = \"Divider\";\n  divider.x = config.boxWidth / 2;\n  divider.y = pixiApp.screen.height - config.infoHeight - 30;\n  divider.anchor.set(0.5);\n  containerRef.addChild(divider);\n\n  // text input\n  const textInput = (0,_styles__WEBPACK_IMPORTED_MODULE_4__.drawTextInput)(120);\n  textInput.on('input', text => {\n    const activeTile = _buildStore__WEBPACK_IMPORTED_MODULE_3__[\"default\"].getState().activeTile;\n    if (activeTile) {\n      activeTile.displayname = text;\n      activeTile.tooltipRef.children[1].text = text;\n      activeTile.tooltipRef.children[0].width = activeTile.tooltipRef.children[1].width + 25;\n    }\n  });\n  textInput.placeholder = \"Tile Name\";\n  textInput.x = 50;\n  textInput.y = pixiApp.screen.height - 360;\n  textInput.text = scrollbox.content.children[1].displayname;\n  containerRef.addChild(textInput);\n\n  // Delete Tiles button\n  const deleteButton = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Sprite(savedSprites['icon_delete'].texture);\n  deleteButton.x = textInput.x + 120 + config.padding;\n  deleteButton.y = textInput.y;\n  deleteButton.name = isWall ? `deletewall` : `deletefloor`;\n  deleteButton.displayname = `Delete`;\n  deleteButton.cursor = \"pointer\";\n  deleteButton.interactive = true;\n  addmore.deleteButtonRef = deleteButton;\n\n  // tooltip\n  const deleteTooltip = (0,_styles__WEBPACK_IMPORTED_MODULE_4__.drawTooltip)(deleteButton.displayname);\n  deleteButton.tooltipRef = deleteTooltip;\n  buildTooltipContainer.addChild(deleteTooltip);\n\n  // delete confirmation modal\n  let modal = null;\n  modal = (0,_styles__WEBPACK_IMPORTED_MODULE_4__.drawModal)(\"\", () => {\n    deleteTile(modal, config);\n    checkScrollbar();\n  });\n  modal.visible = false;\n  buildTooltipContainer.addChild(modal);\n  deleteButton.on('click', () => {\n    const {\n      activeTile,\n      activeTab,\n      floorContainerRef,\n      wallContainerRef\n    } = _buildStore__WEBPACK_IMPORTED_MODULE_3__[\"default\"].getState();\n    const containerRef = activeTab === \"addwall\" ? wallContainerRef : floorContainerRef;\n    const placedTiles = containerRef.children.filter(i => i.tiletype === activeTile.name);\n    modal.getChildByName(\"Title\").text = `Are you sure you want to delete:\\n${activeTile.displayname}\\n(${placedTiles.length} tiles placed)?`;\n    modal.visible = true;\n  }).on('pointermove', addMoreHover);\n  containerRef.addChild(deleteButton);\n  setTimeout(() => {\n    scrollbox.content.clamp({\n      direction: \"all\"\n    });\n    checkScrollbar();\n  }, 500);\n\n  // hack to reset hover effect when mouse is away from scrollbox\n  scrollbox.containsPoint = point => {\n    scrollbox.content.children.forEach((button, i) => {\n      if (i === 0) return;\n      button.tooltipRef.visible = false;\n    });\n  };\n\n  // add flip button for walls\n  if (isWall) {\n    const flipButton = (0,_styles__WEBPACK_IMPORTED_MODULE_4__.drawButton)(\"Flip Wall\");\n    flipButton.name = \"flip\";\n    flipButton.y = 270;\n    flipButton.x = config.boxWidth - flipButton.width;\n    flipButton.on('click', () => {\n      scrollbox.content.children.forEach((button, i) => {\n        if (i === 0 || i >= scrollbox.content.children.length) return;\n        button.pivot.x = button.scale.x < 0 ? 0 : 64;\n        button.scale.x *= -1;\n      });\n    });\n    containerRef.addChild(flipButton);\n  }\n}\nfunction addMoreHover(e) {\n  const {\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState();\n  if (this.containsPoint(e.data.global)) {\n    const globalCoord = this.getGlobalPosition();\n    if (globalCoord.x + this.tooltipRef.width - this.width / 2 >= pixiApp.screen.width) {\n      this.tooltipRef.x = pixiApp.screen.width - this.tooltipRef.width / 2;\n    } else {\n      this.tooltipRef.x = globalCoord.x + this.width / 2;\n    }\n    this.tooltipRef.y = globalCoord.y;\n    this.tooltipRef.visible = true;\n  } else {\n    this.tooltipRef.visible = false;\n  }\n}\nfunction deleteTile(modal, config) {\n  const {\n    activeTile,\n    activeTab,\n    floorContainerRef,\n    wallContainerRef\n  } = _buildStore__WEBPACK_IMPORTED_MODULE_3__[\"default\"].getState();\n  if (activeTile) {\n    const containerRef = activeTab === \"addwall\" ? wallContainerRef : floorContainerRef;\n    // delete tiles in canvas\n    for (let i in containerRef.children) {\n      if (containerRef.children[i].tiletype === activeTile.name) {\n        containerRef.children[i].parent.removeChild(containerRef.children[i]);\n      }\n    }\n    // delete tile in controller and update positions\n    const tileGroup = activeTile.parent;\n    tileGroup.removeChild(activeTile);\n    tileGroup.children.forEach((tile, i) => {\n      if (i < 1) return;\n      tile.x = (i - 1) % config.col * config.padding;\n      tile.y = Math.floor((i - 1) / config.col) * config.padding;\n    });\n    // change activeTile to the first tile\n    _helpers_floorTile__WEBPACK_IMPORTED_MODULE_5__.onTileClick.call(tileGroup.children[1]);\n    modal.visible = false;\n\n    // hide delete button if there's only one tile left\n    if (tileGroup.children.length <= 3) {\n      tileGroup.getChildByName('addmore').deleteButtonRef.visible = false;\n    }\n  }\n}\n\n//# sourceURL=webpack:///./js/build/wallFloorTab.js?");
+
+/***/ }),
+
+/***/ "./js/initCategories.js":
+/*!******************************!*\
+  !*** ./js/initCategories.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./system */ \"./js/system.js\");\n\nconst INDOOR_ORDER = ['bedroom', 'livingroom', 'kitchen', 'bathroom', 'office'];\nconst INDOOR_SUBORDER = ['bed', 'table', 'bathtub', 'chair', 'shelf', 'storage', 'sink'];\nconst WALL_ORDER = ['gate', 'window', 'decor'];\nconst MISC_ORDER = ['infrastructure', 'rug', 'lighting', 'plant', 'prop', 'pet', 'toy', 'instrument', 'hobby', 'food'];\nfunction initCategories() {\n  const {\n    furniList,\n    addonList,\n    beanList,\n    userData\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n\n  // owned\n  // TODO: sort by profiles :smired: for now just use bank\n  const ownedCategory = furniList.filter(i => i.imgname.slice(2, i.imgname.length) in userData.bank.inventory).sort((a, b) => b.imgname - a.imgname);\n  // all\n  const allCategory = furniList.sort((a, b) => b.imgname - a.imgname);\n\n  // indoor (bedroom/livingroom/kitchen/bathroom/office > bed/table/bathtub/chair/shelf/storage/sink)\n  const indoorCategory = furniList.filter(_ref => {\n    let {\n      hbcategory\n    } = _ref;\n    return hbcategory.includes(\"indoor\");\n  }).sort((a, b) => b.imgname - a.imgname || INDOOR_SUBORDER.findIndex(i => a.hbcategory.includes(i)) - INDOOR_SUBORDER.findIndex(i => b.hbcategory.includes(i)) || INDOOR_ORDER.findIndex(i => a.hbcategory.includes(i)) - INDOOR_ORDER.findIndex(i => b.hbcategory.includes(i)));\n\n  // wall (door/window/decor)\n  const wallCategory = furniList.filter(_ref2 => {\n    let {\n      hbcategory\n    } = _ref2;\n    return hbcategory.includes(\"wall\");\n  }).sort((a, b) => b.imgname - a.imgname || WALL_ORDER.findIndex(i => a.hbcategory.includes(i)) - WALL_ORDER.findIndex(i => b.hbcategory.includes(i)));\n\n  // misc (infrastructure/rug/lighting/plant/prop/pet/toy/instrument/hobby/food)\n  const miscCategory = furniList.filter(_ref3 => {\n    let {\n      hbcategory\n    } = _ref3;\n    return hbcategory.includes(\"misc\");\n  }).sort((a, b) => b.imgname - a.imgname || MISC_ORDER.findIndex(i => a.hbcategory.includes(i)) - MISC_ORDER.findIndex(i => b.hbcategory.includes(i)));\n\n  // outdoor (prop)\n  const outdoorCategory = furniList.filter(_ref4 => {\n    let {\n      hbcategory\n    } = _ref4;\n    return hbcategory.includes(\"outdoor\");\n  }).sort((a, b) => b.imgname - a.imgname);\n\n  // addon\n  const addonCategory = addonList;\n\n  // bean list\n  const beanCategory = beanList.sort((a, b) => b.name - a.name);\n  ;\n  _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({\n    sortedCategories: {\n      owned: ownedCategory,\n      all: allCategory,\n      indoor: indoorCategory,\n      wall: wallCategory,\n      misc: miscCategory,\n      outdoor: outdoorCategory,\n      addon: addonCategory,\n      bean: beanCategory\n    }\n  });\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (initCategories);\n\n//# sourceURL=webpack:///./js/initCategories.js?");
+
+/***/ }),
+
+/***/ "./js/load/index.js":
+/*!**************************!*\
+  !*** ./js/load/index.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   \"signInScreen\": () => (/* binding */ signInScreen)\n/* harmony export */ });\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../system */ \"./js/system.js\");\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles */ \"./js/styles.js\");\n/* harmony import */ var _loadAssets__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loadAssets */ \"./js/load/loadAssets.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! axios */ \"../node_modules/axios/lib/axios.js\");\n/* harmony import */ var _build_initBuildMode__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../build/initBuildMode */ \"./js/build/initBuildMode.js\");\n/* harmony import */ var _initCategories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../initCategories */ \"./js/initCategories.js\");\n/* harmony import */ var _add_renderController__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../add/renderController */ \"./js/add/renderController.js\");\n/* harmony import */ var _renderCanvas__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../renderCanvas */ \"./js/renderCanvas.js\");\n/* harmony import */ var _renderMenu__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../renderMenu */ \"./js/renderMenu.js\");\n/* harmony import */ var _move_renderController__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../move/renderController */ \"./js/move/renderController.js\");\n/* harmony import */ var _saveSetup__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./saveSetup */ \"./js/load/saveSetup.js\");\n/* harmony import */ var _settings_renderController__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../settings/renderController */ \"./js/settings/renderController.js\");\n\n\n\n\n\n\n\n // TODO: FIX NAMING\n\n\n\n\n\nfunction loadScreen() {\n  const {\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const container = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n\n  // background\n  const BG_URL = \"https://galesend.twohoot.net/assets/bg.png\";\n  const texture = pixi_js__WEBPACK_IMPORTED_MODULE_1__.Texture.from(BG_URL);\n  texture.baseTexture.scaleMode = pixi_js__WEBPACK_IMPORTED_MODULE_1__.SCALE_MODES.NEAREST;\n  const bg = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Sprite(texture);\n  bg.scale.set(pixiApp.screen.width / 2650); // 2650 is the hardcoded width of the background\n  bg.anchor.set(0.5);\n  bg.x = pixiApp.screen.width / 2;\n  bg.y = pixiApp.screen.height / 2;\n  container.addChild(bg);\n\n  // popup\n  const popup = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  container.addChild(popup);\n  const halfScreenX = pixiApp.screen.width / 2,\n    halfScreenY = pixiApp.screen.height / 2;\n  const rectWidth = 600;\n  const rectHeight = 200;\n  const rect = (0,_styles__WEBPACK_IMPORTED_MODULE_2__.drawRoundedRect)(0, 0, rectWidth, rectHeight);\n  rect.x = halfScreenX - rectWidth / 2;\n  rect.y = halfScreenY - rectHeight / 2;\n  popup.addChild(rect);\n  const title = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Text('LOADING...', _styles__WEBPACK_IMPORTED_MODULE_2__.titleStyle);\n  title.anchor.set(0.5);\n  title.x = halfScreenX;\n  title.y = halfScreenY - 20;\n  popup.addChild(title);\n  const loadingbar = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Sprite(pixi_js__WEBPACK_IMPORTED_MODULE_1__.Texture.WHITE);\n  loadingbar.tint = _styles__WEBPACK_IMPORTED_MODULE_2__.colors.pink;\n  loadingbar.height = 25;\n  loadingbar.width = 0;\n  loadingbar.maxX = 200;\n  loadingbar.x = title.x - loadingbar.maxX / 2;\n  loadingbar.y = title.y + 40;\n  popup.addChild(loadingbar);\n  pixiApp.stage.addChild(container);\n  (0,_loadAssets__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(loadingbar);\n}\nasync function login(userId) {\n  // const userId = \"214280985611599874\";\n  if (!userId) {\n    alert(\"Please enter your Discord ID\");\n    return;\n  }\n  const response = await axios__WEBPACK_IMPORTED_MODULE_12__[\"default\"].get(\"https://data.mongodb-api.com/app/data-ycjna/endpoint/getProfile?id=\" + userId);\n  if (!response.data || !response.data.data) {\n    alert(\"Invalid Discord ID: \" + userId);\n  } else {\n    localStorage.setItem(\"userId\", userId);\n    const userData = response.data.data.profiles;\n    _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({\n      userData: userData\n    });\n\n    // clear loading screen\n    const {\n      pixiApp\n    } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n    pixiApp.stage.removeChild(pixiApp.stage.children[0]);\n\n    // load menus\n    (0,_initCategories__WEBPACK_IMPORTED_MODULE_5__[\"default\"])();\n    (0,_renderCanvas__WEBPACK_IMPORTED_MODULE_7__[\"default\"])();\n    (0,_build_initBuildMode__WEBPACK_IMPORTED_MODULE_4__[\"default\"])();\n    (0,_add_renderController__WEBPACK_IMPORTED_MODULE_6__[\"default\"])();\n    (0,_move_renderController__WEBPACK_IMPORTED_MODULE_9__[\"default\"])();\n    (0,_settings_renderController__WEBPACK_IMPORTED_MODULE_11__[\"default\"])();\n    (0,_renderMenu__WEBPACK_IMPORTED_MODULE_8__[\"default\"])();\n    (0,_saveSetup__WEBPACK_IMPORTED_MODULE_10__.loadSetup)();\n  }\n}\nfunction signInScreen(loadingbar) {\n  const container = loadingbar.parent;\n  const title = container.children[1];\n  container.removeChild(loadingbar);\n  title.text = \"ENTER DISCORD ID:\";\n  title.y = title.y - 16;\n  const textInput = (0,_styles__WEBPACK_IMPORTED_MODULE_2__.drawTextInput)();\n  textInput.on('input', text => {\n    textInput.value = text;\n  });\n  textInput.x = title.x - 100;\n  textInput.y = title.y + 24;\n  textInput.placeholder = \"start typing...\";\n  container.addChild(textInput);\n  const button = (0,_styles__WEBPACK_IMPORTED_MODULE_2__.drawButton)();\n  button.on('pointerdown', () => login(textInput.value));\n  button.x = title.x;\n  button.y = title.y + 90;\n  container.addChild(button);\n  let userId = localStorage.getItem(\"userId\");\n  if (userId) {\n    login(userId);\n  }\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadScreen);\n\n//# sourceURL=webpack:///./js/load/index.js?");
+
+/***/ }),
+
+/***/ "./js/load/loadAssets.js":
+/*!*******************************!*\
+  !*** ./js/load/loadAssets.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../system */ \"./js/system.js\");\n/* harmony import */ var csvtojson__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! csvtojson */ \"../node_modules/csvtojson/browser/browser.js\");\n/* harmony import */ var csvtojson__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(csvtojson__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ \"../node_modules/axios/lib/axios.js\");\n/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index */ \"./js/load/index.js\");\n/* harmony import */ var _assets_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets.json */ \"./js/load/assets.json\");\n\n\n\n\n\n\nconst ITEMSHEET_URL = \"https://docs.google.com/spreadsheets/d/1tOXcZD8jTv_vOW6XscLqpcc2asjxly-EpNGiAeiiEKc/export?format=csv&gid=565737734\";\nconst ADDONSHEET_URL = \"https://docs.google.com/spreadsheets/d/1tOXcZD8jTv_vOW6XscLqpcc2asjxly-EpNGiAeiiEKc/export?format=csv&gid=1280637405\";\nconst RECOLORSHEET_URL = \"https://docs.google.com/spreadsheets/d/1wdrRrStVE2RiMzHgZu_abI6xUwjw2iYU6Kq4kql5zZQ/export?format=csv&gid=0\";\nconst BEANSHEET_URL = \"https://docs.google.com/spreadsheets/d/1CXvlhH7D-3do11qZXQbJj7L7dZdMVB8q7WFEJkHvtcI/export?format=csv&gid=1332276337\";\nasync function loadAssets(loadingbar) {\n  // fetch sheet data\n  let furniList = JSON.parse(localStorage.getItem(\"furniture\"));\n  let addonList = JSON.parse(localStorage.getItem(\"addons\"));\n  let recolorList = JSON.parse(localStorage.getItem(\"recolor\"));\n  let beanList = JSON.parse(localStorage.getItem(\"beans\"));\n  if (!furniList) {\n    // TODO: think about when to update list\n    const response = await axios__WEBPACK_IMPORTED_MODULE_5__[\"default\"].get(ITEMSHEET_URL);\n    const json = await csvtojson__WEBPACK_IMPORTED_MODULE_2___default()().fromString(response.data);\n    furniList = json.filter(i => i.Category === \"Furniture\");\n    localStorage.setItem(\"furniture\", JSON.stringify(furniList));\n  }\n  _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({\n    furniList: furniList\n  });\n  if (!addonList) {\n    const response = await axios__WEBPACK_IMPORTED_MODULE_5__[\"default\"].get(ADDONSHEET_URL);\n    const json = await csvtojson__WEBPACK_IMPORTED_MODULE_2___default()().fromString(response.data);\n    addonList = json.filter(i => i.Category === \"Furniture\");\n    localStorage.setItem(\"addons\", JSON.stringify(addonList));\n  }\n  _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({\n    addonList: addonList\n  });\n  if (!recolorList) {\n    const response = await axios__WEBPACK_IMPORTED_MODULE_5__[\"default\"].get(RECOLORSHEET_URL);\n    const json = await csvtojson__WEBPACK_IMPORTED_MODULE_2___default()().fromString(response.data);\n    recolorList = json.filter(i => i.url !== \"\");\n    localStorage.setItem(\"recolor\", JSON.stringify(recolorList));\n  }\n  _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({\n    recolorList: recolorList\n  });\n  if (!beanList) {\n    const response = await axios__WEBPACK_IMPORTED_MODULE_5__[\"default\"].get(BEANSHEET_URL);\n    const json = await csvtojson__WEBPACK_IMPORTED_MODULE_2___default()().fromString(response.data);\n    beanList = json.filter(i => i.key !== \"\");\n    localStorage.setItem(\"beans\", JSON.stringify(beanList));\n  }\n  _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({\n    beanList: beanList\n  });\n\n  // load sprites\n  const loader = pixi_js__WEBPACK_IMPORTED_MODULE_0__.Loader.shared;\n  const sprites = {};\n  for (let i in furniList) {\n    loader.add(furniList[i].imgname + \"||\" + furniList[i].ItemName, furniList[i].imgurl, {\n      crossOrigin: 'anonymous'\n    });\n  }\n  for (let i in addonList) {\n    loader.add(addonList[i].imgname + \"||\" + addonList[i].ItemName, `assets/AddOns/${addonList[i].Folder}/${addonList[i].imgname}.png`);\n  }\n  for (let i in recolorList) {\n    loader.add(recolorList[i].rcname + \"||\" + recolorList[i].item, recolorList[i].url);\n  }\n  for (let i in beanList) {\n    loader.add(beanList[i].key + \"||\" + beanList[i].name, beanList[i].imgurl);\n  }\n  for (let i in _assets_json__WEBPACK_IMPORTED_MODULE_4__) {\n    loader.add(_assets_json__WEBPACK_IMPORTED_MODULE_4__[i], `assets/${_assets_json__WEBPACK_IMPORTED_MODULE_4__[i]}.png`);\n  }\n  loader.load((loader, resources) => {\n    Object.keys(resources).forEach(key => {\n      const texture = resources[key].texture;\n      texture.baseTexture.scaleMode = pixi_js__WEBPACK_IMPORTED_MODULE_0__.SCALE_MODES.NEAREST;\n      if (key.includes(\"||\")) {\n        const keysplit = key.split(\"||\");\n        sprites[keysplit[0]] = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(texture);\n        sprites[keysplit[0]].displayname = keysplit[1];\n      } else {\n        sprites[key] = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(texture);\n      }\n    });\n  });\n  loader.onProgress.add((loader, resource) => {\n    loadingbar.width = loader.progress / 100 * loadingbar.maxX;\n  });\n  loader.onError.add((message, loader, resource) => {\n    console.log('Error: ' + resource.name + ' ' + message);\n  });\n  loader.onComplete.add((loader, resources) => {\n    _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({\n      savedSprites: sprites\n    });\n    (0,_index__WEBPACK_IMPORTED_MODULE_3__.signInScreen)(loadingbar);\n  });\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadAssets);\n\n//# sourceURL=webpack:///./js/load/loadAssets.js?");
+
+/***/ }),
+
+/***/ "./js/load/saveSetup.js":
+/*!******************************!*\
+  !*** ./js/load/saveSetup.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"loadSetup\": () => (/* binding */ loadSetup),\n/* harmony export */   \"saveSetup\": () => (/* binding */ saveSetup)\n/* harmony export */ });\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../system */ \"./js/system.js\");\n/* harmony import */ var _build_buildStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../build/buildStore */ \"./js/build/buildStore.js\");\n/* harmony import */ var _renderCanvas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../renderCanvas */ \"./js/renderCanvas.js\");\n\n\n\n\nfunction saveSetup() {\n  const {\n    canvasRef,\n    viewport\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const savedSetup = {\n    furni: [],\n    floor: [],\n    wall: []\n  };\n  canvasRef.children.forEach(i => {\n    // TODO: rooms later\n    savedSetup.furni.push({\n      key: i.key,\n      x: i.x,\n      y: i.y,\n      alpha: i.alpha\n    });\n  });\n  viewport.floorContainer.children.forEach(i => {\n    savedSetup.floor.push({\n      key: i.texturekey,\n      x: i.x,\n      y: i.y,\n      alpha: i.alpha,\n      tint: i.tint\n    });\n  });\n  viewport.wallContainer.children.forEach(i => {\n    savedSetup.wall.push({\n      key: i.texturekey,\n      x: i.x,\n      y: i.y,\n      alpha: i.alpha,\n      tint: i.tint,\n      direction: i.scale.x\n    });\n  });\n  // TODO: save floor/wall setups as well\n  localStorage.setItem(\"savedSetup\", JSON.stringify(savedSetup));\n  alert(\"Setup has been saved!\");\n}\nfunction loadSetup() {\n  const {\n    savedSprites\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const {\n    floorContainerRef,\n    wallContainerRef,\n    activeTile\n  } = _build_buildStore__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getState();\n  let setup = JSON.parse(localStorage.getItem(\"savedSetup\"));\n  // TODO: rooms later\n  if (setup) {\n    for (let i in setup.furni) {\n      const item = setup.furni[i];\n      if (item.key.startsWith(\"custom_\")) continue;\n      const furni = (0,_renderCanvas__WEBPACK_IMPORTED_MODULE_3__.addItemToLayer)(item.key);\n      furni.x = item.x;\n      furni.y = item.y;\n      furni.alpha = item.alpha;\n      // TODO: zorder\n    }\n\n    for (let i in setup.floor) {\n      const item = setup.floor[i];\n      const tile = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(savedSprites[item.key].texture);\n      tile.tint = item.tint;\n      tile.x = item.x;\n      tile.y = item.y;\n      tile.name = `${item.x}:${item.y}`;\n      // tile.tiletype = activeTile.name;\n      tile.zIndex = tile.y;\n      tile.anchor.set(0.5);\n      floorContainerRef.addChild(tile);\n    }\n    for (let i in setup.wall) {\n      const item = setup.wall[i];\n      const tile = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(savedSprites[item.key].texture);\n      tile.tint = item.tint;\n      tile.x = item.x;\n      tile.y = item.y;\n      tile.name = `${item.x}:${item.y}`;\n      // tile.tiletype = activeTile.name;\n      tile.zIndex = tile.y;\n      tile.anchor.set(0.5);\n      tile.scale.x = item.direction;\n      floorContainerRef.addChild(tile);\n    }\n  }\n}\n\n//# sourceURL=webpack:///./js/load/saveSetup.js?");
+
+/***/ }),
+
+/***/ "./js/move/renderController.js":
+/*!*************************************!*\
+  !*** ./js/move/renderController.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../system */ \"./js/system.js\");\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _renderCanvas__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../renderCanvas */ \"./js/renderCanvas.js\");\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles */ \"./js/styles.js\");\n/* harmony import */ var _add_addStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../add/addStore */ \"./js/add/addStore.js\");\n\n\n\n\n\nconst config = {\n  padding: 64,\n  col: 4,\n  titleHeight: 200,\n  boxWidth: 300\n};\nfunction renderLayer() {\n  const {\n    pixiApp,\n    savedSprites\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n\n  // move container\n  const container = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  container.name = \"Move Controller\";\n  container.x = pixiApp.screen.width - config.boxWidth;\n\n  // background\n  const bg = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Sprite(pixi_js__WEBPACK_IMPORTED_MODULE_1__.Texture.WHITE);\n  bg.width = config.boxWidth;\n  bg.height = pixiApp.screen.height;\n  bg.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.beige;\n  bg.alpha = 0.8;\n  container.addChild(bg);\n\n  // catalogue title\n  const title = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Text('MOVE FURNITURE', _styles__WEBPACK_IMPORTED_MODULE_3__.titleStyle);\n  title.anchor.set(0.5, 0);\n  title.x = config.boxWidth / 2;\n  title.y = 30;\n  container.addChild(title);\n\n  // temporary helper buttons for selected furniture\n\n  // divider\n  const divider = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Sprite(savedSprites['divider'].texture);\n  divider.name = \"Divider\";\n  divider.x = config.boxWidth / 2;\n  // divider.y = pixiApp.screen.height - config.infoHeight - 30;\n  divider.y = 200;\n  divider.anchor.set(0.5);\n  container.addChild(divider);\n  const selectedContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  selectedContainer.name = \"Selected Container\";\n  const selectedName = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Text('', _styles__WEBPACK_IMPORTED_MODULE_3__.titleStyle);\n  selectedName.name = \"Selected Name\";\n  selectedName.anchor.set(0.5, 0);\n  selectedName.x = config.boxWidth / 2;\n  selectedName.y = divider.y + 60;\n  selectedContainer.addChild(selectedName);\n  const button1 = (0,_styles__WEBPACK_IMPORTED_MODULE_3__.drawButton)(\"Move to Front\");\n  button1.name = \"Move to Front\";\n  button1.on('pointerdown', () => moveTo(true));\n  button1.x = config.boxWidth / 2;\n  button1.y = selectedName.y + 80;\n  selectedContainer.addChild(button1);\n  const button2 = (0,_styles__WEBPACK_IMPORTED_MODULE_3__.drawButton)(\"Move to Back\");\n  button2.name = \"Move to Back\";\n  button2.on('pointerdown', () => moveTo());\n  button2.x = config.boxWidth / 2;\n  button2.y = button1.y + 60;\n  selectedContainer.addChild(button2);\n  const button3 = (0,_styles__WEBPACK_IMPORTED_MODULE_3__.drawButton)(\"Flip\");\n  button3.name = \"Flip\";\n  button3.on('pointerdown', flipTile);\n  button3.x = config.boxWidth / 2;\n  button3.y = button2.y + 60;\n  selectedContainer.addChild(button3);\n  selectedContainer.visible = false;\n  container.addChild(selectedContainer);\n  _add_addStore__WEBPACK_IMPORTED_MODULE_4__[\"default\"].setState({\n    selectedContainer: selectedContainer\n  });\n  pixiApp.stage.addChild(container);\n  const unsub = _add_addStore__WEBPACK_IMPORTED_MODULE_4__[\"default\"].subscribe(state => state.selectedFurni, renderSelection);\n\n  // text input\n  // const textInput = new TextInput({\n  //   input: {\n  //     fontSize: '18px',\n  //     fontFamily: '\"Lato\", sans-serif',\n  //     padding: '5px',\n  //     width: inputWidth + 'px',\n  //     color: '#434C05',\n  //   },\n  //   box: {\n  //     default: { fill: colors.white, rounded: 12, stroke: { color: colors.darkpink, width: 3 } },\n  //     focused: { fill: colors.white, rounded: 12, stroke: { color: colors.darkgrey, width: 3 } },\n  //   }\n  // })\n  // textInput\n  //   .on('input', (text) => filterItemList(text))\n  // textInput.x = 50;\n  // textInput.y = padding * 2;\n  // textInput.placeholder = \"start typing...\"\n  // container.addChild(textInput);\n\n  // scroll container\n  // const scrollContainer = new PIXI.Container();\n  // const layerUIContainer = new PIXI.Container();\n\n  // scrollContainer.y = titleHeight;\n  // const scrollbox = new Scrollbox({\n  //   boxWidth: boxWidth,\n  //   boxHeight: pixiApp.screen.height - titleHeight\n  // })\n  // scrollbox.options.scrollbarForeground = colors.pink;\n  // scrollbox.options.scrollbarBackground = colors.white;\n\n  // scrollContainer.addChild(scrollbox);\n  // container.addChild(scrollContainer);\n  // // pixiApp.stage.addChild(furniUIContainer);\n  // useSystemStore.setState({ layerRef: scrollbox });\n\n  // console.log(scrollbox)\n  // add listener for filters\n  // const unsub = useSystemStore.subscribe(\n  //   (state) => [state.itemLayer], updateItemLayerList\n  // )\n}\n\nfunction renderSelection() {\n  const {\n    selectedFurni,\n    selectedContainer\n  } = _add_addStore__WEBPACK_IMPORTED_MODULE_4__[\"default\"].getState();\n  if (selectedFurni.length > 0) {\n    selectedContainer.visible = true;\n    selectedContainer.getChildByName(\"Selected Name\").text = selectedFurni[0].displayname;\n  } else {\n    selectedContainer.visible = false;\n  }\n}\n\n//moves an item in an array to either the front or back\nfunction moveTo(isFront) {\n  const {\n    selectedFurni\n  } = _add_addStore__WEBPACK_IMPORTED_MODULE_4__[\"default\"].getState();\n  for (let i in selectedFurni) {\n    const parent = selectedFurni[0].parent;\n    parent.removeChild(selectedFurni[i]);\n    isFront ? parent.addChild(selectedFurni[i]) : parent.addChildAt(selectedFurni[i], 0);\n  }\n}\nfunction flipTile() {\n  const {\n    selectedFurni\n  } = _add_addStore__WEBPACK_IMPORTED_MODULE_4__[\"default\"].getState();\n  for (let i in selectedFurni) {\n    selectedFurni[i].scale.x *= -1;\n  }\n}\nfunction onFurniClick() {\n  (0,_renderCanvas__WEBPACK_IMPORTED_MODULE_2__.addItemToLayer)(this.info);\n}\nfunction onFurniHover() {\n  this.tint = 0x333333;\n  // const globalCoord = this.getGlobalPosition();\n  // this.tooltipRef.x = globalCoord.x + 25;\n  // this.tooltipRef.y = globalCoord.y;\n  // this.tooltipRef.visible = true;\n}\n\nfunction onFurniOut() {\n  this.tint = 0xffffff;\n  // this.tooltipRef.visible = false;\n}\n\nfunction filterItemList(text) {\n  const {\n    catalogue\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const children = catalogue.children[0].children;\n  let counter = 0;\n  for (let i in children) {\n    const furni = children[i];\n    if (furni.info.ItemName.toLowerCase().includes(text.toLowerCase()) || text === \"\") {\n      furni.visible = true;\n      furni.x = counter % col * padding;\n      furni.y = Math.floor(counter / col) * padding;\n      counter++;\n    } else {\n      furni.visible = false;\n    }\n  }\n  catalogue.update();\n  // TODO: figure out how to move fixed items to the top w/o the clamp bug\n  catalogue.children[0].clamp({\n    direction: \"y\",\n    underflow: \"center\"\n  });\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderLayer);\n\n//# sourceURL=webpack:///./js/move/renderController.js?");
+
+/***/ }),
+
+/***/ "./js/renderCanvas.js":
+/*!****************************!*\
+  !*** ./js/renderCanvas.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addItemToLayer\": () => (/* binding */ addItemToLayer),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   \"removeItemFromLayer\": () => (/* binding */ removeItemFromLayer)\n/* harmony export */ });\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./system */ \"./js/system.js\");\n/* harmony import */ var _add_addStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./add/addStore */ \"./js/add/addStore.js\");\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var pixi_viewport__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! pixi-viewport */ \"../node_modules/pixi-viewport/dist/esm/viewport.es.js\");\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles */ \"./js/styles.js\");\n\n\n\n\n\nfunction addItemToLayer(itemName) {\n  const {\n    savedSprites,\n    canvasRef,\n    pixiApp,\n    itemLayer\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const furni = new pixi_js__WEBPACK_IMPORTED_MODULE_2__.Sprite(savedSprites[itemName].texture);\n  furni.displayname = savedSprites[itemName].displayname;\n  furni.key = itemName;\n  furni.anchor.set(0.5);\n  const coord = canvasRef.parent.toWorld(pixiApp.screen.width / 2, pixiApp.screen.height / 2);\n  furni.x = coord.x;\n  furni.y = coord.y - 20;\n  furni.interactive = true;\n  furni.cursor = 'pointer';\n  furni.on('pointerdown', onDragStart).on('pointerup', onDragEnd).on('pointerupoutside', onDragEnd).on('pointermove', onDragMove).on('pointerover', onItemHover).on('pointerout', onItemOut);\n  canvasRef.addChild(furni);\n\n  // TODO: is there anything else I need to add?\n  // console.log(itemLayer);\n  // TODO: i still don't know if this is necessary AAA dont want to think about it\n  // useSystemStore.setState({ itemLayer: [furni, ...itemLayer] });\n  // updateHistory\n  return furni;\n}\nfunction removeItemFromLayer(itemRef) {\n  // const { itemLayer } = useSystemStore.getState();\n  itemRef.parent.removeChild(itemRef);\n  // gotta deal with nested arrays\n  // itemLayer.forEach((arr, i) => itemLayer[i] = arr.filter(ref => ref !== itemRef))\n  // const updatedLayer = itemLayer.filter(i => i !== itemRef);\n  // console.log(itemLayer)\n  // updateItemLayer(itemLayer);\n  // updateHistory\n}\n\n// interface DragObject extends DisplayObject {\n//   dragData: PIXI.InteractionData\n//   dragging: number\n//   dragPointerStart: PIXI.DisplayObject\n//   dragObjStart: PIXI.Point\n//   dragGlobalStart: PIXI.Point\n// }\n\nfunction onDragStart(event) {\n  // ctrl left click to delete furniture... for now\n  if (event.data.button === 0 && event.data.originalEvent.ctrlKey) {\n    this.parent.removeChild(this);\n    return;\n  }\n\n  // only register left click\n  if (event.data.button !== 0) return;\n  const obj = event.currentTarget;\n  obj.dragData = event.data;\n  obj.dragging = 1;\n  obj.dragPointerStart = event.data.getLocalPosition(obj.parent);\n  obj.dragObjStart = new pixi_js__WEBPACK_IMPORTED_MODULE_2__.Point();\n  obj.dragObjStart.copyFrom(obj.position);\n  obj.dragGlobalStart = new pixi_js__WEBPACK_IMPORTED_MODULE_2__.Point();\n  obj.dragGlobalStart.copyFrom(event.data.global);\n  _add_addStore__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({\n    selectedFurni: [obj]\n  });\n}\nfunction onDragEnd(event) {\n  const obj = event.currentTarget;\n  if (!obj.dragging) return;\n  snap(obj);\n  obj.dragging = 0;\n  // set the interaction data to null\n  // obj.dragData = null\n}\n\nfunction onDragMove(event) {\n  const obj = event.currentTarget;\n  if (!obj.dragging) return;\n  const data = obj.dragData; // it can be different pointer!\n  if (obj.dragging === 1) {\n    // click or drag?\n    if (Math.abs(data.global.x - obj.dragGlobalStart.x) + Math.abs(data.global.y - obj.dragGlobalStart.y) >= 3) {\n      // DRAG\n      obj.dragging = 2;\n    }\n  }\n  if (obj.dragging === 2) {\n    const dragPointerEnd = data.getLocalPosition(obj.parent);\n    // DRAG\n    obj.position.set(obj.dragObjStart.x + (dragPointerEnd.x - obj.dragPointerStart.x), obj.dragObjStart.y + (dragPointerEnd.y - obj.dragPointerStart.y));\n  }\n}\n\n// === CLICKS AND SNAP ===\nfunction snap(obj) {\n  const {\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  // TODO: snap by isometry, canvas bounds, and make sure this is ajdustable by settings\n  // TODO: and when exporting image, it should be at 100%\n  // obj.position.x = Math.min(Math.max(obj.position.x, 0), pixiApp.screen.width)\n  // obj.position.y = Math.min(Math.max(obj.position.y, 0), pixiApp.screen.height)\n}\n\nfunction onItemHover() {\n  this.tint = _styles__WEBPACK_IMPORTED_MODULE_4__.colors.grey;\n}\nfunction onItemOut() {\n  this.tint = _styles__WEBPACK_IMPORTED_MODULE_4__.colors.white;\n}\nfunction renderCanvas() {\n  const {\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const viewport = new pixi_viewport__WEBPACK_IMPORTED_MODULE_3__.Viewport({\n    screenWidth: window.innerWidth - 300,\n    screenHeight: window.innerHeight,\n    worldWidth: 100,\n    worldHeight: 100,\n    interaction: pixiApp.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled\n  });\n\n  pixiApp.renderer.plugins.interaction.autoPreventDefault = true;\n  viewport.sortableChildren = true;\n  const container = new pixi_js__WEBPACK_IMPORTED_MODULE_2__.Container();\n  container.name = \"Furniture Layer\";\n  viewport.addChild(container);\n  pixiApp.stage.addChild(viewport);\n  _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({\n    viewport: viewport\n  });\n  _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({\n    canvasRef: container\n  });\n  container.zIndex = 3;\n  viewport.drag({\n    mouseButtons: \"middle-right\"\n  }) // TODO: support keyboard\n  .pinch().wheel().clampZoom({\n    minWidth: 100,\n    minHeight: 100,\n    maxWidth: 5000,\n    maxHeight: 5000\n  });\n  viewport.options.disableOnContextMenu = true;\n  viewport.setZoom(4);\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderCanvas);\n\n//# sourceURL=webpack:///./js/renderCanvas.js?");
+
+/***/ }),
+
+/***/ "./js/renderMenu.js":
+/*!**************************!*\
+  !*** ./js/renderMenu.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./system */ \"./js/system.js\");\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _load_saveSetup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./load/saveSetup */ \"./js/load/saveSetup.js\");\n/* harmony import */ var _build_initBuildMode__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./build/initBuildMode */ \"./js/build/initBuildMode.js\");\n\n\n\n\nfunction renderMenu() {\n  const {\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const startingX = 50,\n    startingY = 50,\n    padding = 100;\n  const textStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.TextStyle({\n    fontFamily: '\"Amatic SC\", cursive',\n    fill: 0xcccccc,\n    fontSize: 32,\n    fontWeight: \"normal\",\n    letterSpacing: 1.5,\n    padding: 10\n  });\n  const container = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  container.name = \"Menu Buttons\";\n  const textButtons = [\"add\", \"move\", \"build\", \"settings\"];\n  textButtons.forEach((title, i) => {\n    const text = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Text(title.toUpperCase(), textStyle);\n    text.anchor.set(0.5);\n    text.interactive = true;\n    text.cursor = \"pointer\";\n    text.key = title;\n    text.on('pointerdown', () => updateScreen(title)).on('pointerover', onTextHover).on('pointerout', onTextOut);\n    text.x = startingX + i * padding;\n    text.y = startingY;\n    container.addChild(text);\n  });\n  pixiApp.stage.addChild(container);\n  updateScreen(\"add\");\n}\nfunction updateScreen(title) {\n  const {\n    canvasRef,\n    viewport,\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  canvasRef.interactiveChildren = true;\n  viewport.floorContainer.interactiveChildren = false;\n  viewport.previewContainer.interactiveChildren = false;\n  canvasRef.alpha = 1;\n  const addController = pixiApp.stage.getChildByName(\"Add Controller\");\n  const moveController = pixiApp.stage.getChildByName(\"Move Controller\");\n  const buildController = pixiApp.stage.getChildByName(\"Build Controller\");\n  const settingsController = pixiApp.stage.getChildByName(\"Settings Controller\");\n  const colorTool = document.getElementById(\"colortool\");\n  if (title === \"add\") {\n    // add\n    addController.visible = true;\n\n    // move\n    moveController.visible = false;\n\n    // build\n    viewport.floorContainer.alpha = 1;\n    viewport.wallContainer.alpha = 1;\n    viewport.previewContainer.visible = false;\n    viewport.previewContainer.interactiveChildren = false;\n    buildController.visible = false;\n    colorTool.style.visibility = \"hidden\";\n\n    // settings\n    settingsController.visible = false;\n  } else if (title === \"move\") {\n    // add\n    addController.visible = false;\n\n    // move\n    moveController.visible = true;\n\n    // build\n    viewport.floorContainer.alpha = 1;\n    viewport.wallContainer.alpha = 1;\n    viewport.previewContainer.visible = false;\n    viewport.previewContainer.interactiveChildren = false;\n    buildController.visible = false;\n    colorTool.style.visibility = \"hidden\";\n\n    // settings\n    settingsController.visible = false;\n  } else if (title === \"build\") {\n    canvasRef.interactiveChildren = false;\n\n    // add\n    addController.visible = false;\n\n    // move\n    moveController.visible = false;\n\n    // build\n    viewport.previewContainer.visible = true;\n    viewport.previewContainer.interactiveChildren = true;\n    canvasRef.alpha = 0.5;\n    buildController.visible = true;\n    colorTool.style.visibility = \"visible\";\n\n    // settings\n    settingsController.visible = false;\n  } else if (title === \"settings\") {\n    // add\n    addController.visible = false;\n\n    // move\n    moveController.visible = false;\n\n    // build\n    viewport.floorContainer.alpha = 1;\n    viewport.wallContainer.alpha = 1;\n    viewport.previewContainer.visible = false;\n    viewport.previewContainer.interactiveChildren = false;\n    buildController.visible = false;\n    colorTool.style.visibility = \"hidden\";\n\n    // settings\n    settingsController.visible = true;\n  }\n  _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({\n    buildMode: title\n  });\n}\nfunction onTextHover() {\n  this.tint = 0x333333;\n}\nfunction onTextOut() {\n  this.tint = 0xffffff;\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderMenu);\n\n//# sourceURL=webpack:///./js/renderMenu.js?");
+
+/***/ }),
+
+/***/ "./js/settings/renderController.js":
+/*!*****************************************!*\
+  !*** ./js/settings/renderController.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../system */ \"./js/system.js\");\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles */ \"./js/styles.js\");\n/* harmony import */ var _load_saveSetup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../load/saveSetup */ \"./js/load/saveSetup.js\");\n\n\n\n\nconst config = {\n  padding: 64,\n  col: 4,\n  titleHeight: 200,\n  boxWidth: 300\n};\nfunction renderController() {\n  const {\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n\n  // settings container\n  const container = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  container.name = \"Settings Controller\";\n  container.x = pixiApp.screen.width - config.boxWidth;\n\n  // background\n  const bg = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.WHITE);\n  bg.width = config.boxWidth;\n  bg.height = pixiApp.screen.height;\n  bg.tint = _styles__WEBPACK_IMPORTED_MODULE_2__.colors.beige;\n  bg.alpha = 0.8;\n  container.addChild(bg);\n\n  // catalogue title\n  const title = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('SETTINGS', _styles__WEBPACK_IMPORTED_MODULE_2__.titleStyle);\n  title.anchor.set(0.5, 0);\n  title.x = config.boxWidth / 2;\n  title.y = 30;\n  container.addChild(title);\n\n  // save setup\n  const button1 = (0,_styles__WEBPACK_IMPORTED_MODULE_2__.drawButton)(\"Save Setup\");\n  button1.name = \"Save Setup\";\n  button1.on('pointerdown', _load_saveSetup__WEBPACK_IMPORTED_MODULE_3__.saveSetup);\n  button1.x = config.boxWidth / 2;\n  button1.y = title.y + 120;\n  container.addChild(button1);\n\n  // download image\n  const button2 = (0,_styles__WEBPACK_IMPORTED_MODULE_2__.drawButton)(\"Download Image\");\n  button2.name = \"Download Image\";\n  button2.on('pointerdown', takeSnapshot);\n  button2.x = config.boxWidth / 2;\n  button2.y = button1.y + 60;\n  container.addChild(button2);\n\n  // export setup JSON\n  const button3 = (0,_styles__WEBPACK_IMPORTED_MODULE_2__.drawButton)(\"Export House JSON\");\n  button3.name = \"Export House JSON\";\n  button3.on('pointerdown', exportJson);\n  button3.x = config.boxWidth / 2;\n  button3.y = button2.y + 60;\n  container.addChild(button3);\n\n  // export setup JSON\n  const button4 = (0,_styles__WEBPACK_IMPORTED_MODULE_2__.drawButton)(\"Clear Canvas\");\n  button4.name = \"Clear Canvas\";\n  button4.on('pointerdown', clearCanvas);\n  button4.x = config.boxWidth / 2;\n  button4.y = button3.y + 60;\n  container.addChild(button4);\n  pixiApp.stage.addChild(container);\n}\nfunction takeSnapshot() {\n  const {\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const settingsController = pixiApp.stage.getChildByName(\"Settings Controller\");\n  const menuButtons = pixiApp.stage.getChildByName(\"Menu Buttons\");\n  settingsController.visible = false;\n  menuButtons.visible = false;\n  pixiApp.renderer.extract.canvas(pixiApp.stage).toBlob(function (b) {\n    var a = document.createElement('a');\n    document.body.append(a);\n    a.download = \"housebuilder.png\";\n    a.href = URL.createObjectURL(b);\n    a.click();\n    a.remove();\n  }, 'image/png');\n  settingsController.visible = true;\n  menuButtons.visible = true;\n}\nfunction exportJson() {\n  (0,_load_saveSetup__WEBPACK_IMPORTED_MODULE_3__.saveSetup)();\n  const setup = localStorage.getItem(\"savedSetup\");\n  if (setup) {\n    const dataStr = \"data:text/json;charset=utf-8,\" + encodeURIComponent(setup);\n    const link = document.createElement('a');\n    link.setAttribute(\"href\", dataStr);\n    link.setAttribute(\"download\", \"scene.json\");\n    link.click();\n  }\n}\nfunction clearCanvas() {\n  const {\n    viewport,\n    canvasRef\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  while (viewport.floorContainer.children[0]) {\n    viewport.floorContainer.removeChild(viewport.floorContainer.children[0]);\n  }\n  while (viewport.wallContainer.children[0]) {\n    viewport.wallContainer.removeChild(viewport.wallContainer.children[0]);\n  }\n  while (canvasRef.children[0]) {\n    canvasRef.removeChild(canvasRef.children[0]);\n  }\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderController);\n\n//# sourceURL=webpack:///./js/settings/renderController.js?");
+
+/***/ }),
+
+/***/ "./js/styles.js":
+/*!**********************!*\
+  !*** ./js/styles.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"colors\": () => (/* binding */ colors),\n/* harmony export */   \"drawButton\": () => (/* binding */ drawButton),\n/* harmony export */   \"drawModal\": () => (/* binding */ drawModal),\n/* harmony export */   \"drawRoundedRect\": () => (/* binding */ drawRoundedRect),\n/* harmony export */   \"drawTextInput\": () => (/* binding */ drawTextInput),\n/* harmony export */   \"drawTooltip\": () => (/* binding */ drawTooltip),\n/* harmony export */   \"titleStyle\": () => (/* binding */ titleStyle),\n/* harmony export */   \"tooltipStyle\": () => (/* binding */ tooltipStyle)\n/* harmony export */ });\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./system */ \"./js/system.js\");\n/* harmony import */ var pixi_text_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pixi-text-input */ \"../node_modules/pixi-text-input/PIXI.TextInput.js\");\n/* harmony import */ var pixi_text_input__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(pixi_text_input__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\nconst colors = {\n  white: 0xffffff,\n  black: 0x000000,\n  lightbeige: 0xFBF7E3,\n  beige: 0xfdf8e2,\n  lightgrey: 0xcccccc,\n  grey: 0x999999,\n  darkgrey: 0x434C05,\n  pink: 0xF2BBA7,\n  darkpink: 0xD16864,\n  selectgreen: 0xB6B692,\n  darkgreen: 0x424A12\n};\nconst titleStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({\n  fontFamily: '\"Amatic SC\", cursive',\n  fill: 0x424A12,\n  fontSize: 42,\n  fontWeight: \"bold\",\n  lineHeight: 40,\n  padding: 10\n});\nconst tooltipStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({\n  fontFamily: '\"Amatic SC\", cursive',\n  fill: 0xD16863,\n  fontSize: 22,\n  lineHeight: 25,\n  fontWeight: \"bold\",\n  padding: 10\n});\nconst drawButton = function () {\n  let text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : \"Submit\";\n  const {\n    savedSprites\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const buttonStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({\n    fontFamily: '\"Amatic SC\", cursive',\n    fill: colors.lightbeige,\n    fontSize: 20,\n    fontWeight: \"bold\",\n    padding: 10\n  });\n  const buttonContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  const button = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(text, buttonStyle);\n  button.anchor.set(0.5);\n  button.y = 1;\n  const buttonbg = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(savedSprites['bg_button'].texture);\n  buttonbg.anchor.set(0.5);\n  buttonbg.width = button.width + 25;\n  buttonContainer.addChild(buttonbg);\n  buttonContainer.addChild(button);\n  buttonContainer.interactive = true;\n  buttonContainer.cursor = \"pointer\";\n  buttonContainer.on('pointerover', () => buttonbg.tint = colors.grey).on('pointerout', () => buttonbg.tint = colors.white);\n  return buttonContainer;\n};\nconst drawRoundedRect = function (x, y, width, height) {\n  let color = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : colors.beige;\n  let radius = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 30;\n  const graphics = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();\n  graphics.beginFill(color);\n  graphics.drawRoundedRect(x, y, width, height, radius);\n  graphics.endFill();\n  graphics.alpha = 0.8;\n  graphics.cacheAsBitmap = true;\n  return graphics;\n};\nconst drawTextInput = function () {\n  let inputWidth = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 200;\n  const textInput = new pixi_text_input__WEBPACK_IMPORTED_MODULE_2__({\n    input: {\n      fontSize: '18px',\n      fontFamily: '\"Lato\", sans-serif',\n      padding: '5px',\n      width: inputWidth + 'px',\n      color: '#434C05'\n    },\n    box: {\n      default: {\n        fill: colors.white,\n        rounded: 12,\n        stroke: {\n          color: colors.darkpink,\n          width: 3\n        }\n      },\n      focused: {\n        fill: colors.white,\n        rounded: 12,\n        stroke: {\n          color: colors.darkgrey,\n          width: 3\n        }\n      }\n    }\n  });\n  return textInput;\n};\nconst drawTooltip = function () {\n  let text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : \"\";\n  const {\n    savedSprites\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const tooltipContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  const tooltip = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(text, tooltipStyle);\n  tooltip.anchor.set(0.5, 1);\n  const tooltipbg = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(savedSprites['bg_tooltip'].texture);\n  tooltipbg.anchor.set(0.5, 1);\n  tooltipbg.width = tooltip.width + 25;\n  tooltipContainer.addChild(tooltipbg);\n  tooltipContainer.addChild(tooltip);\n  tooltipContainer.visible = false;\n  return tooltipContainer;\n};\nconst drawModal = function () {\n  let text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : \"\";\n  let buttonFunc = arguments.length > 1 ? arguments[1] : undefined;\n  const {\n    pixiApp\n  } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const halfScreenX = pixiApp.screen.width / 2,\n    halfScreenY = pixiApp.screen.height / 2;\n  const modalContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n\n  // background\n  const bg = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.WHITE);\n  bg.width = pixiApp.screen.width;\n  bg.height = pixiApp.screen.height;\n  bg.tint = colors.black;\n  bg.alpha = 0.6;\n  modalContainer.addChild(bg);\n  const rectWidth = 600,\n    rectHeight = 200;\n  const rect = drawRoundedRect(0, 0, rectWidth, rectHeight);\n  rect.x = halfScreenX - rectWidth / 2;\n  rect.y = halfScreenY - rectHeight / 2;\n  modalContainer.addChild(rect);\n  const title = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(text, tooltipStyle);\n  title.name = \"Title\";\n  title.anchor.set(0.5);\n  title.x = halfScreenX;\n  title.y = halfScreenY - 20;\n  modalContainer.addChild(title);\n  const button1 = drawButton(\"Confirm\");\n  button1.name = \"Confirm\";\n  button1.on('pointerdown', buttonFunc);\n  button1.x = title.x - button1.width / 2 - 32;\n  button1.y = title.y + 75;\n  modalContainer.addChild(button1);\n  const button2 = drawButton(\"Cancel\");\n  button2.name = \"Cancel\";\n  button2.on('pointerdown', () => {\n    modalContainer.visible = false;\n  });\n  button2.x = title.x + button2.width / 2 + 32;\n  button2.y = title.y + 75;\n  modalContainer.addChild(button2);\n  return modalContainer;\n};\n\n//# sourceURL=webpack:///./js/styles.js?");
+
+/***/ }),
+
+/***/ "./js/system.js":
+/*!**********************!*\
+  !*** ./js/system.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var zustand_vanilla__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zustand/vanilla */ \"../node_modules/zustand/esm/vanilla.mjs\");\n/* harmony import */ var zustand_middleware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! zustand/middleware */ \"../node_modules/zustand/esm/middleware.mjs\");\n\n\nconst initialState = {\n  pixiApp: null,\n  // pixi app ref\n  furniList: [],\n  // list of item data from the sheet\n  userData: {},\n  // profile data of a user from mongo\n  sortedCategories: {},\n  // sorted lists of furniture filtered by categories\n  savedSprites: {},\n  // saved textures for furniture sprites\n  catalogue: [],\n  canvasRef: null,\n  // ref of the drawing canvas\n  layerRef: null,\n  floorLayer: [],\n  itemLayer: [],\n  history: [],\n  buildMode: \"add\",\n  currentColor: \"#FFFFFF\",\n  selectedTileTexture: \"1\"\n};\n\n// layer transformation functions\n// addItem\n// moveItem\n// deleteItem\n// undoMove\n// redoMove\n\nconst useSystemStore = (0,zustand_vanilla__WEBPACK_IMPORTED_MODULE_0__[\"default\"])((0,zustand_middleware__WEBPACK_IMPORTED_MODULE_1__.subscribeWithSelector)(set => ({\n  ...initialState\n})));\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useSystemStore);\n\n//# sourceURL=webpack:///./js/system.js?");
+
+/***/ }),
+
 /***/ "../node_modules/csvtojson/browser/browser.js":
 /*!****************************************************!*\
   !*** ../node_modules/csvtojson/browser/browser.js ***!
@@ -596,116 +805,6 @@ eval("// Copyright Joyent, Inc. and other Node contributors.\n//\n// Permission 
 
 "use strict";
 eval("\n\nmodule.exports = {\n  isString: function(arg) {\n    return typeof(arg) === 'string';\n  },\n  isObject: function(arg) {\n    return typeof(arg) === 'object' && arg !== null;\n  },\n  isNull: function(arg) {\n    return arg === null;\n  },\n  isNullOrUndefined: function(arg) {\n    return arg == null;\n  }\n};\n\n\n//# sourceURL=webpack:///../node_modules/url/util.js?");
-
-/***/ }),
-
-/***/ "./index.js":
-/*!******************!*\
-  !*** ./index.js ***!
-  \******************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var csvtojson__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! csvtojson */ \"../node_modules/csvtojson/browser/browser.js\");\n/* harmony import */ var csvtojson__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(csvtojson__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _js_system__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/system */ \"./js/system.js\");\n/* harmony import */ var _js_initCategories__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/initCategories */ \"./js/initCategories.js\");\n/* harmony import */ var _js_renderCatalogue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/renderCatalogue */ \"./js/renderCatalogue.js\");\n/* harmony import */ var _js_renderCanvas__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./js/renderCanvas */ \"./js/renderCanvas.js\");\n/* harmony import */ var _js_renderMenu__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./js/renderMenu */ \"./js/renderMenu.js\");\n/* harmony import */ var _js_renderLayer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./js/renderLayer */ \"./js/renderLayer.js\");\n/* harmony import */ var _js_saveSetup__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./js/saveSetup */ \"./js/saveSetup.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! axios */ \"../node_modules/axios/lib/axios.js\");\n/* harmony import */ var _js_build_initBuildMode__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./js/build/initBuildMode */ \"./js/build/initBuildMode.js\");\n// var app = new PIXI.Application(800, 600, { backgroundColor: 0x1099bb });\n// document.body.appendChild(app.view);\n\n// var texture_green = PIXI.Texture.from('assets/bunny.png');\n// var bunnies = new PIXI.Container();\n// app.stage.addChild(bunnies);\n// var FRONT = 10000;//FRONT zIndex\n\n// for (var i = 15; i >= 0; i--) {\n//   var bunny = new PIXI.Sprite(texture_green);\n//   bunny.width = 50;\n//   bunny.height = 50;\n//   bunny.position.set(100 + 20 * i, 100 + 20 * i);\n//   bunny.anchor.set(0.5);\n//   bunnies.addChild(bunny);\n//   subscribe(bunny);\n// }\n\n// // app.ticker.add(() => {\n// //   bunnies.sortChildren();\n// // });\n\n// function subscribe(obj) {\n//   obj.interactive = true;\n//   obj.on('mousedown', onDragStart)\n//     .on('touchstart', onDragStart)\n//     .on('mouseup', onDragEnd)\n//     .on('mouseupoutside', onDragEnd)\n//     .on('touchend', onDragEnd)\n//     .on('touchendoutside', onDragEnd)\n//     .on('mousemove', onDragMove)\n//     .on('touchmove', onDragMove);\n// }\n\n// function onDragStart(event) {\n//   if (!this.dragging) {\n//     this.data = event.data;\n//     this.dragging = true;\n//     this.zIndex = FRONT;\n\n//     this.scale.x *= 1.1;\n//     this.scale.y *= 1.1;\n//     this.dragPoint = event.data.getLocalPosition(this.parent);\n//     this.dragPoint.x -= this.x;\n//     this.dragPoint.y -= this.y;\n//   }\n// }\n\n// function onDragEnd() {\n//   if (this.dragging) {\n//     this.dragging = false;\n//     this.zIndex = this.position.y;\n//     this.scale.x /= 1.1;\n//     this.scale.y /= 1.1;\n//     // set the interaction data to null\n//     this.data = null;\n//     bunnies.sortChildren();\n//   }\n// }\n\n// function onDragMove() {\n//   if (this.dragging) {\n//     var newPosition = this.data.getLocalPosition(this.parent);\n//     this.x = newPosition.x - this.dragPoint.x;\n//     this.y = newPosition.y - this.dragPoint.y;\n//   }\n// }\n\n\n\n\n\n\n\n\n\n\n\n\n\nconst userId = \"214280985611599874\"; // TODO: fetch from input later\nconst ITEMSHEET_URL = \"https://docs.google.com/spreadsheets/d/1tOXcZD8jTv_vOW6XscLqpcc2asjxly-EpNGiAeiiEKc/export?format=csv&gid=565737734\";\nconst ADDONSHEET_URL = \"https://docs.google.com/spreadsheets/d/1tOXcZD8jTv_vOW6XscLqpcc2asjxly-EpNGiAeiiEKc/export?format=csv&gid=1280637405\";\n\nasync function loadAssets() {\n  let furniList = JSON.parse(localStorage.getItem(\"furniture\"));\n  let addonList = JSON.parse(localStorage.getItem(\"addons\"));\n  if (!furniList) { // TODO: think about when to update list\n    const response = await axios__WEBPACK_IMPORTED_MODULE_10__[\"default\"].get(ITEMSHEET_URL);\n    const json = await csvtojson__WEBPACK_IMPORTED_MODULE_1___default()().fromString(response.data)\n    furniList = json.filter(i => i.Category === \"Furniture\")\n    localStorage.setItem(\"furniture\", JSON.stringify(furniList));\n  }\n  _js_system__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({ furniList: furniList });\n  if (!addonList) {\n    const response = await axios__WEBPACK_IMPORTED_MODULE_10__[\"default\"].get(ADDONSHEET_URL);\n    const json = await csvtojson__WEBPACK_IMPORTED_MODULE_1___default()().fromString(response.data)\n    addonList = json.filter(i => i.Category === \"Furniture\")\n    localStorage.setItem(\"addons\", JSON.stringify(addonList));\n  }\n  _js_system__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({ addonList: addonList });\n  // TODO: add recolor gallery\n\n  // fetch user data TODO: prompt for ID (and save it to localStorage)\n  const response = await axios__WEBPACK_IMPORTED_MODULE_10__[\"default\"].get(\"https://data.mongodb-api.com/app/data-ycjna/endpoint/getProfile?id=\" + userId);\n  if (!response.data.data) {\n    console.error(\"TODO: prompt for a valid user ID\")\n  }\n  const userData = response.data.data.profiles;\n  _js_system__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({ userData: userData });\n\n  const loader = pixi_js__WEBPACK_IMPORTED_MODULE_0__.Loader.shared;\n  const sprites = {};\n  for (let i in furniList) {\n    loader.add(furniList[i].imgname, furniList[i].imgurl)\n  }\n  for (let i in addonList) {\n    loader.add(addonList[i].imgname, `assets/AddOns/${addonList[i].Folder}/${addonList[i].imgname}.png`)\n  }\n\n  loader.load((loader, resources) => {\n    Object.keys(resources).forEach((key) => {\n      const texture = resources[key].texture;\n      texture.baseTexture.scaleMode = pixi_js__WEBPACK_IMPORTED_MODULE_0__.SCALE_MODES.NEAREST;\n      sprites[key] = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(texture);\n    })\n  })\n\n  ;(0,_js_initCategories__WEBPACK_IMPORTED_MODULE_3__[\"default\"])();\n\n  // loader.onProgress.add((loader, resource) => {\n  //   // TODO: add loading bar\n  //   console.log('progress: ' + loader.progress + '%');\n  // });\n  loader.onError.add((message, loader, resource) => {\n    // called once for each file, if error\n    console.log('Error: ' + resource.name + ' ' + message);\n  });\n  loader.onComplete.add((loader, resources) => {\n    // called once all queued resources has been loaded\n    // triggered before load method callback\n    console.log('loading complete!');\n    _js_system__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({ savedSprites: sprites });\n    (0,_js_renderCanvas__WEBPACK_IMPORTED_MODULE_5__[\"default\"])();\n    (0,_js_build_initBuildMode__WEBPACK_IMPORTED_MODULE_9__[\"default\"])();\n    (0,_js_renderCatalogue__WEBPACK_IMPORTED_MODULE_4__[\"default\"])();\n    (0,_js_renderLayer__WEBPACK_IMPORTED_MODULE_7__[\"default\"])();\n    (0,_js_renderMenu__WEBPACK_IMPORTED_MODULE_6__[\"default\"])();\n    (0,_js_saveSetup__WEBPACK_IMPORTED_MODULE_8__.loadSetup)();\n  });\n}\n\nconst app = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Application({\n  width: 800,\n  height: 600,\n  resizeTo: window,\n  backgroundColor: 0x636662,\n  view: document.querySelector('#scene'),\n  resolution: window.devicePixelRatio || 1,\n  autoDensity: true,\n  antialias: true\n});\n\n_js_system__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setState({ pixiApp: app });\n\n// const texture = PIXI.Texture.from('assets/bunny.png');\n// const bunny = new PIXI.Sprite(texture);\n// bunny.anchor.set(0.5);\n// bunny.x = 160\n// bunny.y = 160\n// bunny.zIndex = 100;\n// app.stage.addChild(bunny);\n\nloadAssets();\n\nwindow.onresize = () => {\n  console.log(\"resized\")\n  // TODO: readjust UI on screen resize\n  // renderCanvas();\n  // renderCatalogue();\n  // renderMenu();\n}\n\n//# sourceURL=webpack:///./index.js?");
-
-/***/ }),
-
-/***/ "./js/build/initBuildMode.js":
-/*!***********************************!*\
-  !*** ./js/build/initBuildMode.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../system */ \"./js/system.js\");\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles */ \"./js/styles.js\");\n\n\n\n\nconst xSize = 64, ySize = 64;\n\nfunction initBuildMode() {\n  const { viewport } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  const floorContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  const wallContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n  const previewContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();\n\n  floorContainer.sortableChildren = true;\n  floorContainer.zIndex = -100;\n\n  _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].setState({ floorDict: new Set() });\n\n  const texture = pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.from(`assets/tile_floor.png`);\n  texture.baseTexture.scaleMode = pixi_js__WEBPACK_IMPORTED_MODULE_0__.SCALE_MODES.NEAREST;\n  const tile = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(texture);\n  tile.tint = _styles__WEBPACK_IMPORTED_MODULE_2__.colors.grey;\n  tile.x = -9999, tile.y = -9999;\n  tile.alpha = 0.5;\n  tile.interactive = true;\n  tile.cursor = \"pointer\";\n  tile.visible = true;\n  tile.anchor.set(0.5);\n  tile\n    .on('pointerdown', placeTile)\n    .on('pointermove', tileHover)\n  previewContainer.addChild(tile);\n\n  viewport.addChild(floorContainer);\n  viewport.addChild(wallContainer);\n  viewport.addChild(previewContainer);\n  viewport.floorContainer = floorContainer; viewport.wallContainer = wallContainer; viewport.previewContainer = previewContainer;\n}\n\nfunction placeTile() {\n  const { floorDict, viewport } = _system__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getState();\n  if (floorDict.has(`${this.x}:${this.y}`)) return;\n  const tile = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(this.texture);\n  tile.tint = 0xc6a483; // TODO: optional color\n  tile.x = this.x;\n  tile.y = this.y;\n  tile.zIndex = tile.y;\n  tile.anchor.set(0.5);\n  viewport.floorContainer.addChild(tile);\n  floorDict.add(`${this.x}:${this.y}`)\n}\n\nfunction tileHover(e) {\n  const coord = this.parent.toLocal(e.data.global);\n  const x = (Math.round((coord.x / 32)) * 32);\n  const y = (Math.round((coord.y / 16)) * 16);\n  this.x = x;\n  this.y = y;\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (initBuildMode);\n\n//# sourceURL=webpack:///./js/build/initBuildMode.js?");
-
-/***/ }),
-
-/***/ "./js/initCategories.js":
-/*!******************************!*\
-  !*** ./js/initCategories.js ***!
-  \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./system */ \"./js/system.js\");\n\n\nconst INDOOR_ORDER = [\n  'bedroom',\n  'livingroom',\n  'kitchen',\n  'bathroom',\n  'office'\n]\nconst INDOOR_SUBORDER = [\n  'bed',\n  'table',\n  'bathtub',\n  'chair',\n  'shelf',\n  'storage',\n  'sink'\n]\n\nconst WALL_ORDER = [\n  'gate',\n  'window',\n  'decor'\n]\n\nconst MISC_ORDER = [\n  'infrastructure',\n  'rug',\n  'lighting',\n  'plant',\n  'prop',\n  'pet',\n  'toy',\n  'instrument',\n  'hobby',\n  'food'\n]\n\nfunction initCategories() {\n  const { furniList, addonList, userData } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n\n  // owned\n  // TODO: sort by profiles :smired: for now just use bank\n  const ownedCategory = furniList.filter(i => i.imgname.slice(2, i.imgname.length) in userData.bank.inventory)\n    .sort((a, b) => b.imgname - a.imgname);\n  // all\n  const allCategory = furniList\n    .sort((a, b) => b.imgname - a.imgname);\n\n  // indoor (bedroom/livingroom/kitchen/bathroom/office > bed/table/bathtub/chair/shelf/storage/sink)\n  const indoorCategory = furniList\n    .filter(({ hbcategory }) => hbcategory.includes(\"indoor\"))\n    .sort((a, b) => (\n      b.imgname - a.imgname\n      ||\n      INDOOR_SUBORDER.findIndex(i => a.hbcategory.includes(i)) -\n      INDOOR_SUBORDER.findIndex(i => b.hbcategory.includes(i))\n      ||\n      INDOOR_ORDER.findIndex(i => a.hbcategory.includes(i)) -\n      INDOOR_ORDER.findIndex(i => b.hbcategory.includes(i))\n    ));\n\n  // wall (door/window/decor)\n  const wallCategory = furniList\n    .filter(({ hbcategory }) => hbcategory.includes(\"wall\"))\n    .sort((a, b) => (\n      b.imgname - a.imgname\n      ||\n      WALL_ORDER.findIndex(i => a.hbcategory.includes(i)) -\n      WALL_ORDER.findIndex(i => b.hbcategory.includes(i))\n    ));\n\n  // misc (infrastructure/rug/lighting/plant/prop/pet/toy/instrument/hobby/food)\n  const miscCategory = furniList\n    .filter(({ hbcategory }) => hbcategory.includes(\"misc\"))\n    .sort((a, b) => (\n      b.imgname - a.imgname\n      ||\n      MISC_ORDER.findIndex(i => a.hbcategory.includes(i)) -\n      MISC_ORDER.findIndex(i => b.hbcategory.includes(i))\n    ));\n\n  // outdoor (prop)\n  const outdoorCategory = furniList\n    .filter(({ hbcategory }) => hbcategory.includes(\"outdoor\"))\n    .sort((a, b) => b.imgname - a.imgname);\n\n  // addon\n  const addonCategory = addonList;\n\n  _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({\n    sortedCategories: {\n      owned: ownedCategory,\n      all: allCategory,\n      indoor: indoorCategory,\n      wall: wallCategory,\n      misc: miscCategory,\n      outdoor: outdoorCategory,\n      addon: addonCategory\n    }\n  })\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (initCategories);\n\n//# sourceURL=webpack:///./js/initCategories.js?");
-
-/***/ }),
-
-/***/ "./js/renderCanvas.js":
-/*!****************************!*\
-  !*** ./js/renderCanvas.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addItemToLayer\": () => (/* binding */ addItemToLayer),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   \"removeItemFromLayer\": () => (/* binding */ removeItemFromLayer)\n/* harmony export */ });\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./system */ \"./js/system.js\");\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var pixi_viewport__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pixi-viewport */ \"../node_modules/pixi-viewport/dist/esm/viewport.es.js\");\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles */ \"./js/styles.js\");\n\n\n\n\n\nfunction addItemToLayer(itemName) {\n  const { savedSprites, canvasRef, pixiApp, itemLayer } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const furni = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Sprite(savedSprites[itemName].texture);\n  furni.key = itemName;\n  furni.anchor.set(0.5);\n  const coord = canvasRef.parent.toWorld(pixiApp.screen.width / 2, pixiApp.screen.height / 2);\n  furni.x = coord.x - 150;\n  furni.y = coord.y - 50;\n  furni.interactive = true;\n  furni.cursor = 'pointer';\n  furni\n    .on('pointerdown', onDragStart)\n    .on('pointerup', onDragEnd)\n    .on('pointerupoutside', onDragEnd)\n    .on('pointermove', onDragMove)\n    .on('pointerover', onItemHover)\n    .on('pointerout', onItemOut)\n  canvasRef.addChild(furni);\n\n  // TODO: is there anything else I need to add?\n  // console.log(itemLayer);\n  // TODO: i still don't know if this is necessary AAA dont want to think about it\n  _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({ itemLayer: [furni, ...itemLayer] });\n  // updateHistory\n  return furni;\n}\n\nfunction removeItemFromLayer(itemRef) {\n  // const { itemLayer } = useSystemStore.getState();\n  itemRef.parent.removeChild(itemRef);\n  console.log(\"removed item\", itemRef.key)\n  // gotta deal with nested arrays\n  // itemLayer.forEach((arr, i) => itemLayer[i] = arr.filter(ref => ref !== itemRef))\n  // const updatedLayer = itemLayer.filter(i => i !== itemRef);\n  // console.log(itemLayer)\n  // updateItemLayer(itemLayer);\n  // updateHistory\n}\n\n// interface DragObject extends DisplayObject {\n//   dragData: PIXI.InteractionData\n//   dragging: number\n//   dragPointerStart: PIXI.DisplayObject\n//   dragObjStart: PIXI.Point\n//   dragGlobalStart: PIXI.Point\n// }\n\nfunction onDragStart(event) {\n  const obj = event.currentTarget\n  obj.dragData = event.data\n  obj.dragging = 1\n  obj.dragPointerStart = event.data.getLocalPosition(obj.parent)\n  obj.dragObjStart = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Point()\n  obj.dragObjStart.copyFrom(obj.position)\n  obj.dragGlobalStart = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Point()\n  obj.dragGlobalStart.copyFrom(event.data.global)\n}\n\nfunction onDragEnd(event) {\n  const obj = event.currentTarget\n  if (!obj.dragging) return\n\n  snap(obj)\n\n  obj.dragging = 0\n  // set the interaction data to null\n  // obj.dragData = null\n}\n\nfunction onDragMove(event) {\n  const obj = event.currentTarget;\n  if (!obj.dragging) return\n  const data = obj.dragData // it can be different pointer!\n  if (obj.dragging === 1) {\n    // click or drag?\n    if (\n      Math.abs(data.global.x - obj.dragGlobalStart.x) +\n      Math.abs(data.global.y - obj.dragGlobalStart.y) >=\n      3\n    ) {\n      // DRAG\n      obj.dragging = 2\n    }\n  }\n  if (obj.dragging === 2) {\n    const dragPointerEnd = data.getLocalPosition(obj.parent)\n    // DRAG\n    obj.position.set(\n      obj.dragObjStart.x + (dragPointerEnd.x - obj.dragPointerStart.x),\n      obj.dragObjStart.y + (dragPointerEnd.y - obj.dragPointerStart.y)\n    )\n  }\n}\n\n// === CLICKS AND SNAP ===\nfunction snap(obj) {\n  const { pixiApp } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  // TODO: snap by isometry, canvas bounds, and make sure this is ajdustable by settings\n  // TODO: and when exporting image, it should be at 100%\n  // obj.position.x = Math.min(Math.max(obj.position.x, 0), pixiApp.screen.width)\n  // obj.position.y = Math.min(Math.max(obj.position.y, 0), pixiApp.screen.height)\n}\n\nfunction onItemHover() {\n  this.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.grey;\n}\n\nfunction onItemOut() {\n  this.tint = _styles__WEBPACK_IMPORTED_MODULE_3__.colors.white;\n}\n\nfunction renderCanvas() {\n  const { pixiApp } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const viewport = new pixi_viewport__WEBPACK_IMPORTED_MODULE_2__.Viewport({\n    screenWidth: window.innerWidth - 300,\n    screenHeight: window.innerHeight,\n    worldWidth: 100,\n    worldHeight: 100,\n    interaction: pixiApp.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled\n  })\n  viewport.sortableChildren = true;\n  const container = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  viewport.addChild(container);\n  pixiApp.stage.addChild(viewport);\n  _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({ viewport: viewport });\n  _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({ canvasRef: container });\n  container.zIndex = 3;\n  console.log(viewport)\n\n  viewport\n    .drag({ mouseButtons: \"middle\" }) // TODO: support keyboard\n    .pinch()\n    .wheel()\n    .clampZoom({ minWidth: 100, minHeight: 100, maxWidth: 5000, maxHeight: 5000 })\n  viewport.options.disableOnContextMenu = true;\n  viewport.setZoom(4);\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderCanvas);\n\n//# sourceURL=webpack:///./js/renderCanvas.js?");
-
-/***/ }),
-
-/***/ "./js/renderCatalogue.js":
-/*!*******************************!*\
-  !*** ./js/renderCatalogue.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./system */ \"./js/system.js\");\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var pixi_scrollbox__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pixi-scrollbox */ \"../node_modules/pixi-scrollbox/dist/scrollbox.es.js\");\n/* harmony import */ var _renderCanvas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./renderCanvas */ \"./js/renderCanvas.js\");\n/* harmony import */ var pixi_text_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! pixi-text-input */ \"../node_modules/pixi-text-input/PIXI.TextInput.js\");\n/* harmony import */ var pixi_text_input__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(pixi_text_input__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles */ \"./js/styles.js\");\n\n\n\n\n\n\n\nconst padding = 64, col = 4;\nconst titleHeight = 200, inputWidth = 200, boxWidth = 300;\n\nfunction renderCatalogue() {\n  const { furniList, addonList, savedSprites, pixiApp } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n\n  // catalogue container\n  const container = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  container.x = pixiApp.screen.width - boxWidth;\n\n  // background\n  const bg = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Sprite(pixi_js__WEBPACK_IMPORTED_MODULE_1__.Texture.WHITE);\n  bg.width = boxWidth;\n  bg.height = pixiApp.screen.height;\n  bg.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.beige;\n  bg.alpha = 0.8;\n  container.addChild(bg);\n\n  // catalogue title\n  const title = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Text('ADD FURNITURE', _styles__WEBPACK_IMPORTED_MODULE_5__.titleStyle);\n  title.anchor.set(0.5, 0);\n  title.x = boxWidth / 2;\n  title.y = 30;\n  container.addChild(title);\n\n  // filter icons\n  const icons = ['owned', 'all', 'indoor', 'wall', 'misc', 'outdoor', 'addon'];\n  const iconContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  icons.forEach((key, i) => {\n    const texture = pixi_js__WEBPACK_IMPORTED_MODULE_1__.Texture.from(`assets/icon_${key}.png`);\n    texture.baseTexture.scaleMode = pixi_js__WEBPACK_IMPORTED_MODULE_1__.SCALE_MODES.NEAREST;\n    const icon = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Sprite(texture);\n    icon.scale.set(0.5);\n    icon.x = i * 36;\n    icon.y = 80;\n    icon.key = key;\n    if (i === 0) icon.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.darkgreen; // owned is selected by default\n    icon.interactive = true;\n    icon.cursor = \"pointer\";\n    icon\n      .on('pointerdown', onIconClick)\n      .on('pointerover', onIconHover)\n      .on('pointerout', onIconOut)\n    iconContainer.addChild(icon);\n  })\n  iconContainer.x = 32; // i hate math\n  container.addChild(iconContainer);\n\n  // text input\n  const textInput = new pixi_text_input__WEBPACK_IMPORTED_MODULE_4__({\n    input: {\n      fontSize: '18px',\n      fontFamily: '\"Lato\", sans-serif',\n      padding: '5px',\n      width: inputWidth + 'px',\n      color: '#434C05',\n    },\n    box: {\n      default: { fill: _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white, rounded: 12, stroke: { color: _styles__WEBPACK_IMPORTED_MODULE_5__.colors.darkpink, width: 3 } },\n      focused: { fill: _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white, rounded: 12, stroke: { color: _styles__WEBPACK_IMPORTED_MODULE_5__.colors.darkgrey, width: 3 } },\n    }\n  })\n  textInput\n    .on('input', (text) => _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({ filterText: text }))\n  textInput.x = 50;\n  textInput.y = padding * 2;\n  textInput.placeholder = \"start typing...\"\n  container.addChild(textInput);\n\n  // scroll container\n  const scrollContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  const furniUIContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n\n  // maybe move this to loaders? TODO\n  const tooltipTexture = pixi_js__WEBPACK_IMPORTED_MODULE_1__.Texture.from(`assets/bg_tooltip.png`);\n  tooltipTexture.baseTexture.scaleMode = pixi_js__WEBPACK_IMPORTED_MODULE_1__.SCALE_MODES.NEAREST;\n\n  scrollContainer.y = titleHeight;\n  const scrollbox = new pixi_scrollbox__WEBPACK_IMPORTED_MODULE_2__.Scrollbox({\n    boxWidth: boxWidth,\n    boxHeight: pixiApp.screen.height - titleHeight\n  })\n  scrollbox.options.scrollbarForeground = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.pink;\n  scrollbox.options.scrollbarBackground = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white;\n\n  // catalogue items\n  const catalogueList = [...furniList, ...addonList];\n  // const catalogueList = furniList;\n  catalogueList.forEach((item, i) => {\n    // furniture sprite\n    const furni = savedSprites[item.imgname];\n    furni.x = ((i % col) * padding);\n    furni.y = Math.floor(i / col) * padding;\n    furni.key = item.imgname;\n    furni.interactive = true;\n    furni.cursor = \"pointer\";\n    furni.info = item;\n    furni\n      .on('pointerdown', onFurniClick)\n      .on('pointermove', onFurniHover)\n    if (item.hbcategory.includes(\"large\")) {\n      furni.scale.set(0.5);\n    }\n\n    // tooltip\n    const tooltipContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n    const tooltip = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Text(item.ItemName, _styles__WEBPACK_IMPORTED_MODULE_5__.tooltipStyle);\n    tooltip.anchor.set(0.5, 1);\n    const tooltipbg = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Sprite(tooltipTexture);\n    tooltipbg.anchor.set(0.5, 1);\n    tooltipbg.width = tooltip.width + 25;\n\n    tooltipContainer.addChild(tooltipbg);\n    tooltipContainer.addChild(tooltip);\n    tooltipContainer.visible = false;\n\n    furni.tooltipRef = tooltipContainer;\n    furniUIContainer.addChild(tooltipContainer);\n    scrollbox.content.addChild(furni)\n  })\n\n  scrollContainer.addChild(scrollbox);\n  container.addChild(scrollContainer);\n  pixiApp.stage.addChild(container);\n  pixiApp.stage.addChild(furniUIContainer);\n  container.zIndex = 5;\n  furniUIContainer.zIndex = 10;\n  _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({ catalogueScrollRef: scrollbox });\n  scrollbox.update()\n\n  setTimeout(() => {\n    scrollbox.content.clamp({ direction: \"all\" })\n  }, 500)\n\n  // hack to hide tooltips when mouse is away from scrollbox\n  scrollbox.containsPoint = (point) => {\n    resetHovers();\n  }\n\n  // add listener for filters\n  const unsub2 = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].subscribe(\n    (state) => [state.filterText, state.activeCategory], filterItemList\n  )\n  filterItemList()\n}\n\nfunction onIconClick() {\n  this.parent.children.forEach(icon => {\n    icon.tint = icon.key === this.key ? _styles__WEBPACK_IMPORTED_MODULE_5__.colors.darkgreen : _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white\n  })\n  _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({ activeCategory: this.key });\n}\n\nfunction onIconHover() {\n  if (_system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState().activeCategory === this.key) {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.darkpink;\n  } else {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.pink;\n  }\n}\n\nfunction onIconOut() {\n  if (_system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState().activeCategory === this.key) {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.grey;\n  } else {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white;\n  }\n}\n\nfunction resetHovers() {\n  const { catalogueScrollRef } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  catalogueScrollRef.content.children.forEach(i => {\n    i.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white;\n    i.tooltipRef.visible = false;\n  })\n}\n\n// hack to handle pointer edge cases\nfunction onFurniHover(e) {\n  const { pixiApp } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  if (this.containsPoint(e.data.global)) {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.grey;\n    const globalCoord = this.getGlobalPosition();\n    if (globalCoord.x + this.tooltipRef.width - 25 >= pixiApp.screen.width) {\n      this.tooltipRef.x = pixiApp.screen.width - (this.tooltipRef.width / 2);\n    } else {\n      this.tooltipRef.x = globalCoord.x + 25;\n    }\n    this.tooltipRef.y = globalCoord.y;\n    this.tooltipRef.visible = true;\n  } else {\n    this.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white;\n    this.tooltipRef.visible = false;\n  }\n}\n\nfunction onFurniClick() {\n  (0,_renderCanvas__WEBPACK_IMPORTED_MODULE_3__.addItemToLayer)(this.info.imgname);\n}\n\nfunction filterItemList() {\n  const { filterText, catalogueScrollRef, activeCategory, sortedCategories } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const children = catalogueScrollRef.children[0].children;\n  const sortedChildren = children.sort((a, b) =>\n    sortedCategories[activeCategory].indexOf(a.info) -\n    sortedCategories[activeCategory].indexOf(b.info)\n  )\n  resetHovers();\n  let counter = 0;\n  for (let i in sortedChildren) {\n    const furni = children[i];\n    if (\n      sortedCategories[activeCategory].includes(furni.info) &&\n      (furni.info.ItemName.toLowerCase().includes(filterText.toLowerCase()) ||\n        filterText === \"\")\n    ) {\n      furni.visible = true;\n      furni.x = (counter % col) * padding;\n      furni.y = Math.floor(counter / col) * padding;\n      counter++;\n    } else {\n      furni.visible = false;\n    }\n  }\n  catalogueScrollRef.update()\n\n  // turn off scroll when there is no overflow\n  if ((Math.ceil(counter / col) * padding) <= catalogueScrollRef.boxHeight) {\n    catalogueScrollRef.content.pause = true;\n    catalogueScrollRef.content.y = 0;\n  } else {\n    catalogueScrollRef.content.pause = false;\n  }\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderCatalogue);\n\n//# sourceURL=webpack:///./js/renderCatalogue.js?");
-
-/***/ }),
-
-/***/ "./js/renderLayer.js":
-/*!***************************!*\
-  !*** ./js/renderLayer.js ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addNewLayer\": () => (/* binding */ addNewLayer),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   \"updateItemLayerList\": () => (/* binding */ updateItemLayerList)\n/* harmony export */ });\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./system */ \"./js/system.js\");\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var pixi_scrollbox__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pixi-scrollbox */ \"../node_modules/pixi-scrollbox/dist/scrollbox.es.js\");\n/* harmony import */ var _renderCanvas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./renderCanvas */ \"./js/renderCanvas.js\");\n/* harmony import */ var pixi_text_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! pixi-text-input */ \"../node_modules/pixi-text-input/PIXI.TextInput.js\");\n/* harmony import */ var pixi_text_input__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(pixi_text_input__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles */ \"./js/styles.js\");\n\n\n\n\n\n\n\nconst startingX = 50, padding = 64, col = 4;\nconst titleHeight = 200, inputWidth = 200, boxWidth = 300;\n\nfunction addNewLayer(itemRef) {\n  const { itemLayer, canvasRef, layerRef, savedSprites, pixiApp } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const layerContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  layerContainer.key = item.key;\n  layerContainer.interactive = true;\n  layerContainer.cursor = \"pointer\";\n  layerContainer.info = item;\n  layerContainer\n    .on('pointerdown', onFurniClick)\n    .on('pointerover', onFurniHover)\n    .on('pointerout', onFurniOut)\n}\n\nfunction updateItemLayerList() {\n  const { itemLayer, canvasRef, layerRef, savedSprites, pixiApp } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  console.log(\"call on state change\", layerRef)\n\n  // catalogue items\n  canvasRef.children.forEach((item, i) => {\n    if (item.key.startsWith(\"custom_\")) return;\n\n    console.log(item)\n\n\n\n    // furniture sprite\n    const furni = savedSprites[item.key];\n    furni.x = ((i % col) * padding);\n    furni.y = Math.floor(i / col) * padding;\n\n    // text\n    const name = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Text(item.ItemName, _styles__WEBPACK_IMPORTED_MODULE_5__.tooltipStyle);\n    name.anchor.set(0, 0.5);\n    layerContainer.addChild(name);\n    // tooltipContainer.visible = false;\n\n    layerRef.content.addChild(layerContainer)\n  })\n}\n\nfunction renderLayer() {\n  const { itemLayer, pixiApp } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n\n  // layer container\n  const container = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  container.x = pixiApp.screen.width - boxWidth;\n\n  // background\n  const bg = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Sprite(pixi_js__WEBPACK_IMPORTED_MODULE_1__.Texture.WHITE);\n  bg.width = boxWidth;\n  bg.height = pixiApp.screen.height;\n  bg.tint = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.beige;\n  bg.alpha = 0.8;\n  container.addChild(bg);\n\n  // catalogue title\n  const title = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Text('MOVE FURNITURE', _styles__WEBPACK_IMPORTED_MODULE_5__.titleStyle);\n  title.anchor.set(0.5, 0);\n  title.x = boxWidth / 2;\n  title.y = 30;\n  container.addChild(title);\n\n  // text input\n  const textInput = new pixi_text_input__WEBPACK_IMPORTED_MODULE_4__({\n    input: {\n      fontSize: '18px',\n      fontFamily: '\"Lato\", sans-serif',\n      padding: '5px',\n      width: inputWidth + 'px',\n      color: '#434C05',\n    },\n    box: {\n      default: { fill: _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white, rounded: 12, stroke: { color: _styles__WEBPACK_IMPORTED_MODULE_5__.colors.darkpink, width: 3 } },\n      focused: { fill: _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white, rounded: 12, stroke: { color: _styles__WEBPACK_IMPORTED_MODULE_5__.colors.darkgrey, width: 3 } },\n    }\n  })\n  textInput\n    .on('input', (text) => filterItemList(text))\n  textInput.x = 50;\n  textInput.y = padding * 2;\n  textInput.placeholder = \"start typing...\"\n  container.addChild(textInput);\n\n  // scroll container\n  const scrollContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  const layerUIContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n\n  scrollContainer.y = titleHeight;\n  const scrollbox = new pixi_scrollbox__WEBPACK_IMPORTED_MODULE_2__.Scrollbox({\n    boxWidth: boxWidth,\n    boxHeight: pixiApp.screen.height - titleHeight\n  })\n  scrollbox.options.scrollbarForeground = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.pink;\n  scrollbox.options.scrollbarBackground = _styles__WEBPACK_IMPORTED_MODULE_5__.colors.white;\n\n  scrollContainer.addChild(scrollbox);\n  container.addChild(scrollContainer);\n  pixiApp.stage.addChild(container);\n  // pixiApp.stage.addChild(furniUIContainer);\n  _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({ layerRef: scrollbox });\n\n  console.log(scrollbox)\n  // add listener for filters\n  // const unsub = useSystemStore.subscribe(\n  //   (state) => [state.itemLayer], updateItemLayerList\n  // )\n}\n\nfunction onFurniClick() {\n  (0,_renderCanvas__WEBPACK_IMPORTED_MODULE_3__.addItemToLayer)(this.info);\n}\n\nfunction onFurniHover() {\n  this.tint = 0x333333;\n  // const globalCoord = this.getGlobalPosition();\n  // this.tooltipRef.x = globalCoord.x + 25;\n  // this.tooltipRef.y = globalCoord.y;\n  // this.tooltipRef.visible = true;\n}\n\nfunction onFurniOut() {\n  this.tint = 0xffffff;\n  // this.tooltipRef.visible = false;\n}\n\nfunction filterItemList(text) {\n  const { catalogue } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const children = catalogue.children[0].children;\n  let counter = 0;\n  for (let i in children) {\n    const furni = children[i];\n    if (furni.info.ItemName.toLowerCase().includes(text.toLowerCase()) || text === \"\") {\n      furni.visible = true;\n      furni.x = (counter % col) * padding;\n      furni.y = Math.floor(counter / col) * padding;\n      counter++;\n    } else {\n      furni.visible = false;\n    }\n  }\n  catalogue.update()\n  // TODO: figure out how to move fixed items to the top w/o the clamp bug\n  catalogue.children[0].clamp({ direction: \"y\", underflow: \"center\" })\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderLayer);\n\n//# sourceURL=webpack:///./js/renderLayer.js?");
-
-/***/ }),
-
-/***/ "./js/renderMenu.js":
-/*!**************************!*\
-  !*** ./js/renderMenu.js ***!
-  \**************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./system */ \"./js/system.js\");\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n/* harmony import */ var _saveSetup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./saveSetup */ \"./js/saveSetup.js\");\n/* harmony import */ var _build_initBuildMode__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./build/initBuildMode */ \"./js/build/initBuildMode.js\");\n\n\n\n\n\nfunction renderMenu() {\n  const { pixiApp } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const startingX = 50, startingY = 50, padding = 100;\n\n  const textStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.TextStyle({\n    fontFamily: '\"Amatic SC\", cursive',\n    fill: 0xcccccc,\n    fontSize: 32,\n    fontWeight: \"normal\",\n    letterSpacing: 1.5,\n    padding: 10\n  })\n\n  const container = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Container();\n  const textButtons = [\"add\", \"move\", \"build\", \"settings\"]\n\n  textButtons.forEach((title, i) => {\n    const text = new pixi_js__WEBPACK_IMPORTED_MODULE_1__.Text(title.toUpperCase(), textStyle);\n    text.anchor.set(0.5);\n    text.interactive = true;\n    text.cursor = \"pointer\";\n    text.key = title;\n    text\n      .on('pointerdown', () => updateScreen(title))\n      .on('pointerover', onTextHover)\n      .on('pointerout', onTextOut)\n    text.x = startingX + (i * padding); text.y = startingY;\n    container.addChild(text);\n  })\n\n  pixiApp.stage.addChild(container);\n  updateScreen(\"add\");\n}\n\nfunction updateScreen(title) {\n  const { catalogueScrollRef, layerRef, canvasRef, viewport } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  canvasRef.interactiveChildren = true;\n  catalogueScrollRef.parent.parent.visible = false;\n  layerRef.parent.parent.visible = false;\n  viewport.floorContainer.interactiveChildren = false;\n  viewport.previewContainer.interactiveChildren = false;\n  canvasRef.alpha = 1;\n\n  if (title === \"add\") {\n    catalogueScrollRef.parent.parent.visible = true;\n  } else if (title === \"move\") {\n    layerRef.parent.parent.visible = true;\n  } else if (title === \"build\") {\n    canvasRef.interactiveChildren = false;\n    viewport.floorContainer.interactiveChildren = true;\n    viewport.previewContainer.interactiveChildren = true;\n    canvasRef.alpha = 0.5;\n  } else if (title === \"settings\") {\n    console.log(\"temp button, saved layers\")\n    ;(0,_saveSetup__WEBPACK_IMPORTED_MODULE_2__.saveSetup)();\n  }\n  _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].setState({ buildMode: title })\n}\n\nfunction onTextHover() {\n  this.tint = 0x333333;\n}\n\nfunction onTextOut() {\n  this.tint = 0xffffff;\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderMenu);\n\n//# sourceURL=webpack:///./js/renderMenu.js?");
-
-/***/ }),
-
-/***/ "./js/saveSetup.js":
-/*!*************************!*\
-  !*** ./js/saveSetup.js ***!
-  \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"loadSetup\": () => (/* binding */ loadSetup),\n/* harmony export */   \"saveSetup\": () => (/* binding */ saveSetup)\n/* harmony export */ });\n/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./system */ \"./js/system.js\");\n/* harmony import */ var _renderCanvas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderCanvas */ \"./js/renderCanvas.js\");\n\n\n\nfunction saveSetup() {\n  const { canvasRef } = _system__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getState();\n  const savedFurni = [];\n  canvasRef.children.forEach(i => {\n    // TODO: folders later\n    savedFurni.push({\n      key: i.key,\n      x: i.x,\n      y: i.y,\n      alpha: i.alpha,\n      zorder: i.zorder // need to set up pixi layers later\n    })\n  })\n  localStorage.setItem(\"savedSetup\", JSON.stringify(savedFurni));\n}\n\nfunction loadSetup() {\n  let setup = JSON.parse(localStorage.getItem(\"savedSetup\"));\n  // TODO: layers later\n  if (setup) {\n    for (let i in setup) {\n      const layer = setup[i];\n      if (layer.key.startsWith(\"custom_\")) continue;\n      const furni = (0,_renderCanvas__WEBPACK_IMPORTED_MODULE_1__.addItemToLayer)(layer.key);\n      furni.x = layer.x; furni.y = layer.y; furni.alpha = layer.alpha;\n      // TODO: zorder\n    }\n  }\n  // if there is nothing saved, start with a basic setup\n}\n\n//# sourceURL=webpack:///./js/saveSetup.js?");
-
-/***/ }),
-
-/***/ "./js/styles.js":
-/*!**********************!*\
-  !*** ./js/styles.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"colors\": () => (/* binding */ colors),\n/* harmony export */   \"titleStyle\": () => (/* binding */ titleStyle),\n/* harmony export */   \"tooltipStyle\": () => (/* binding */ tooltipStyle)\n/* harmony export */ });\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"../node_modules/pixi.js/dist/esm/pixi.mjs\");\n\n\nconst colors = {\n  white: 0xffffff,\n  beige: 0xfdf8e2,\n  lightgrey: 0xcccccc,\n  grey: 0x999999,\n  darkgrey: 0x434C05,\n  pink: 0xF2BBA7,\n  darkpink: 0xD16864,\n  darkgreen: 0x424A12\n}\n\nconst titleStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({\n  fontFamily: '\"Amatic SC\", cursive',\n  fill: 0x424A12,\n  fontSize: 42,\n  fontWeight: \"bold\",\n  lineHeight: 40,\n  padding: 10\n})\n\nconst tooltipStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({\n  fontFamily: '\"Amatic SC\", cursive',\n  fill: 0xD16863,\n  fontSize: 22,\n  lineHeight: 25,\n  fontWeight: \"bold\",\n  padding: 10\n})\n\n//# sourceURL=webpack:///./js/styles.js?");
-
-/***/ }),
-
-/***/ "./js/system.js":
-/*!**********************!*\
-  !*** ./js/system.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var zustand_vanilla__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zustand/vanilla */ \"../node_modules/zustand/esm/vanilla.mjs\");\n/* harmony import */ var zustand_middleware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! zustand/middleware */ \"../node_modules/zustand/esm/middleware.mjs\");\n\n\n\nconst initialState = {\n  pixiApp: null, // pixi app ref\n  furniList: [], // list of item data from the sheet\n  userData: {}, // profile data of a user from mongo\n  sortedCategories: {}, // sorted lists of furniture filtered by categories\n  savedSprites: {}, // saved textures for furniture sprites\n  catalogue: [],\n  canvasRef: null, // ref of the drawing canvas\n  layerRef: null,\n  floorLayer: [],\n  itemLayer: [],\n  history: [],\n  buildMode: \"move\",\n  activeCategory: \"owned\", // active tab for adding furniture\n  filterText: \"\"\n};\n\n// layer transformation functions\n// addItem\n// moveItem\n// deleteItem\n// undoMove\n// redoMove\n\nconst useSystemStore = (0,zustand_vanilla__WEBPACK_IMPORTED_MODULE_0__[\"default\"])((0,zustand_middleware__WEBPACK_IMPORTED_MODULE_1__.subscribeWithSelector)((set) => ({\n  ...initialState\n})));\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useSystemStore);\n\n\n//# sourceURL=webpack:///./js/system.js?");
 
 /***/ }),
 
@@ -1556,6 +1655,182 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "../node_modules/vanilla-colorful/hex-color-picker.js":
+/*!************************************************************!*\
+  !*** ../node_modules/vanilla-colorful/hex-color-picker.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"HexColorPicker\": () => (/* binding */ HexColorPicker)\n/* harmony export */ });\n/* harmony import */ var _lib_entrypoints_hex_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/entrypoints/hex.js */ \"../node_modules/vanilla-colorful/lib/entrypoints/hex.js\");\n\n/**\n * A color picker custom element that uses HEX format.\n *\n * @element hex-color-picker\n *\n * @prop {string} color - Selected color in HEX format.\n * @attr {string} color - Selected color in HEX format.\n *\n * @fires color-changed - Event fired when color property changes.\n *\n * @csspart hue - A hue selector container.\n * @csspart saturation - A saturation selector container\n * @csspart hue-pointer - A hue pointer element.\n * @csspart saturation-pointer - A saturation pointer element.\n */\nclass HexColorPicker extends _lib_entrypoints_hex_js__WEBPACK_IMPORTED_MODULE_0__.HexBase {\n}\ncustomElements.define('hex-color-picker', HexColorPicker);\n//# sourceMappingURL=hex-color-picker.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/hex-color-picker.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/hex-input.js":
+/*!*****************************************************!*\
+  !*** ../node_modules/vanilla-colorful/hex-input.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"HexInput\": () => (/* binding */ HexInput)\n/* harmony export */ });\n/* harmony import */ var _lib_entrypoints_hex_input_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/entrypoints/hex-input.js */ \"../node_modules/vanilla-colorful/lib/entrypoints/hex-input.js\");\n\n/**\n * A custom element for entering color in HEX format.\n *\n * @element hex-input\n *\n * @prop {string} color - Color in HEX format.\n * @attr {string} color - Selected color in HEX format.\n * @prop {boolean} alpha - When true, `#rgba` and `#rrggbbaa` color formats are allowed.\n * @attr {boolean} alpha - Allows `#rgba` and `#rrggbbaa` color formats.\n * @prop {boolean} prefixed - When true, `#` prefix is displayed in the input.\n * @attr {boolean} prefixed - Enables `#` prefix displaying.\n *\n * @fires color-changed - Event fired when color is changed.\n *\n * @csspart input - A native input element.\n */\nclass HexInput extends _lib_entrypoints_hex_input_js__WEBPACK_IMPORTED_MODULE_0__.HexInputBase {\n}\ncustomElements.define('hex-input', HexInput);\n//# sourceMappingURL=hex-input.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/hex-input.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/components/color-picker.js":
+/*!***********************************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/components/color-picker.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"$css\": () => (/* binding */ $css),\n/* harmony export */   \"$sliders\": () => (/* binding */ $sliders),\n/* harmony export */   \"ColorPicker\": () => (/* binding */ ColorPicker)\n/* harmony export */ });\n/* harmony import */ var _utils_compare_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/compare.js */ \"../node_modules/vanilla-colorful/lib/utils/compare.js\");\n/* harmony import */ var _utils_dom_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/dom.js */ \"../node_modules/vanilla-colorful/lib/utils/dom.js\");\n/* harmony import */ var _hue_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./hue.js */ \"../node_modules/vanilla-colorful/lib/components/hue.js\");\n/* harmony import */ var _saturation_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./saturation.js */ \"../node_modules/vanilla-colorful/lib/components/saturation.js\");\n/* harmony import */ var _styles_color_picker_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/color-picker.js */ \"../node_modules/vanilla-colorful/lib/styles/color-picker.js\");\n/* harmony import */ var _styles_hue_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/hue.js */ \"../node_modules/vanilla-colorful/lib/styles/hue.js\");\n/* harmony import */ var _styles_saturation_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/saturation.js */ \"../node_modules/vanilla-colorful/lib/styles/saturation.js\");\n\n\n\n\n\n\n\nconst $isSame = Symbol('same');\nconst $color = Symbol('color');\nconst $hsva = Symbol('hsva');\nconst $update = Symbol('update');\nconst $parts = Symbol('parts');\nconst $css = Symbol('css');\nconst $sliders = Symbol('sliders');\nclass ColorPicker extends HTMLElement {\n    static get observedAttributes() {\n        return ['color'];\n    }\n    get [$css]() {\n        return [_styles_color_picker_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"], _styles_hue_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"], _styles_saturation_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"]];\n    }\n    get [$sliders]() {\n        return [_saturation_js__WEBPACK_IMPORTED_MODULE_3__.Saturation, _hue_js__WEBPACK_IMPORTED_MODULE_4__.Hue];\n    }\n    get color() {\n        return this[$color];\n    }\n    set color(newColor) {\n        if (!this[$isSame](newColor)) {\n            const newHsva = this.colorModel.toHsva(newColor);\n            this[$update](newHsva);\n            this[$color] = newColor;\n        }\n    }\n    constructor() {\n        super();\n        const template = (0,_utils_dom_js__WEBPACK_IMPORTED_MODULE_5__.tpl)(`<style>${this[$css].join('')}</style>`);\n        const root = this.attachShadow({ mode: 'open' });\n        root.appendChild(template.content.cloneNode(true));\n        root.addEventListener('move', this);\n        this[$parts] = this[$sliders].map((slider) => new slider(root));\n    }\n    connectedCallback() {\n        // A user may set a property on an _instance_ of an element,\n        // before its prototype has been connected to this class.\n        // If so, we need to run it through the proper class setter.\n        if (this.hasOwnProperty('color')) {\n            const value = this.color;\n            delete this['color'];\n            this.color = value;\n        }\n        else if (!this.color) {\n            this.color = this.colorModel.defaultColor;\n        }\n    }\n    attributeChangedCallback(_attr, _oldVal, newVal) {\n        const color = this.colorModel.fromAttr(newVal);\n        if (!this[$isSame](color)) {\n            this.color = color;\n        }\n    }\n    handleEvent(event) {\n        // Merge the current HSV color object with updated params.\n        const oldHsva = this[$hsva];\n        const newHsva = { ...oldHsva, ...event.detail };\n        this[$update](newHsva);\n        let newColor;\n        if (!(0,_utils_compare_js__WEBPACK_IMPORTED_MODULE_6__.equalColorObjects)(newHsva, oldHsva) &&\n            !this[$isSame]((newColor = this.colorModel.fromHsva(newHsva)))) {\n            this[$color] = newColor;\n            (0,_utils_dom_js__WEBPACK_IMPORTED_MODULE_5__.fire)(this, 'color-changed', { value: newColor });\n        }\n    }\n    [$isSame](color) {\n        return this.color && this.colorModel.equal(color, this.color);\n    }\n    [$update](hsva) {\n        this[$hsva] = hsva;\n        this[$parts].forEach((part) => part.update(hsva));\n    }\n}\n//# sourceMappingURL=color-picker.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/components/color-picker.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/components/hue.js":
+/*!**************************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/components/hue.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Hue\": () => (/* binding */ Hue)\n/* harmony export */ });\n/* harmony import */ var _slider_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider.js */ \"../node_modules/vanilla-colorful/lib/components/slider.js\");\n/* harmony import */ var _utils_convert_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/convert.js */ \"../node_modules/vanilla-colorful/lib/utils/convert.js\");\n/* harmony import */ var _utils_math_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/math.js */ \"../node_modules/vanilla-colorful/lib/utils/math.js\");\n\n\n\nclass Hue extends _slider_js__WEBPACK_IMPORTED_MODULE_0__.Slider {\n    constructor(root) {\n        super(root, 'hue', 'aria-label=\"Hue\" aria-valuemin=\"0\" aria-valuemax=\"360\"', false);\n    }\n    update({ h }) {\n        this.h = h;\n        this.style([\n            {\n                left: `${(h / 360) * 100}%`,\n                color: (0,_utils_convert_js__WEBPACK_IMPORTED_MODULE_1__.hsvaToHslString)({ h, s: 100, v: 100, a: 1 })\n            }\n        ]);\n        this.el.setAttribute('aria-valuenow', `${(0,_utils_math_js__WEBPACK_IMPORTED_MODULE_2__.round)(h)}`);\n    }\n    getMove(offset, key) {\n        // Hue measured in degrees of the color circle ranging from 0 to 360\n        return { h: key ? (0,_utils_math_js__WEBPACK_IMPORTED_MODULE_2__.clamp)(this.h + offset.x * 360, 0, 360) : 360 * offset.x };\n    }\n}\n//# sourceMappingURL=hue.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/components/hue.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/components/saturation.js":
+/*!*********************************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/components/saturation.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Saturation\": () => (/* binding */ Saturation)\n/* harmony export */ });\n/* harmony import */ var _slider_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider.js */ \"../node_modules/vanilla-colorful/lib/components/slider.js\");\n/* harmony import */ var _utils_convert_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/convert.js */ \"../node_modules/vanilla-colorful/lib/utils/convert.js\");\n/* harmony import */ var _utils_math_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/math.js */ \"../node_modules/vanilla-colorful/lib/utils/math.js\");\n\n\n\nclass Saturation extends _slider_js__WEBPACK_IMPORTED_MODULE_0__.Slider {\n    constructor(root) {\n        super(root, 'saturation', 'aria-label=\"Color\"', true);\n    }\n    update(hsva) {\n        this.hsva = hsva;\n        this.style([\n            {\n                top: `${100 - hsva.v}%`,\n                left: `${hsva.s}%`,\n                color: (0,_utils_convert_js__WEBPACK_IMPORTED_MODULE_1__.hsvaToHslString)(hsva)\n            },\n            {\n                'background-color': (0,_utils_convert_js__WEBPACK_IMPORTED_MODULE_1__.hsvaToHslString)({ h: hsva.h, s: 100, v: 100, a: 1 })\n            }\n        ]);\n        this.el.setAttribute('aria-valuetext', `Saturation ${(0,_utils_math_js__WEBPACK_IMPORTED_MODULE_2__.round)(hsva.s)}%, Brightness ${(0,_utils_math_js__WEBPACK_IMPORTED_MODULE_2__.round)(hsva.v)}%`);\n    }\n    getMove(offset, key) {\n        // Saturation and brightness always fit into [0, 100] range\n        return {\n            s: key ? (0,_utils_math_js__WEBPACK_IMPORTED_MODULE_2__.clamp)(this.hsva.s + offset.x * 100, 0, 100) : offset.x * 100,\n            v: key ? (0,_utils_math_js__WEBPACK_IMPORTED_MODULE_2__.clamp)(this.hsva.v - offset.y * 100, 0, 100) : Math.round(100 - offset.y * 100)\n        };\n    }\n}\n//# sourceMappingURL=saturation.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/components/saturation.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/components/slider.js":
+/*!*****************************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/components/slider.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Slider\": () => (/* binding */ Slider)\n/* harmony export */ });\n/* harmony import */ var _utils_dom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/dom.js */ \"../node_modules/vanilla-colorful/lib/utils/dom.js\");\n/* harmony import */ var _utils_math_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/math.js */ \"../node_modules/vanilla-colorful/lib/utils/math.js\");\n\n\nlet hasTouched = false;\n// Check if an event was triggered by touch\nconst isTouch = (e) => 'touches' in e;\n// Prevent mobile browsers from handling mouse events (conflicting with touch ones).\n// If we detected a touch interaction before, we prefer reacting to touch events only.\nconst isValid = (event) => {\n    if (hasTouched && !isTouch(event))\n        return false;\n    if (!hasTouched)\n        hasTouched = isTouch(event);\n    return true;\n};\nconst pointerMove = (target, event) => {\n    const pointer = isTouch(event) ? event.touches[0] : event;\n    const rect = target.el.getBoundingClientRect();\n    (0,_utils_dom_js__WEBPACK_IMPORTED_MODULE_0__.fire)(target.el, 'move', target.getMove({\n        x: (0,_utils_math_js__WEBPACK_IMPORTED_MODULE_1__.clamp)((pointer.pageX - (rect.left + window.pageXOffset)) / rect.width),\n        y: (0,_utils_math_js__WEBPACK_IMPORTED_MODULE_1__.clamp)((pointer.pageY - (rect.top + window.pageYOffset)) / rect.height)\n    }));\n};\nconst keyMove = (target, event) => {\n    // We use `keyCode` instead of `key` to reduce the size of the library.\n    const keyCode = event.keyCode;\n    // Ignore all keys except arrow ones, Page Up, Page Down, Home and End.\n    if (keyCode > 40 || (target.xy && keyCode < 37) || keyCode < 33)\n        return;\n    // Do not scroll page by keys when color picker element has focus.\n    event.preventDefault();\n    // Send relative offset to the parent component.\n    (0,_utils_dom_js__WEBPACK_IMPORTED_MODULE_0__.fire)(target.el, 'move', target.getMove({\n        x: keyCode === 39 // Arrow Right\n            ? 0.01\n            : keyCode === 37 // Arrow Left\n                ? -0.01\n                : keyCode === 34 // Page Down\n                    ? 0.05\n                    : keyCode === 33 // Page Up\n                        ? -0.05\n                        : keyCode === 35 // End\n                            ? 1\n                            : keyCode === 36 // Home\n                                ? -1\n                                : 0,\n        y: keyCode === 40 // Arrow down\n            ? 0.01\n            : keyCode === 38 // Arrow Up\n                ? -0.01\n                : 0\n    }, true));\n};\nclass Slider {\n    constructor(root, part, aria, xy) {\n        const template = (0,_utils_dom_js__WEBPACK_IMPORTED_MODULE_0__.tpl)(`<div role=\"slider\" tabindex=\"0\" part=\"${part}\" ${aria}><div part=\"${part}-pointer\"></div></div>`);\n        root.appendChild(template.content.cloneNode(true));\n        const el = root.querySelector(`[part=${part}]`);\n        el.addEventListener('mousedown', this);\n        el.addEventListener('touchstart', this);\n        el.addEventListener('keydown', this);\n        this.el = el;\n        this.xy = xy;\n        this.nodes = [el.firstChild, el];\n    }\n    set dragging(state) {\n        const toggleEvent = state ? document.addEventListener : document.removeEventListener;\n        toggleEvent(hasTouched ? 'touchmove' : 'mousemove', this);\n        toggleEvent(hasTouched ? 'touchend' : 'mouseup', this);\n    }\n    handleEvent(event) {\n        switch (event.type) {\n            case 'mousedown':\n            case 'touchstart':\n                event.preventDefault();\n                // event.button is 0 in mousedown for left button activation\n                if (!isValid(event) || (!hasTouched && event.button != 0))\n                    return;\n                this.el.focus();\n                pointerMove(this, event);\n                this.dragging = true;\n                break;\n            case 'mousemove':\n            case 'touchmove':\n                event.preventDefault();\n                pointerMove(this, event);\n                break;\n            case 'mouseup':\n            case 'touchend':\n                this.dragging = false;\n                break;\n            case 'keydown':\n                keyMove(this, event);\n                break;\n        }\n    }\n    style(styles) {\n        styles.forEach((style, i) => {\n            for (const p in style) {\n                this.nodes[i].style.setProperty(p, style[p]);\n            }\n        });\n    }\n}\n//# sourceMappingURL=slider.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/components/slider.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/entrypoints/hex-input.js":
+/*!*********************************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/entrypoints/hex-input.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"HexInputBase\": () => (/* binding */ HexInputBase)\n/* harmony export */ });\n/* harmony import */ var _utils_validate_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/validate.js */ \"../node_modules/vanilla-colorful/lib/utils/validate.js\");\n/* harmony import */ var _utils_dom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/dom.js */ \"../node_modules/vanilla-colorful/lib/utils/dom.js\");\n\n\nconst template = (0,_utils_dom_js__WEBPACK_IMPORTED_MODULE_0__.tpl)('<slot><input part=\"input\" spellcheck=\"false\"></slot>');\n// Escapes all non-hexadecimal characters including \"#\"\nconst escape = (hex, alpha) => hex.replace(/([^0-9A-F]+)/gi, '').substring(0, alpha ? 8 : 6);\nconst $alpha = Symbol('alpha');\nconst $color = Symbol('color');\nconst $saved = Symbol('saved');\nconst $input = Symbol('input');\nconst $init = Symbol('init');\nconst $prefix = Symbol('prefix');\nconst $update = Symbol('update');\nclass HexInputBase extends HTMLElement {\n    static get observedAttributes() {\n        return ['alpha', 'color', 'prefixed'];\n    }\n    get color() {\n        return this[$color];\n    }\n    set color(hex) {\n        this[$color] = hex;\n        this[$update](hex);\n    }\n    get alpha() {\n        return this[$alpha];\n    }\n    set alpha(alpha) {\n        this[$alpha] = alpha;\n        this.toggleAttribute('alpha', alpha);\n        // When alpha set to false, update color\n        const color = this.color;\n        if (color && !(0,_utils_validate_js__WEBPACK_IMPORTED_MODULE_1__.validHex)(color, alpha)) {\n            this.color = color.startsWith('#')\n                ? color.substring(0, color.length === 5 ? 4 : 7)\n                : color.substring(0, color.length === 4 ? 3 : 6);\n        }\n    }\n    get prefixed() {\n        return this[$prefix];\n    }\n    set prefixed(prefixed) {\n        this[$prefix] = prefixed;\n        this.toggleAttribute('prefixed', prefixed);\n        this[$update](this.color);\n    }\n    constructor() {\n        super();\n        const root = this.attachShadow({ mode: 'open' });\n        root.appendChild(template.content.cloneNode(true));\n        const slot = root.firstElementChild;\n        slot.addEventListener('slotchange', () => this[$init](root));\n    }\n    connectedCallback() {\n        this[$init](this.shadowRoot);\n        // A user may set a property on an _instance_ of an element,\n        // before its prototype has been connected to this class.\n        // If so, we need to run it through the proper class setter.\n        if (this.hasOwnProperty('alpha')) {\n            const value = this.alpha;\n            delete this['alpha'];\n            this.alpha = value;\n        }\n        else {\n            this.alpha = this.hasAttribute('alpha');\n        }\n        if (this.hasOwnProperty('prefixed')) {\n            const value = this.prefixed;\n            delete this['prefixed'];\n            this.prefixed = value;\n        }\n        else {\n            this.prefixed = this.hasAttribute('prefixed');\n        }\n        if (this.hasOwnProperty('color')) {\n            const value = this.color;\n            delete this['color'];\n            this.color = value;\n        }\n        else if (this.color == null) {\n            this.color = this.getAttribute('color') || '';\n        }\n        else if (this[$color]) {\n            this[$update](this[$color]);\n        }\n    }\n    handleEvent(event) {\n        const target = event.target;\n        const { value } = target;\n        switch (event.type) {\n            case 'input':\n                const hex = escape(value, this.alpha);\n                this[$saved] = this.color;\n                if ((0,_utils_validate_js__WEBPACK_IMPORTED_MODULE_1__.validHex)(hex, this.alpha) || value === '') {\n                    this.color = hex;\n                    this.dispatchEvent(new CustomEvent('color-changed', {\n                        bubbles: true,\n                        detail: { value: hex ? '#' + hex : '' }\n                    }));\n                }\n                break;\n            case 'blur':\n                if (value && !(0,_utils_validate_js__WEBPACK_IMPORTED_MODULE_1__.validHex)(value, this.alpha)) {\n                    this.color = this[$saved];\n                }\n        }\n    }\n    attributeChangedCallback(attr, _oldVal, newVal) {\n        if (attr === 'color' && this.color !== newVal) {\n            this.color = newVal;\n        }\n        const hasBooleanAttr = newVal != null;\n        if (attr === 'alpha') {\n            if (this.alpha !== hasBooleanAttr) {\n                this.alpha = hasBooleanAttr;\n            }\n        }\n        if (attr === 'prefixed') {\n            if (this.prefixed !== hasBooleanAttr) {\n                this.prefixed = hasBooleanAttr;\n            }\n        }\n    }\n    [$init](root) {\n        let input = this.querySelector('input');\n        if (!input) {\n            // remove all child node if no input found\n            let c;\n            while ((c = this.firstChild)) {\n                c.remove();\n            }\n            input = root.querySelector('input');\n        }\n        input.addEventListener('input', this);\n        input.addEventListener('blur', this);\n        this[$input] = input;\n        this[$update](this.color);\n    }\n    [$update](hex) {\n        if (this[$input]) {\n            this[$input].value =\n                hex == null || hex == '' ? '' : (this.prefixed ? '#' : '') + escape(hex, this.alpha);\n        }\n    }\n}\n//# sourceMappingURL=hex-input.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/entrypoints/hex-input.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/entrypoints/hex.js":
+/*!***************************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/entrypoints/hex.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"HexBase\": () => (/* binding */ HexBase)\n/* harmony export */ });\n/* harmony import */ var _components_color_picker_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/color-picker.js */ \"../node_modules/vanilla-colorful/lib/components/color-picker.js\");\n/* harmony import */ var _utils_convert_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/convert.js */ \"../node_modules/vanilla-colorful/lib/utils/convert.js\");\n/* harmony import */ var _utils_compare_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/compare.js */ \"../node_modules/vanilla-colorful/lib/utils/compare.js\");\n\n\n\nconst colorModel = {\n    defaultColor: '#000',\n    toHsva: _utils_convert_js__WEBPACK_IMPORTED_MODULE_0__.hexToHsva,\n    fromHsva: ({ h, s, v }) => (0,_utils_convert_js__WEBPACK_IMPORTED_MODULE_0__.hsvaToHex)({ h, s, v, a: 1 }),\n    equal: _utils_compare_js__WEBPACK_IMPORTED_MODULE_1__.equalHex,\n    fromAttr: (color) => color\n};\nclass HexBase extends _components_color_picker_js__WEBPACK_IMPORTED_MODULE_2__.ColorPicker {\n    get colorModel() {\n        return colorModel;\n    }\n}\n//# sourceMappingURL=hex.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/entrypoints/hex.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/styles/color-picker.js":
+/*!*******************************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/styles/color-picker.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (`:host{display:flex;flex-direction:column;position:relative;width:200px;height:200px;user-select:none;-webkit-user-select:none;cursor:default}:host([hidden]){display:none!important}[role=slider]{position:relative;touch-action:none;user-select:none;-webkit-user-select:none;outline:0}[role=slider]:last-child{border-radius:0 0 8px 8px}[part$=pointer]{position:absolute;z-index:1;box-sizing:border-box;width:28px;height:28px;display:flex;place-content:center center;transform:translate(-50%,-50%);background-color:#fff;border:2px solid #fff;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,.2)}[part$=pointer]::after{content:\"\";width:100%;height:100%;border-radius:inherit;background-color:currentColor}[role=slider]:focus [part$=pointer]{transform:translate(-50%,-50%) scale(1.1)}`);\n//# sourceMappingURL=color-picker.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/styles/color-picker.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/styles/hue.js":
+/*!**********************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/styles/hue.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (`[part=hue]{flex:0 0 24px;background:linear-gradient(to right,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%)}[part=hue-pointer]{top:50%;z-index:2}`);\n//# sourceMappingURL=hue.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/styles/hue.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/styles/saturation.js":
+/*!*****************************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/styles/saturation.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (`[part=saturation]{flex-grow:1;border-color:transparent;border-bottom:12px solid #000;border-radius:8px 8px 0 0;background-image:linear-gradient(to top,#000,transparent),linear-gradient(to right,#fff,rgba(255,255,255,0));box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}[part=saturation-pointer]{z-index:3}`);\n//# sourceMappingURL=saturation.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/styles/saturation.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/utils/compare.js":
+/*!*************************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/utils/compare.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"equalColorObjects\": () => (/* binding */ equalColorObjects),\n/* harmony export */   \"equalColorString\": () => (/* binding */ equalColorString),\n/* harmony export */   \"equalHex\": () => (/* binding */ equalHex)\n/* harmony export */ });\n/* harmony import */ var _convert_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./convert.js */ \"../node_modules/vanilla-colorful/lib/utils/convert.js\");\n\nconst equalColorObjects = (first, second) => {\n    if (first === second)\n        return true;\n    for (const prop in first) {\n        // The following allows for a type-safe calling of this function (first & second have to be HSL, HSV, or RGB)\n        // with type-unsafe iterating over object keys. TS does not allow this without an index (`[key: string]: number`)\n        // on an object to define how iteration is normally done. To ensure extra keys are not allowed on our types,\n        // we must cast our object to unknown (as RGB demands `r` be a key, while `Record<string, x>` does not care if\n        // there is or not), and then as a type TS can iterate over.\n        if (first[prop] !==\n            second[prop])\n            return false;\n    }\n    return true;\n};\nconst equalColorString = (first, second) => {\n    return first.replace(/\\s/g, '') === second.replace(/\\s/g, '');\n};\nconst equalHex = (first, second) => {\n    if (first.toLowerCase() === second.toLowerCase())\n        return true;\n    // To compare colors like `#FFF` and `ffffff` we convert them into RGB objects\n    return equalColorObjects((0,_convert_js__WEBPACK_IMPORTED_MODULE_0__.hexToRgba)(first), (0,_convert_js__WEBPACK_IMPORTED_MODULE_0__.hexToRgba)(second));\n};\n//# sourceMappingURL=compare.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/utils/compare.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/utils/convert.js":
+/*!*************************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/utils/convert.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"hexToHsva\": () => (/* binding */ hexToHsva),\n/* harmony export */   \"hexToRgba\": () => (/* binding */ hexToRgba),\n/* harmony export */   \"hslStringToHsva\": () => (/* binding */ hslStringToHsva),\n/* harmony export */   \"hslaStringToHsva\": () => (/* binding */ hslaStringToHsva),\n/* harmony export */   \"hslaToHsl\": () => (/* binding */ hslaToHsl),\n/* harmony export */   \"hslaToHsva\": () => (/* binding */ hslaToHsva),\n/* harmony export */   \"hsvStringToHsva\": () => (/* binding */ hsvStringToHsva),\n/* harmony export */   \"hsvaStringToHsva\": () => (/* binding */ hsvaStringToHsva),\n/* harmony export */   \"hsvaToHex\": () => (/* binding */ hsvaToHex),\n/* harmony export */   \"hsvaToHslString\": () => (/* binding */ hsvaToHslString),\n/* harmony export */   \"hsvaToHsla\": () => (/* binding */ hsvaToHsla),\n/* harmony export */   \"hsvaToHslaString\": () => (/* binding */ hsvaToHslaString),\n/* harmony export */   \"hsvaToHsv\": () => (/* binding */ hsvaToHsv),\n/* harmony export */   \"hsvaToHsvString\": () => (/* binding */ hsvaToHsvString),\n/* harmony export */   \"hsvaToHsvaString\": () => (/* binding */ hsvaToHsvaString),\n/* harmony export */   \"hsvaToRgbString\": () => (/* binding */ hsvaToRgbString),\n/* harmony export */   \"hsvaToRgba\": () => (/* binding */ hsvaToRgba),\n/* harmony export */   \"hsvaToRgbaString\": () => (/* binding */ hsvaToRgbaString),\n/* harmony export */   \"parseHue\": () => (/* binding */ parseHue),\n/* harmony export */   \"rgbStringToHsva\": () => (/* binding */ rgbStringToHsva),\n/* harmony export */   \"rgbaStringToHsva\": () => (/* binding */ rgbaStringToHsva),\n/* harmony export */   \"rgbaToHex\": () => (/* binding */ rgbaToHex),\n/* harmony export */   \"rgbaToHsva\": () => (/* binding */ rgbaToHsva),\n/* harmony export */   \"rgbaToRgb\": () => (/* binding */ rgbaToRgb),\n/* harmony export */   \"roundHsva\": () => (/* binding */ roundHsva)\n/* harmony export */ });\n/* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./math.js */ \"../node_modules/vanilla-colorful/lib/utils/math.js\");\n\n/**\n * Valid CSS <angle> units.\n * https://developer.mozilla.org/en-US/docs/Web/CSS/angle\n */\nconst angleUnits = {\n    grad: 360 / 400,\n    turn: 360,\n    rad: 360 / (Math.PI * 2)\n};\nconst hexToHsva = (hex) => rgbaToHsva(hexToRgba(hex));\nconst hexToRgba = (hex) => {\n    if (hex[0] === '#')\n        hex = hex.substring(1);\n    if (hex.length < 6) {\n        return {\n            r: parseInt(hex[0] + hex[0], 16),\n            g: parseInt(hex[1] + hex[1], 16),\n            b: parseInt(hex[2] + hex[2], 16),\n            a: hex.length === 4 ? (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(parseInt(hex[3] + hex[3], 16) / 255, 2) : 1\n        };\n    }\n    return {\n        r: parseInt(hex.substring(0, 2), 16),\n        g: parseInt(hex.substring(2, 4), 16),\n        b: parseInt(hex.substring(4, 6), 16),\n        a: hex.length === 8 ? (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(parseInt(hex.substring(6, 8), 16) / 255, 2) : 1\n    };\n};\nconst parseHue = (value, unit = 'deg') => {\n    return Number(value) * (angleUnits[unit] || 1);\n};\nconst hslaStringToHsva = (hslString) => {\n    const matcher = /hsla?\\(?\\s*(-?\\d*\\.?\\d+)(deg|rad|grad|turn)?[,\\s]+(-?\\d*\\.?\\d+)%?[,\\s]+(-?\\d*\\.?\\d+)%?,?\\s*[/\\s]*(-?\\d*\\.?\\d+)?(%)?\\s*\\)?/i;\n    const match = matcher.exec(hslString);\n    if (!match)\n        return { h: 0, s: 0, v: 0, a: 1 };\n    return hslaToHsva({\n        h: parseHue(match[1], match[2]),\n        s: Number(match[3]),\n        l: Number(match[4]),\n        a: match[5] === undefined ? 1 : Number(match[5]) / (match[6] ? 100 : 1)\n    });\n};\nconst hslStringToHsva = hslaStringToHsva;\nconst hslaToHsva = ({ h, s, l, a }) => {\n    s *= (l < 50 ? l : 100 - l) / 100;\n    return {\n        h: h,\n        s: s > 0 ? ((2 * s) / (l + s)) * 100 : 0,\n        v: l + s,\n        a\n    };\n};\nconst hsvaToHex = (hsva) => rgbaToHex(hsvaToRgba(hsva));\nconst hsvaToHsla = ({ h, s, v, a }) => {\n    const hh = ((200 - s) * v) / 100;\n    return {\n        h: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(h),\n        s: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(hh > 0 && hh < 200 ? ((s * v) / 100 / (hh <= 100 ? hh : 200 - hh)) * 100 : 0),\n        l: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(hh / 2),\n        a: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(a, 2)\n    };\n};\nconst hsvaToHsvString = (hsva) => {\n    const { h, s, v } = roundHsva(hsva);\n    return `hsv(${h}, ${s}%, ${v}%)`;\n};\nconst hsvaToHsvaString = (hsva) => {\n    const { h, s, v, a } = roundHsva(hsva);\n    return `hsva(${h}, ${s}%, ${v}%, ${a})`;\n};\nconst hsvaToHslString = (hsva) => {\n    const { h, s, l } = hsvaToHsla(hsva);\n    return `hsl(${h}, ${s}%, ${l}%)`;\n};\nconst hsvaToHslaString = (hsva) => {\n    const { h, s, l, a } = hsvaToHsla(hsva);\n    return `hsla(${h}, ${s}%, ${l}%, ${a})`;\n};\nconst hsvaToRgba = ({ h, s, v, a }) => {\n    h = (h / 360) * 6;\n    s = s / 100;\n    v = v / 100;\n    const hh = Math.floor(h), b = v * (1 - s), c = v * (1 - (h - hh) * s), d = v * (1 - (1 - h + hh) * s), module = hh % 6;\n    return {\n        r: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)([v, c, b, b, d, v][module] * 255),\n        g: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)([d, v, v, c, b, b][module] * 255),\n        b: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)([b, b, d, v, v, c][module] * 255),\n        a: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(a, 2)\n    };\n};\nconst hsvaToRgbString = (hsva) => {\n    const { r, g, b } = hsvaToRgba(hsva);\n    return `rgb(${r}, ${g}, ${b})`;\n};\nconst hsvaToRgbaString = (hsva) => {\n    const { r, g, b, a } = hsvaToRgba(hsva);\n    return `rgba(${r}, ${g}, ${b}, ${a})`;\n};\nconst hsvaStringToHsva = (hsvString) => {\n    const matcher = /hsva?\\(?\\s*(-?\\d*\\.?\\d+)(deg|rad|grad|turn)?[,\\s]+(-?\\d*\\.?\\d+)%?[,\\s]+(-?\\d*\\.?\\d+)%?,?\\s*[/\\s]*(-?\\d*\\.?\\d+)?(%)?\\s*\\)?/i;\n    const match = matcher.exec(hsvString);\n    if (!match)\n        return { h: 0, s: 0, v: 0, a: 1 };\n    return roundHsva({\n        h: parseHue(match[1], match[2]),\n        s: Number(match[3]),\n        v: Number(match[4]),\n        a: match[5] === undefined ? 1 : Number(match[5]) / (match[6] ? 100 : 1)\n    });\n};\nconst hsvStringToHsva = hsvaStringToHsva;\nconst rgbaStringToHsva = (rgbaString) => {\n    const matcher = /rgba?\\(?\\s*(-?\\d*\\.?\\d+)(%)?[,\\s]+(-?\\d*\\.?\\d+)(%)?[,\\s]+(-?\\d*\\.?\\d+)(%)?,?\\s*[/\\s]*(-?\\d*\\.?\\d+)?(%)?\\s*\\)?/i;\n    const match = matcher.exec(rgbaString);\n    if (!match)\n        return { h: 0, s: 0, v: 0, a: 1 };\n    return rgbaToHsva({\n        r: Number(match[1]) / (match[2] ? 100 / 255 : 1),\n        g: Number(match[3]) / (match[4] ? 100 / 255 : 1),\n        b: Number(match[5]) / (match[6] ? 100 / 255 : 1),\n        a: match[7] === undefined ? 1 : Number(match[7]) / (match[8] ? 100 : 1)\n    });\n};\nconst rgbStringToHsva = rgbaStringToHsva;\nconst format = (number) => {\n    const hex = number.toString(16);\n    return hex.length < 2 ? '0' + hex : hex;\n};\nconst rgbaToHex = ({ r, g, b, a }) => {\n    const alphaHex = a < 1 ? format((0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(a * 255)) : '';\n    return '#' + format(r) + format(g) + format(b) + alphaHex;\n};\nconst rgbaToHsva = ({ r, g, b, a }) => {\n    const max = Math.max(r, g, b);\n    const delta = max - Math.min(r, g, b);\n    // prettier-ignore\n    const hh = delta\n        ? max === r\n            ? (g - b) / delta\n            : max === g\n                ? 2 + (b - r) / delta\n                : 4 + (r - g) / delta\n        : 0;\n    return {\n        h: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(60 * (hh < 0 ? hh + 6 : hh)),\n        s: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(max ? (delta / max) * 100 : 0),\n        v: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)((max / 255) * 100),\n        a\n    };\n};\nconst roundHsva = (hsva) => ({\n    h: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(hsva.h),\n    s: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(hsva.s),\n    v: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(hsva.v),\n    a: (0,_math_js__WEBPACK_IMPORTED_MODULE_0__.round)(hsva.a, 2)\n});\nconst rgbaToRgb = ({ r, g, b }) => ({ r, g, b });\nconst hslaToHsl = ({ h, s, l }) => ({ h, s, l });\nconst hsvaToHsv = (hsva) => {\n    const { h, s, v } = roundHsva(hsva);\n    return { h, s, v };\n};\n//# sourceMappingURL=convert.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/utils/convert.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/utils/dom.js":
+/*!*********************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/utils/dom.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"fire\": () => (/* binding */ fire),\n/* harmony export */   \"tpl\": () => (/* binding */ tpl)\n/* harmony export */ });\nconst cache = {};\nconst tpl = (html) => {\n    let template = cache[html];\n    if (!template) {\n        template = document.createElement('template');\n        template.innerHTML = html;\n        cache[html] = template;\n    }\n    return template;\n};\nconst fire = (target, type, detail) => {\n    target.dispatchEvent(new CustomEvent(type, {\n        bubbles: true,\n        detail\n    }));\n};\n//# sourceMappingURL=dom.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/utils/dom.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/utils/math.js":
+/*!**********************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/utils/math.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"clamp\": () => (/* binding */ clamp),\n/* harmony export */   \"round\": () => (/* binding */ round)\n/* harmony export */ });\n// Clamps a value between an upper and lower bound.\n// We use ternary operators because it makes the minified code\n// 2 times shorter then `Math.min(Math.max(a,b),c)`\nconst clamp = (number, min = 0, max = 1) => {\n    return number > max ? max : number < min ? min : number;\n};\nconst round = (number, digits = 0, base = Math.pow(10, digits)) => {\n    return Math.round(base * number) / base;\n};\n//# sourceMappingURL=math.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/utils/math.js?");
+
+/***/ }),
+
+/***/ "../node_modules/vanilla-colorful/lib/utils/validate.js":
+/*!**************************************************************!*\
+  !*** ../node_modules/vanilla-colorful/lib/utils/validate.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"validHex\": () => (/* binding */ validHex)\n/* harmony export */ });\nconst matcher = /^#?([0-9A-F]{3,8})$/i;\nconst validHex = (value, alpha) => {\n    const match = matcher.exec(value);\n    const length = match ? match[1].length : 0;\n    return (length === 3 || // '#rgb' format\n        length === 6 || // '#rrggbb' format\n        (!!alpha && length === 4) || // '#rgba' format\n        (!!alpha && length === 8) // '#rrggbbaa' format\n    );\n};\n//# sourceMappingURL=validate.js.map\n\n//# sourceURL=webpack:///../node_modules/vanilla-colorful/lib/utils/validate.js?");
+
+/***/ }),
+
 /***/ "../node_modules/zustand/esm/middleware.mjs":
 /*!**************************************************!*\
   !*** ../node_modules/zustand/esm/middleware.mjs ***!
@@ -1576,6 +1851,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ createStore)\n/* harmony export */ });\nconst createStoreImpl = (createState) => {\n  let state;\n  const listeners = /* @__PURE__ */ new Set();\n  const setState = (partial, replace) => {\n    const nextState = typeof partial === \"function\" ? partial(state) : partial;\n    if (!Object.is(nextState, state)) {\n      const previousState = state;\n      state = (replace != null ? replace : typeof nextState !== \"object\") ? nextState : Object.assign({}, state, nextState);\n      listeners.forEach((listener) => listener(state, previousState));\n    }\n  };\n  const getState = () => state;\n  const subscribe = (listener) => {\n    listeners.add(listener);\n    return () => listeners.delete(listener);\n  };\n  const destroy = () => listeners.clear();\n  const api = { setState, getState, subscribe, destroy };\n  state = createState(setState, getState, api);\n  return api;\n};\nconst createStore = (createState) => createState ? createStoreImpl(createState) : createStoreImpl;\n\n\n\n\n//# sourceURL=webpack:///../node_modules/zustand/esm/vanilla.mjs?");
 
+/***/ }),
+
+/***/ "./js/load/assets.json":
+/*!*****************************!*\
+  !*** ./js/load/assets.json ***!
+  \*****************************/
+/***/ ((module) => {
+
+"use strict";
+eval("module.exports = JSON.parse('[\"bg_button\",\"bg_tooltip\",\"bg_tab\",\"icon_addon\",\"icon_all\",\"icon_indoor\",\"icon_misc\",\"icon_outdoor\",\"icon_owned\",\"icon_bean\",\"icon_wall\",\"star_one\",\"comic\",\"tile_floor\",\"tile_floor_1\",\"tile_floor_2\",\"tile_floor_3\",\"tile_wall\",\"tile_wall_1\",\"tile_wall_2\",\"tile_wall_3\",\"tabs_addfloor\",\"tabs_addwall\",\"tabs_addroom\",\"tabs_catalogue\",\"tabs_current\",\"tabs_custom\",\"temp\",\"icon_addmore\",\"divider\",\"icon_delete\"]');\n\n//# sourceURL=webpack:///./js/load/assets.json?");
+
 /***/ })
 
 /******/ 	});
@@ -1588,6 +1874,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		// Check if module is in cache
 /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
+/******/ 			if (cachedModule.error !== undefined) throw cachedModule.error;
 /******/ 			return cachedModule.exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
@@ -1598,7 +1885,15 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 		try {
+/******/ 			var execOptions = { id: moduleId, module: module, factory: __webpack_modules__[moduleId], require: __webpack_require__ };
+/******/ 			__webpack_require__.i.forEach(function(handler) { handler(execOptions); });
+/******/ 			module = execOptions.module;
+/******/ 			execOptions.factory.call(module.exports, module, module.exports, execOptions.require);
+/******/ 		} catch(e) {
+/******/ 			module.error = e;
+/******/ 			throw e;
+/******/ 		}
 /******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
@@ -1606,6 +1901,15 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = __webpack_module_cache__;
+/******/ 	
+/******/ 	// expose the module execution interceptor
+/******/ 	__webpack_require__.i = [];
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
@@ -1632,6 +1936,25 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/get javascript update chunk filename */
+/******/ 	(() => {
+/******/ 		// This function allow to reference all chunks
+/******/ 		__webpack_require__.hu = (chunkId) => {
+/******/ 			// return url for filenames based on template
+/******/ 			return "" + chunkId + "." + __webpack_require__.h() + ".hot-update.js";
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/get update manifest filename */
+/******/ 	(() => {
+/******/ 		__webpack_require__.hmrF = () => ("main." + __webpack_require__.h() + ".hot-update.json");
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/getFullHash */
+/******/ 	(() => {
+/******/ 		__webpack_require__.h = () => ("8e9ea8b3cbe191a122d5")
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -1647,6 +1970,51 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/load script */
+/******/ 	(() => {
+/******/ 		var inProgress = {};
+/******/ 		// data-webpack is not used as build has no uniqueName
+/******/ 		// loadScript function to load a script via script tag
+/******/ 		__webpack_require__.l = (url, done, key, chunkId) => {
+/******/ 			if(inProgress[url]) { inProgress[url].push(done); return; }
+/******/ 			var script, needAttach;
+/******/ 			if(key !== undefined) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				for(var i = 0; i < scripts.length; i++) {
+/******/ 					var s = scripts[i];
+/******/ 					if(s.getAttribute("src") == url) { script = s; break; }
+/******/ 				}
+/******/ 			}
+/******/ 			if(!script) {
+/******/ 				needAttach = true;
+/******/ 				script = document.createElement('script');
+/******/ 		
+/******/ 				script.charset = 'utf-8';
+/******/ 				script.timeout = 120;
+/******/ 				if (__webpack_require__.nc) {
+/******/ 					script.setAttribute("nonce", __webpack_require__.nc);
+/******/ 				}
+/******/ 		
+/******/ 				script.src = url;
+/******/ 			}
+/******/ 			inProgress[url] = [done];
+/******/ 			var onScriptComplete = (prev, event) => {
+/******/ 				// avoid mem leaks in IE.
+/******/ 				script.onerror = script.onload = null;
+/******/ 				clearTimeout(timeout);
+/******/ 				var doneFns = inProgress[url];
+/******/ 				delete inProgress[url];
+/******/ 				script.parentNode && script.parentNode.removeChild(script);
+/******/ 				doneFns && doneFns.forEach((fn) => (fn(event)));
+/******/ 				if(prev) return prev(event);
+/******/ 			};
+/******/ 			var timeout = setTimeout(onScriptComplete.bind(null, undefined, { type: 'timeout', target: script }), 120000);
+/******/ 			script.onerror = onScriptComplete.bind(null, script.onerror);
+/******/ 			script.onload = onScriptComplete.bind(null, script.onload);
+/******/ 			needAttach && document.head.appendChild(script);
+/******/ 		};
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
@@ -1669,11 +2037,940 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/hot module replacement */
+/******/ 	(() => {
+/******/ 		var currentModuleData = {};
+/******/ 		var installedModules = __webpack_require__.c;
+/******/ 		
+/******/ 		// module and require creation
+/******/ 		var currentChildModule;
+/******/ 		var currentParents = [];
+/******/ 		
+/******/ 		// status
+/******/ 		var registeredStatusHandlers = [];
+/******/ 		var currentStatus = "idle";
+/******/ 		
+/******/ 		// while downloading
+/******/ 		var blockingPromises = 0;
+/******/ 		var blockingPromisesWaiting = [];
+/******/ 		
+/******/ 		// The update info
+/******/ 		var currentUpdateApplyHandlers;
+/******/ 		var queuedInvalidatedModules;
+/******/ 		
+/******/ 		// eslint-disable-next-line no-unused-vars
+/******/ 		__webpack_require__.hmrD = currentModuleData;
+/******/ 		
+/******/ 		__webpack_require__.i.push(function (options) {
+/******/ 			var module = options.module;
+/******/ 			var require = createRequire(options.require, options.id);
+/******/ 			module.hot = createModuleHotObject(options.id, module);
+/******/ 			module.parents = currentParents;
+/******/ 			module.children = [];
+/******/ 			currentParents = [];
+/******/ 			options.require = require;
+/******/ 		});
+/******/ 		
+/******/ 		__webpack_require__.hmrC = {};
+/******/ 		__webpack_require__.hmrI = {};
+/******/ 		
+/******/ 		function createRequire(require, moduleId) {
+/******/ 			var me = installedModules[moduleId];
+/******/ 			if (!me) return require;
+/******/ 			var fn = function (request) {
+/******/ 				if (me.hot.active) {
+/******/ 					if (installedModules[request]) {
+/******/ 						var parents = installedModules[request].parents;
+/******/ 						if (parents.indexOf(moduleId) === -1) {
+/******/ 							parents.push(moduleId);
+/******/ 						}
+/******/ 					} else {
+/******/ 						currentParents = [moduleId];
+/******/ 						currentChildModule = request;
+/******/ 					}
+/******/ 					if (me.children.indexOf(request) === -1) {
+/******/ 						me.children.push(request);
+/******/ 					}
+/******/ 				} else {
+/******/ 					console.warn(
+/******/ 						"[HMR] unexpected require(" +
+/******/ 							request +
+/******/ 							") from disposed module " +
+/******/ 							moduleId
+/******/ 					);
+/******/ 					currentParents = [];
+/******/ 				}
+/******/ 				return require(request);
+/******/ 			};
+/******/ 			var createPropertyDescriptor = function (name) {
+/******/ 				return {
+/******/ 					configurable: true,
+/******/ 					enumerable: true,
+/******/ 					get: function () {
+/******/ 						return require[name];
+/******/ 					},
+/******/ 					set: function (value) {
+/******/ 						require[name] = value;
+/******/ 					}
+/******/ 				};
+/******/ 			};
+/******/ 			for (var name in require) {
+/******/ 				if (Object.prototype.hasOwnProperty.call(require, name) && name !== "e") {
+/******/ 					Object.defineProperty(fn, name, createPropertyDescriptor(name));
+/******/ 				}
+/******/ 			}
+/******/ 			fn.e = function (chunkId) {
+/******/ 				return trackBlockingPromise(require.e(chunkId));
+/******/ 			};
+/******/ 			return fn;
+/******/ 		}
+/******/ 		
+/******/ 		function createModuleHotObject(moduleId, me) {
+/******/ 			var _main = currentChildModule !== moduleId;
+/******/ 			var hot = {
+/******/ 				// private stuff
+/******/ 				_acceptedDependencies: {},
+/******/ 				_acceptedErrorHandlers: {},
+/******/ 				_declinedDependencies: {},
+/******/ 				_selfAccepted: false,
+/******/ 				_selfDeclined: false,
+/******/ 				_selfInvalidated: false,
+/******/ 				_disposeHandlers: [],
+/******/ 				_main: _main,
+/******/ 				_requireSelf: function () {
+/******/ 					currentParents = me.parents.slice();
+/******/ 					currentChildModule = _main ? undefined : moduleId;
+/******/ 					__webpack_require__(moduleId);
+/******/ 				},
+/******/ 		
+/******/ 				// Module API
+/******/ 				active: true,
+/******/ 				accept: function (dep, callback, errorHandler) {
+/******/ 					if (dep === undefined) hot._selfAccepted = true;
+/******/ 					else if (typeof dep === "function") hot._selfAccepted = dep;
+/******/ 					else if (typeof dep === "object" && dep !== null) {
+/******/ 						for (var i = 0; i < dep.length; i++) {
+/******/ 							hot._acceptedDependencies[dep[i]] = callback || function () {};
+/******/ 							hot._acceptedErrorHandlers[dep[i]] = errorHandler;
+/******/ 						}
+/******/ 					} else {
+/******/ 						hot._acceptedDependencies[dep] = callback || function () {};
+/******/ 						hot._acceptedErrorHandlers[dep] = errorHandler;
+/******/ 					}
+/******/ 				},
+/******/ 				decline: function (dep) {
+/******/ 					if (dep === undefined) hot._selfDeclined = true;
+/******/ 					else if (typeof dep === "object" && dep !== null)
+/******/ 						for (var i = 0; i < dep.length; i++)
+/******/ 							hot._declinedDependencies[dep[i]] = true;
+/******/ 					else hot._declinedDependencies[dep] = true;
+/******/ 				},
+/******/ 				dispose: function (callback) {
+/******/ 					hot._disposeHandlers.push(callback);
+/******/ 				},
+/******/ 				addDisposeHandler: function (callback) {
+/******/ 					hot._disposeHandlers.push(callback);
+/******/ 				},
+/******/ 				removeDisposeHandler: function (callback) {
+/******/ 					var idx = hot._disposeHandlers.indexOf(callback);
+/******/ 					if (idx >= 0) hot._disposeHandlers.splice(idx, 1);
+/******/ 				},
+/******/ 				invalidate: function () {
+/******/ 					this._selfInvalidated = true;
+/******/ 					switch (currentStatus) {
+/******/ 						case "idle":
+/******/ 							currentUpdateApplyHandlers = [];
+/******/ 							Object.keys(__webpack_require__.hmrI).forEach(function (key) {
+/******/ 								__webpack_require__.hmrI[key](
+/******/ 									moduleId,
+/******/ 									currentUpdateApplyHandlers
+/******/ 								);
+/******/ 							});
+/******/ 							setStatus("ready");
+/******/ 							break;
+/******/ 						case "ready":
+/******/ 							Object.keys(__webpack_require__.hmrI).forEach(function (key) {
+/******/ 								__webpack_require__.hmrI[key](
+/******/ 									moduleId,
+/******/ 									currentUpdateApplyHandlers
+/******/ 								);
+/******/ 							});
+/******/ 							break;
+/******/ 						case "prepare":
+/******/ 						case "check":
+/******/ 						case "dispose":
+/******/ 						case "apply":
+/******/ 							(queuedInvalidatedModules = queuedInvalidatedModules || []).push(
+/******/ 								moduleId
+/******/ 							);
+/******/ 							break;
+/******/ 						default:
+/******/ 							// ignore requests in error states
+/******/ 							break;
+/******/ 					}
+/******/ 				},
+/******/ 		
+/******/ 				// Management API
+/******/ 				check: hotCheck,
+/******/ 				apply: hotApply,
+/******/ 				status: function (l) {
+/******/ 					if (!l) return currentStatus;
+/******/ 					registeredStatusHandlers.push(l);
+/******/ 				},
+/******/ 				addStatusHandler: function (l) {
+/******/ 					registeredStatusHandlers.push(l);
+/******/ 				},
+/******/ 				removeStatusHandler: function (l) {
+/******/ 					var idx = registeredStatusHandlers.indexOf(l);
+/******/ 					if (idx >= 0) registeredStatusHandlers.splice(idx, 1);
+/******/ 				},
+/******/ 		
+/******/ 				//inherit from previous dispose call
+/******/ 				data: currentModuleData[moduleId]
+/******/ 			};
+/******/ 			currentChildModule = undefined;
+/******/ 			return hot;
+/******/ 		}
+/******/ 		
+/******/ 		function setStatus(newStatus) {
+/******/ 			currentStatus = newStatus;
+/******/ 			var results = [];
+/******/ 		
+/******/ 			for (var i = 0; i < registeredStatusHandlers.length; i++)
+/******/ 				results[i] = registeredStatusHandlers[i].call(null, newStatus);
+/******/ 		
+/******/ 			return Promise.all(results);
+/******/ 		}
+/******/ 		
+/******/ 		function unblock() {
+/******/ 			if (--blockingPromises === 0) {
+/******/ 				setStatus("ready").then(function () {
+/******/ 					if (blockingPromises === 0) {
+/******/ 						var list = blockingPromisesWaiting;
+/******/ 						blockingPromisesWaiting = [];
+/******/ 						for (var i = 0; i < list.length; i++) {
+/******/ 							list[i]();
+/******/ 						}
+/******/ 					}
+/******/ 				});
+/******/ 			}
+/******/ 		}
+/******/ 		
+/******/ 		function trackBlockingPromise(promise) {
+/******/ 			switch (currentStatus) {
+/******/ 				case "ready":
+/******/ 					setStatus("prepare");
+/******/ 				/* fallthrough */
+/******/ 				case "prepare":
+/******/ 					blockingPromises++;
+/******/ 					promise.then(unblock, unblock);
+/******/ 					return promise;
+/******/ 				default:
+/******/ 					return promise;
+/******/ 			}
+/******/ 		}
+/******/ 		
+/******/ 		function waitForBlockingPromises(fn) {
+/******/ 			if (blockingPromises === 0) return fn();
+/******/ 			return new Promise(function (resolve) {
+/******/ 				blockingPromisesWaiting.push(function () {
+/******/ 					resolve(fn());
+/******/ 				});
+/******/ 			});
+/******/ 		}
+/******/ 		
+/******/ 		function hotCheck(applyOnUpdate) {
+/******/ 			if (currentStatus !== "idle") {
+/******/ 				throw new Error("check() is only allowed in idle status");
+/******/ 			}
+/******/ 			return setStatus("check")
+/******/ 				.then(__webpack_require__.hmrM)
+/******/ 				.then(function (update) {
+/******/ 					if (!update) {
+/******/ 						return setStatus(applyInvalidatedModules() ? "ready" : "idle").then(
+/******/ 							function () {
+/******/ 								return null;
+/******/ 							}
+/******/ 						);
+/******/ 					}
+/******/ 		
+/******/ 					return setStatus("prepare").then(function () {
+/******/ 						var updatedModules = [];
+/******/ 						currentUpdateApplyHandlers = [];
+/******/ 		
+/******/ 						return Promise.all(
+/******/ 							Object.keys(__webpack_require__.hmrC).reduce(function (
+/******/ 								promises,
+/******/ 								key
+/******/ 							) {
+/******/ 								__webpack_require__.hmrC[key](
+/******/ 									update.c,
+/******/ 									update.r,
+/******/ 									update.m,
+/******/ 									promises,
+/******/ 									currentUpdateApplyHandlers,
+/******/ 									updatedModules
+/******/ 								);
+/******/ 								return promises;
+/******/ 							},
+/******/ 							[])
+/******/ 						).then(function () {
+/******/ 							return waitForBlockingPromises(function () {
+/******/ 								if (applyOnUpdate) {
+/******/ 									return internalApply(applyOnUpdate);
+/******/ 								} else {
+/******/ 									return setStatus("ready").then(function () {
+/******/ 										return updatedModules;
+/******/ 									});
+/******/ 								}
+/******/ 							});
+/******/ 						});
+/******/ 					});
+/******/ 				});
+/******/ 		}
+/******/ 		
+/******/ 		function hotApply(options) {
+/******/ 			if (currentStatus !== "ready") {
+/******/ 				return Promise.resolve().then(function () {
+/******/ 					throw new Error(
+/******/ 						"apply() is only allowed in ready status (state: " +
+/******/ 							currentStatus +
+/******/ 							")"
+/******/ 					);
+/******/ 				});
+/******/ 			}
+/******/ 			return internalApply(options);
+/******/ 		}
+/******/ 		
+/******/ 		function internalApply(options) {
+/******/ 			options = options || {};
+/******/ 		
+/******/ 			applyInvalidatedModules();
+/******/ 		
+/******/ 			var results = currentUpdateApplyHandlers.map(function (handler) {
+/******/ 				return handler(options);
+/******/ 			});
+/******/ 			currentUpdateApplyHandlers = undefined;
+/******/ 		
+/******/ 			var errors = results
+/******/ 				.map(function (r) {
+/******/ 					return r.error;
+/******/ 				})
+/******/ 				.filter(Boolean);
+/******/ 		
+/******/ 			if (errors.length > 0) {
+/******/ 				return setStatus("abort").then(function () {
+/******/ 					throw errors[0];
+/******/ 				});
+/******/ 			}
+/******/ 		
+/******/ 			// Now in "dispose" phase
+/******/ 			var disposePromise = setStatus("dispose");
+/******/ 		
+/******/ 			results.forEach(function (result) {
+/******/ 				if (result.dispose) result.dispose();
+/******/ 			});
+/******/ 		
+/******/ 			// Now in "apply" phase
+/******/ 			var applyPromise = setStatus("apply");
+/******/ 		
+/******/ 			var error;
+/******/ 			var reportError = function (err) {
+/******/ 				if (!error) error = err;
+/******/ 			};
+/******/ 		
+/******/ 			var outdatedModules = [];
+/******/ 			results.forEach(function (result) {
+/******/ 				if (result.apply) {
+/******/ 					var modules = result.apply(reportError);
+/******/ 					if (modules) {
+/******/ 						for (var i = 0; i < modules.length; i++) {
+/******/ 							outdatedModules.push(modules[i]);
+/******/ 						}
+/******/ 					}
+/******/ 				}
+/******/ 			});
+/******/ 		
+/******/ 			return Promise.all([disposePromise, applyPromise]).then(function () {
+/******/ 				// handle errors in accept handlers and self accepted module load
+/******/ 				if (error) {
+/******/ 					return setStatus("fail").then(function () {
+/******/ 						throw error;
+/******/ 					});
+/******/ 				}
+/******/ 		
+/******/ 				if (queuedInvalidatedModules) {
+/******/ 					return internalApply(options).then(function (list) {
+/******/ 						outdatedModules.forEach(function (moduleId) {
+/******/ 							if (list.indexOf(moduleId) < 0) list.push(moduleId);
+/******/ 						});
+/******/ 						return list;
+/******/ 					});
+/******/ 				}
+/******/ 		
+/******/ 				return setStatus("idle").then(function () {
+/******/ 					return outdatedModules;
+/******/ 				});
+/******/ 			});
+/******/ 		}
+/******/ 		
+/******/ 		function applyInvalidatedModules() {
+/******/ 			if (queuedInvalidatedModules) {
+/******/ 				if (!currentUpdateApplyHandlers) currentUpdateApplyHandlers = [];
+/******/ 				Object.keys(__webpack_require__.hmrI).forEach(function (key) {
+/******/ 					queuedInvalidatedModules.forEach(function (moduleId) {
+/******/ 						__webpack_require__.hmrI[key](
+/******/ 							moduleId,
+/******/ 							currentUpdateApplyHandlers
+/******/ 						);
+/******/ 					});
+/******/ 				});
+/******/ 				queuedInvalidatedModules = undefined;
+/******/ 				return true;
+/******/ 			}
+/******/ 		}
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = __webpack_require__.hmrS_jsonp = __webpack_require__.hmrS_jsonp || {
+/******/ 			"main": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		var currentUpdatedModulesList;
+/******/ 		var waitingUpdateResolves = {};
+/******/ 		function loadUpdateChunk(chunkId, updatedModulesList) {
+/******/ 			currentUpdatedModulesList = updatedModulesList;
+/******/ 			return new Promise((resolve, reject) => {
+/******/ 				waitingUpdateResolves[chunkId] = resolve;
+/******/ 				// start update chunk loading
+/******/ 				var url = __webpack_require__.p + __webpack_require__.hu(chunkId);
+/******/ 				// create error before stack unwound to get useful stacktrace later
+/******/ 				var error = new Error();
+/******/ 				var loadingEnded = (event) => {
+/******/ 					if(waitingUpdateResolves[chunkId]) {
+/******/ 						waitingUpdateResolves[chunkId] = undefined
+/******/ 						var errorType = event && (event.type === 'load' ? 'missing' : event.type);
+/******/ 						var realSrc = event && event.target && event.target.src;
+/******/ 						error.message = 'Loading hot update chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')';
+/******/ 						error.name = 'ChunkLoadError';
+/******/ 						error.type = errorType;
+/******/ 						error.request = realSrc;
+/******/ 						reject(error);
+/******/ 					}
+/******/ 				};
+/******/ 				__webpack_require__.l(url, loadingEnded);
+/******/ 			});
+/******/ 		}
+/******/ 		
+/******/ 		self["webpackHotUpdate"] = (chunkId, moreModules, runtime) => {
+/******/ 			for(var moduleId in moreModules) {
+/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 					currentUpdate[moduleId] = moreModules[moduleId];
+/******/ 					if(currentUpdatedModulesList) currentUpdatedModulesList.push(moduleId);
+/******/ 				}
+/******/ 			}
+/******/ 			if(runtime) currentUpdateRuntime.push(runtime);
+/******/ 			if(waitingUpdateResolves[chunkId]) {
+/******/ 				waitingUpdateResolves[chunkId]();
+/******/ 				waitingUpdateResolves[chunkId] = undefined;
+/******/ 			}
+/******/ 		};
+/******/ 		
+/******/ 		var currentUpdateChunks;
+/******/ 		var currentUpdate;
+/******/ 		var currentUpdateRemovedChunks;
+/******/ 		var currentUpdateRuntime;
+/******/ 		function applyHandler(options) {
+/******/ 			if (__webpack_require__.f) delete __webpack_require__.f.jsonpHmr;
+/******/ 			currentUpdateChunks = undefined;
+/******/ 			function getAffectedModuleEffects(updateModuleId) {
+/******/ 				var outdatedModules = [updateModuleId];
+/******/ 				var outdatedDependencies = {};
+/******/ 		
+/******/ 				var queue = outdatedModules.map(function (id) {
+/******/ 					return {
+/******/ 						chain: [id],
+/******/ 						id: id
+/******/ 					};
+/******/ 				});
+/******/ 				while (queue.length > 0) {
+/******/ 					var queueItem = queue.pop();
+/******/ 					var moduleId = queueItem.id;
+/******/ 					var chain = queueItem.chain;
+/******/ 					var module = __webpack_require__.c[moduleId];
+/******/ 					if (
+/******/ 						!module ||
+/******/ 						(module.hot._selfAccepted && !module.hot._selfInvalidated)
+/******/ 					)
+/******/ 						continue;
+/******/ 					if (module.hot._selfDeclined) {
+/******/ 						return {
+/******/ 							type: "self-declined",
+/******/ 							chain: chain,
+/******/ 							moduleId: moduleId
+/******/ 						};
+/******/ 					}
+/******/ 					if (module.hot._main) {
+/******/ 						return {
+/******/ 							type: "unaccepted",
+/******/ 							chain: chain,
+/******/ 							moduleId: moduleId
+/******/ 						};
+/******/ 					}
+/******/ 					for (var i = 0; i < module.parents.length; i++) {
+/******/ 						var parentId = module.parents[i];
+/******/ 						var parent = __webpack_require__.c[parentId];
+/******/ 						if (!parent) continue;
+/******/ 						if (parent.hot._declinedDependencies[moduleId]) {
+/******/ 							return {
+/******/ 								type: "declined",
+/******/ 								chain: chain.concat([parentId]),
+/******/ 								moduleId: moduleId,
+/******/ 								parentId: parentId
+/******/ 							};
+/******/ 						}
+/******/ 						if (outdatedModules.indexOf(parentId) !== -1) continue;
+/******/ 						if (parent.hot._acceptedDependencies[moduleId]) {
+/******/ 							if (!outdatedDependencies[parentId])
+/******/ 								outdatedDependencies[parentId] = [];
+/******/ 							addAllToSet(outdatedDependencies[parentId], [moduleId]);
+/******/ 							continue;
+/******/ 						}
+/******/ 						delete outdatedDependencies[parentId];
+/******/ 						outdatedModules.push(parentId);
+/******/ 						queue.push({
+/******/ 							chain: chain.concat([parentId]),
+/******/ 							id: parentId
+/******/ 						});
+/******/ 					}
+/******/ 				}
+/******/ 		
+/******/ 				return {
+/******/ 					type: "accepted",
+/******/ 					moduleId: updateModuleId,
+/******/ 					outdatedModules: outdatedModules,
+/******/ 					outdatedDependencies: outdatedDependencies
+/******/ 				};
+/******/ 			}
+/******/ 		
+/******/ 			function addAllToSet(a, b) {
+/******/ 				for (var i = 0; i < b.length; i++) {
+/******/ 					var item = b[i];
+/******/ 					if (a.indexOf(item) === -1) a.push(item);
+/******/ 				}
+/******/ 			}
+/******/ 		
+/******/ 			// at begin all updates modules are outdated
+/******/ 			// the "outdated" status can propagate to parents if they don't accept the children
+/******/ 			var outdatedDependencies = {};
+/******/ 			var outdatedModules = [];
+/******/ 			var appliedUpdate = {};
+/******/ 		
+/******/ 			var warnUnexpectedRequire = function warnUnexpectedRequire(module) {
+/******/ 				console.warn(
+/******/ 					"[HMR] unexpected require(" + module.id + ") to disposed module"
+/******/ 				);
+/******/ 			};
+/******/ 		
+/******/ 			for (var moduleId in currentUpdate) {
+/******/ 				if (__webpack_require__.o(currentUpdate, moduleId)) {
+/******/ 					var newModuleFactory = currentUpdate[moduleId];
+/******/ 					/** @type {TODO} */
+/******/ 					var result;
+/******/ 					if (newModuleFactory) {
+/******/ 						result = getAffectedModuleEffects(moduleId);
+/******/ 					} else {
+/******/ 						result = {
+/******/ 							type: "disposed",
+/******/ 							moduleId: moduleId
+/******/ 						};
+/******/ 					}
+/******/ 					/** @type {Error|false} */
+/******/ 					var abortError = false;
+/******/ 					var doApply = false;
+/******/ 					var doDispose = false;
+/******/ 					var chainInfo = "";
+/******/ 					if (result.chain) {
+/******/ 						chainInfo = "\nUpdate propagation: " + result.chain.join(" -> ");
+/******/ 					}
+/******/ 					switch (result.type) {
+/******/ 						case "self-declined":
+/******/ 							if (options.onDeclined) options.onDeclined(result);
+/******/ 							if (!options.ignoreDeclined)
+/******/ 								abortError = new Error(
+/******/ 									"Aborted because of self decline: " +
+/******/ 										result.moduleId +
+/******/ 										chainInfo
+/******/ 								);
+/******/ 							break;
+/******/ 						case "declined":
+/******/ 							if (options.onDeclined) options.onDeclined(result);
+/******/ 							if (!options.ignoreDeclined)
+/******/ 								abortError = new Error(
+/******/ 									"Aborted because of declined dependency: " +
+/******/ 										result.moduleId +
+/******/ 										" in " +
+/******/ 										result.parentId +
+/******/ 										chainInfo
+/******/ 								);
+/******/ 							break;
+/******/ 						case "unaccepted":
+/******/ 							if (options.onUnaccepted) options.onUnaccepted(result);
+/******/ 							if (!options.ignoreUnaccepted)
+/******/ 								abortError = new Error(
+/******/ 									"Aborted because " + moduleId + " is not accepted" + chainInfo
+/******/ 								);
+/******/ 							break;
+/******/ 						case "accepted":
+/******/ 							if (options.onAccepted) options.onAccepted(result);
+/******/ 							doApply = true;
+/******/ 							break;
+/******/ 						case "disposed":
+/******/ 							if (options.onDisposed) options.onDisposed(result);
+/******/ 							doDispose = true;
+/******/ 							break;
+/******/ 						default:
+/******/ 							throw new Error("Unexception type " + result.type);
+/******/ 					}
+/******/ 					if (abortError) {
+/******/ 						return {
+/******/ 							error: abortError
+/******/ 						};
+/******/ 					}
+/******/ 					if (doApply) {
+/******/ 						appliedUpdate[moduleId] = newModuleFactory;
+/******/ 						addAllToSet(outdatedModules, result.outdatedModules);
+/******/ 						for (moduleId in result.outdatedDependencies) {
+/******/ 							if (__webpack_require__.o(result.outdatedDependencies, moduleId)) {
+/******/ 								if (!outdatedDependencies[moduleId])
+/******/ 									outdatedDependencies[moduleId] = [];
+/******/ 								addAllToSet(
+/******/ 									outdatedDependencies[moduleId],
+/******/ 									result.outdatedDependencies[moduleId]
+/******/ 								);
+/******/ 							}
+/******/ 						}
+/******/ 					}
+/******/ 					if (doDispose) {
+/******/ 						addAllToSet(outdatedModules, [result.moduleId]);
+/******/ 						appliedUpdate[moduleId] = warnUnexpectedRequire;
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 			currentUpdate = undefined;
+/******/ 		
+/******/ 			// Store self accepted outdated modules to require them later by the module system
+/******/ 			var outdatedSelfAcceptedModules = [];
+/******/ 			for (var j = 0; j < outdatedModules.length; j++) {
+/******/ 				var outdatedModuleId = outdatedModules[j];
+/******/ 				var module = __webpack_require__.c[outdatedModuleId];
+/******/ 				if (
+/******/ 					module &&
+/******/ 					(module.hot._selfAccepted || module.hot._main) &&
+/******/ 					// removed self-accepted modules should not be required
+/******/ 					appliedUpdate[outdatedModuleId] !== warnUnexpectedRequire &&
+/******/ 					// when called invalidate self-accepting is not possible
+/******/ 					!module.hot._selfInvalidated
+/******/ 				) {
+/******/ 					outdatedSelfAcceptedModules.push({
+/******/ 						module: outdatedModuleId,
+/******/ 						require: module.hot._requireSelf,
+/******/ 						errorHandler: module.hot._selfAccepted
+/******/ 					});
+/******/ 				}
+/******/ 			}
+/******/ 		
+/******/ 			var moduleOutdatedDependencies;
+/******/ 		
+/******/ 			return {
+/******/ 				dispose: function () {
+/******/ 					currentUpdateRemovedChunks.forEach(function (chunkId) {
+/******/ 						delete installedChunks[chunkId];
+/******/ 					});
+/******/ 					currentUpdateRemovedChunks = undefined;
+/******/ 		
+/******/ 					var idx;
+/******/ 					var queue = outdatedModules.slice();
+/******/ 					while (queue.length > 0) {
+/******/ 						var moduleId = queue.pop();
+/******/ 						var module = __webpack_require__.c[moduleId];
+/******/ 						if (!module) continue;
+/******/ 		
+/******/ 						var data = {};
+/******/ 		
+/******/ 						// Call dispose handlers
+/******/ 						var disposeHandlers = module.hot._disposeHandlers;
+/******/ 						for (j = 0; j < disposeHandlers.length; j++) {
+/******/ 							disposeHandlers[j].call(null, data);
+/******/ 						}
+/******/ 						__webpack_require__.hmrD[moduleId] = data;
+/******/ 		
+/******/ 						// disable module (this disables requires from this module)
+/******/ 						module.hot.active = false;
+/******/ 		
+/******/ 						// remove module from cache
+/******/ 						delete __webpack_require__.c[moduleId];
+/******/ 		
+/******/ 						// when disposing there is no need to call dispose handler
+/******/ 						delete outdatedDependencies[moduleId];
+/******/ 		
+/******/ 						// remove "parents" references from all children
+/******/ 						for (j = 0; j < module.children.length; j++) {
+/******/ 							var child = __webpack_require__.c[module.children[j]];
+/******/ 							if (!child) continue;
+/******/ 							idx = child.parents.indexOf(moduleId);
+/******/ 							if (idx >= 0) {
+/******/ 								child.parents.splice(idx, 1);
+/******/ 							}
+/******/ 						}
+/******/ 					}
+/******/ 		
+/******/ 					// remove outdated dependency from module children
+/******/ 					var dependency;
+/******/ 					for (var outdatedModuleId in outdatedDependencies) {
+/******/ 						if (__webpack_require__.o(outdatedDependencies, outdatedModuleId)) {
+/******/ 							module = __webpack_require__.c[outdatedModuleId];
+/******/ 							if (module) {
+/******/ 								moduleOutdatedDependencies =
+/******/ 									outdatedDependencies[outdatedModuleId];
+/******/ 								for (j = 0; j < moduleOutdatedDependencies.length; j++) {
+/******/ 									dependency = moduleOutdatedDependencies[j];
+/******/ 									idx = module.children.indexOf(dependency);
+/******/ 									if (idx >= 0) module.children.splice(idx, 1);
+/******/ 								}
+/******/ 							}
+/******/ 						}
+/******/ 					}
+/******/ 				},
+/******/ 				apply: function (reportError) {
+/******/ 					// insert new code
+/******/ 					for (var updateModuleId in appliedUpdate) {
+/******/ 						if (__webpack_require__.o(appliedUpdate, updateModuleId)) {
+/******/ 							__webpack_require__.m[updateModuleId] = appliedUpdate[updateModuleId];
+/******/ 						}
+/******/ 					}
+/******/ 		
+/******/ 					// run new runtime modules
+/******/ 					for (var i = 0; i < currentUpdateRuntime.length; i++) {
+/******/ 						currentUpdateRuntime[i](__webpack_require__);
+/******/ 					}
+/******/ 		
+/******/ 					// call accept handlers
+/******/ 					for (var outdatedModuleId in outdatedDependencies) {
+/******/ 						if (__webpack_require__.o(outdatedDependencies, outdatedModuleId)) {
+/******/ 							var module = __webpack_require__.c[outdatedModuleId];
+/******/ 							if (module) {
+/******/ 								moduleOutdatedDependencies =
+/******/ 									outdatedDependencies[outdatedModuleId];
+/******/ 								var callbacks = [];
+/******/ 								var errorHandlers = [];
+/******/ 								var dependenciesForCallbacks = [];
+/******/ 								for (var j = 0; j < moduleOutdatedDependencies.length; j++) {
+/******/ 									var dependency = moduleOutdatedDependencies[j];
+/******/ 									var acceptCallback =
+/******/ 										module.hot._acceptedDependencies[dependency];
+/******/ 									var errorHandler =
+/******/ 										module.hot._acceptedErrorHandlers[dependency];
+/******/ 									if (acceptCallback) {
+/******/ 										if (callbacks.indexOf(acceptCallback) !== -1) continue;
+/******/ 										callbacks.push(acceptCallback);
+/******/ 										errorHandlers.push(errorHandler);
+/******/ 										dependenciesForCallbacks.push(dependency);
+/******/ 									}
+/******/ 								}
+/******/ 								for (var k = 0; k < callbacks.length; k++) {
+/******/ 									try {
+/******/ 										callbacks[k].call(null, moduleOutdatedDependencies);
+/******/ 									} catch (err) {
+/******/ 										if (typeof errorHandlers[k] === "function") {
+/******/ 											try {
+/******/ 												errorHandlers[k](err, {
+/******/ 													moduleId: outdatedModuleId,
+/******/ 													dependencyId: dependenciesForCallbacks[k]
+/******/ 												});
+/******/ 											} catch (err2) {
+/******/ 												if (options.onErrored) {
+/******/ 													options.onErrored({
+/******/ 														type: "accept-error-handler-errored",
+/******/ 														moduleId: outdatedModuleId,
+/******/ 														dependencyId: dependenciesForCallbacks[k],
+/******/ 														error: err2,
+/******/ 														originalError: err
+/******/ 													});
+/******/ 												}
+/******/ 												if (!options.ignoreErrored) {
+/******/ 													reportError(err2);
+/******/ 													reportError(err);
+/******/ 												}
+/******/ 											}
+/******/ 										} else {
+/******/ 											if (options.onErrored) {
+/******/ 												options.onErrored({
+/******/ 													type: "accept-errored",
+/******/ 													moduleId: outdatedModuleId,
+/******/ 													dependencyId: dependenciesForCallbacks[k],
+/******/ 													error: err
+/******/ 												});
+/******/ 											}
+/******/ 											if (!options.ignoreErrored) {
+/******/ 												reportError(err);
+/******/ 											}
+/******/ 										}
+/******/ 									}
+/******/ 								}
+/******/ 							}
+/******/ 						}
+/******/ 					}
+/******/ 		
+/******/ 					// Load self accepted modules
+/******/ 					for (var o = 0; o < outdatedSelfAcceptedModules.length; o++) {
+/******/ 						var item = outdatedSelfAcceptedModules[o];
+/******/ 						var moduleId = item.module;
+/******/ 						try {
+/******/ 							item.require(moduleId);
+/******/ 						} catch (err) {
+/******/ 							if (typeof item.errorHandler === "function") {
+/******/ 								try {
+/******/ 									item.errorHandler(err, {
+/******/ 										moduleId: moduleId,
+/******/ 										module: __webpack_require__.c[moduleId]
+/******/ 									});
+/******/ 								} catch (err2) {
+/******/ 									if (options.onErrored) {
+/******/ 										options.onErrored({
+/******/ 											type: "self-accept-error-handler-errored",
+/******/ 											moduleId: moduleId,
+/******/ 											error: err2,
+/******/ 											originalError: err
+/******/ 										});
+/******/ 									}
+/******/ 									if (!options.ignoreErrored) {
+/******/ 										reportError(err2);
+/******/ 										reportError(err);
+/******/ 									}
+/******/ 								}
+/******/ 							} else {
+/******/ 								if (options.onErrored) {
+/******/ 									options.onErrored({
+/******/ 										type: "self-accept-errored",
+/******/ 										moduleId: moduleId,
+/******/ 										error: err
+/******/ 									});
+/******/ 								}
+/******/ 								if (!options.ignoreErrored) {
+/******/ 									reportError(err);
+/******/ 								}
+/******/ 							}
+/******/ 						}
+/******/ 					}
+/******/ 		
+/******/ 					return outdatedModules;
+/******/ 				}
+/******/ 			};
+/******/ 		}
+/******/ 		__webpack_require__.hmrI.jsonp = function (moduleId, applyHandlers) {
+/******/ 			if (!currentUpdate) {
+/******/ 				currentUpdate = {};
+/******/ 				currentUpdateRuntime = [];
+/******/ 				currentUpdateRemovedChunks = [];
+/******/ 				applyHandlers.push(applyHandler);
+/******/ 			}
+/******/ 			if (!__webpack_require__.o(currentUpdate, moduleId)) {
+/******/ 				currentUpdate[moduleId] = __webpack_require__.m[moduleId];
+/******/ 			}
+/******/ 		};
+/******/ 		__webpack_require__.hmrC.jsonp = function (
+/******/ 			chunkIds,
+/******/ 			removedChunks,
+/******/ 			removedModules,
+/******/ 			promises,
+/******/ 			applyHandlers,
+/******/ 			updatedModulesList
+/******/ 		) {
+/******/ 			applyHandlers.push(applyHandler);
+/******/ 			currentUpdateChunks = {};
+/******/ 			currentUpdateRemovedChunks = removedChunks;
+/******/ 			currentUpdate = removedModules.reduce(function (obj, key) {
+/******/ 				obj[key] = false;
+/******/ 				return obj;
+/******/ 			}, {});
+/******/ 			currentUpdateRuntime = [];
+/******/ 			chunkIds.forEach(function (chunkId) {
+/******/ 				if (
+/******/ 					__webpack_require__.o(installedChunks, chunkId) &&
+/******/ 					installedChunks[chunkId] !== undefined
+/******/ 				) {
+/******/ 					promises.push(loadUpdateChunk(chunkId, updatedModulesList));
+/******/ 					currentUpdateChunks[chunkId] = true;
+/******/ 				} else {
+/******/ 					currentUpdateChunks[chunkId] = false;
+/******/ 				}
+/******/ 			});
+/******/ 			if (__webpack_require__.f) {
+/******/ 				__webpack_require__.f.jsonpHmr = function (chunkId, promises) {
+/******/ 					if (
+/******/ 						currentUpdateChunks &&
+/******/ 						__webpack_require__.o(currentUpdateChunks, chunkId) &&
+/******/ 						!currentUpdateChunks[chunkId]
+/******/ 					) {
+/******/ 						promises.push(loadUpdateChunk(chunkId));
+/******/ 						currentUpdateChunks[chunkId] = true;
+/******/ 					}
+/******/ 				};
+/******/ 			}
+/******/ 		};
+/******/ 		
+/******/ 		__webpack_require__.hmrM = () => {
+/******/ 			if (typeof fetch === "undefined") throw new Error("No browser support: need fetch API");
+/******/ 			return fetch(__webpack_require__.p + __webpack_require__.hmrF()).then((response) => {
+/******/ 				if(response.status === 404) return; // no update available
+/******/ 				if(!response.ok) throw new Error("Failed to fetch update manifest " + response.statusText);
+/******/ 				return response.json();
+/******/ 			});
+/******/ 		};
+/******/ 		
+/******/ 		// no on chunks loaded
+/******/ 		
+/******/ 		// no jsonp function
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 /******/ 	
+/******/ 	// module cache are used so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./index.js");
 /******/ 	
 /******/ })()

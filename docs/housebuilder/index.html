@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>pixi-webpack-demo</title>
+  <title>GE Housebuilder</title>
   <style>
     html,
     body {
@@ -21,11 +21,75 @@
       overflow: hidden;
       position: absolute;
     }
+
+    hex-input {
+      position: absolute;
+      bottom: 253px;
+      right: 50px;
+    }
+
+    hex-input::before {
+      content: '#';
+      margin: 0px 5px;
+      font-weight: 600;
+      color: #CE5A59;
+      font-weight: bold;
+      font-size: 20px;
+      top: 3px;
+      position: relative;
+    }
+
+    hex-input::part(input) {
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px dashed #CE5A59;
+      color: #434C05;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      width: 80px;
+      letter-spacing: 1px;
+    }
+
+    hex-color-picker {
+      position: absolute;
+      bottom: 50px;
+      right: 50px;
+    }
+
+    #fileUpload {
+      /* position: absolute; */
+      right: 50px;
+    }
+
+    #tiletexture {
+      position: absolute;
+      right: 50px;
+      bottom: 285px;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px dashed #CE5A59;
+      color: #434C05;
+      font-family: 'Lato', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
   </style>
 <script defer src="main.js"></script></head>
 
 <body>
   <canvas id="scene"></canvas>
+  <div>
+    <input type="file" id="fileUpload">
+  </div>
+  <div id="colortool" style="visibility: hidden">
+    <select id="tiletexture">
+      <option value="1">Blank</option>
+      <option value="2">Lines A</option>
+      <option value="3">Lines B</option>
+    </select>
+    <hex-input color="#ffffff"></hex-input>
+    <hex-color-picker color="#ffffff"></hex-color-picker>
+  </div>
 </body>
 
 </html>
