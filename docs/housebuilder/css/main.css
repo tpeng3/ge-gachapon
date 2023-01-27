@@ -1,0 +1,88 @@
+#modal, #errormodal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  top: 0;
+}
+
+.modalbackground {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modalpopup {
+  position: relative;
+  text-align: center;
+  margin: auto;
+  background: rgba(253, 248, 226, 0.8);
+  padding: 10px 60px 30px;
+  border-radius: 20px;
+  max-width: 300px;
+  font-weight: bold;
+  font-size: 22px;
+  color: #D16863;
+  font-family: 'Amatic SC', cursive;
+  line-height: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.buttons {
+  display: flex;
+}
+
+.buttons > button:hover {
+  transform: scale(1.1, 1.1);
+  filter: brightness(.9);
+  letter-spacing: 1.5px;
+}
+
+button {
+  text-align: center;
+  border: none;
+  outline: none;
+  background-color: #D16864;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: auto;
+  color: #FBF7E3;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: 'Amatic SC', cursive;
+  font-size: 20px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+#roomswitch {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px;
+  background: #FBF7E3;
+  border-radius: 10px;
+  color: #424A12;
+  box-shadow: 0px 2px 5px #87881e;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1.25px;
+  min-width: 140px;
+  margin: 12px;
+  font-family: 'Amatic SC', cursive;
+  font-size: 21px;
+  font-weight: bold;
+  transition: 0.5s;
+}
+
+#roomswitch:hover:enabled {
+  color: #F0AC97;
+  transform: scale(1.05, 1.05);
+}
+
+#roomswitch:disabled {
+  background: rgba(253, 248, 226, 0.5);
+  cursor: default;
+}
