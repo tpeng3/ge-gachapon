@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>GE Housebuilder</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic SC' rel='stylesheet'>
+  <link href="/css/main.css" rel="stylesheet">
   <style>
     html,
     body {
@@ -56,41 +58,84 @@
       right: 50px;
     }
 
-    #fileUpload {
-      /* position: absolute; */
-      right: 50px;
-    }
-
     #tiletexture {
       position: absolute;
       right: 50px;
       bottom: 285px;
-      padding: 5px;
+    }
+
+    #profiledropdown {
+      position: absolute;
+      right: 100px;
+      top: 80px;
+    }
+
+    #tiletexture select,
+    #profiledropdown select {
       border-radius: 5px;
       border: 1px dashed #CE5A59;
       color: #434C05;
       font-family: 'Lato', sans-serif;
       text-transform: uppercase;
       letter-spacing: 1px;
+      padding: 5px;
+    }
+
+    #tiletexture span,
+    #profiledropdown span {
+      margin: 0px 5px;
+      position: relative;
+      color: #CE5A59;
+      font-weight: bold;
+      font-size: 20px;
+      top: 3px;
+      font-family: 'Amatic SC';
+      text-transform: uppercase;
     }
   </style>
-  <script defer src="main.js"></script>
-  <link href='https://fonts.googleapis.com/css?family=Amatic SC' rel='stylesheet'>
-</head>
+<script defer src="main.js"></script></head>
 
 <body>
   <canvas id="scene"></canvas>
-  <div>
-    <input type="file" id="fileUpload">
-  </div>
-  <div id="colortool" style="visibility: hidden">
-    <select id="tiletexture">
-      <option value="1">Blank</option>
-      <option value="2">Lines A</option>
-      <option value="3">Lines B</option>
-    </select>
+  <input type="file" id="fileupload" accept="image/png" multiple style="display: none;">
+  <div id="colortool" style="display: none">
+    <div id="tiletexture">
+      <span>Texture</span>
+      <select>
+        <option value="1">Blank</option>
+        <option value="2">Lines A</option>
+        <option value="3">Lines B</option>
+      </select>
+    </div>
     <hex-input color="#ffffff"></hex-input>
     <hex-color-picker color="#ffffff"></hex-color-picker>
+  </div>
+  <div id="profiledropdown" style="display: none">
+    <span>Profile</span>
+    <select>
+    </select>
+  </div>
+  <button id="roomswitch" style="display: none"></button>
+  <div id="modal" style="display: none;">
+    <div class="modalbackground"></div>
+    <div class="modalpopup">
+      <h3 class="modalinfo">Are you sure?</h3>
+      <div class="buttons">
+        <button class="confirmButton">Confirm</button>
+        <button class="cancelButton"
+          onclick="this.parentElement.parentElement.parentElement.style.display = 'none'">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div id="errormodal" style="display: none;">
+    <div class="modalbackground"></div>
+    <div class="modalpopup">
+      <h3 class="modalinfo">Error</h3>
+      <div class="buttons">
+        <button class="cancelButton"
+          onclick="this.parentElement.parentElement.parentElement.style.display = 'none'">Close</button>
+      </div>
+    </div>
   </div>
 </body>
 
