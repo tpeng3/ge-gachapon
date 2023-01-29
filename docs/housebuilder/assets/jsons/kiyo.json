@@ -1,0 +1,5964 @@
+{
+  "customSprites": [
+    {
+      "name": "PIXI_0ldeybat7||f_powderpartition-recolor.png",
+      "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAADXTAAA10wEMIUN3AAAAG3RFWHRTb2Z0d2FyZQBDZWxzeXMgU3R1ZGlvIFRvb2zBp+F8AAACt0lEQVRo3u2YoW/qUBTGv9r9ATUTQ+wvWDZTBAZPUAgcyXB15IWkeYosWQgON5LnKp5aZsnMBBgIAssECEz/AGyf+prTw2UTe+0tW48Z6y7r+Z3vO+e214njGN8hnBKkBClBSpBco+15MQBsowiz93fn7EDanhczefn5rEDanheH87ljgjoLEFPChbcWE2SSDA2xjSJUXDc/EN5Uh745AcL53KGFTimxjSJM/D4e/v7JH0TfrHp9HRNIQshe0N/l791qHXc3t8UA0UAV1/0QhJ/D0Rhvzy8AgOlmnT9IxXUhq/4RjKkHtBqL1dIOCENW3gRrAuHPbrWefMeatWiJp9nrEYxWTYYECUdjHHZ7XFxd4rDb2wNJrvX8o56QIFSQAAzaimEd5O35BdPN2gjCte2en/o/VJT9YdVahACQWExvfjJhJsprtWYjBWOl2XUytWYjqbpUQq5hot1qHbVmAwBw2O2LpYisrqw815iuE6RQPUIYOX3kGgAIhgMjYCFAJAQrLEFM41VajopY6xH6nAlJmzBhrjFdl0pY7RETCD9LC5l6QANSjVzfR0xTS/pdWoSPIHpq6T1Ejm9risjQikz8fpKonlompayA6Kl1d3N71NRUhH+TgBdXlymV5P5jDeSUtajIdLNG0OqkKp+M5FYHAHA/frQDUnFdPPz6nYxXjmHTxkclmKi03NPsFRO/bw8kHI0RDAcIWh0sVkvjmOV7eNDqpBJljyxWy1STWwGhz4PhIGURU/MCSB0u6PcUqz0iN7X78WNqjQbQQ8B06pL7AZ1UhNZgwloR9ght9NkjiDUQKiE9L5udcFz3FetkfvigIWTl9QHeVyqe6dRq9/xUD+hnplNHo4UC6VbryR4g+yJrC2V2QJd35TPrkf89Rq2A5Jlo7ofYJUgJ8tNBiholSAmSUfwDMvoF6DvmrTIAAAAASUVORK5CYII="
+    },
+    {
+      "name": "PIXI_0ldeyej5n||canopybed.PNG",
+      "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADUAAABGCAYAAABsUNwfAAABYWlDQ1BrQ0dDb2xvclNwYWNlRGlzcGxheVAzAAAokWNgYFJJLCjIYWFgYMjNKykKcndSiIiMUmB/yMAOhLwMYgwKicnFBY4BAT5AJQwwGhV8u8bACKIv64LMOiU1tUm1XsDXYqbw1YuvRJsw1aMArpTU4mQg/QeIU5MLikoYGBhTgGzl8pICELsDyBYpAjoKyJ4DYqdD2BtA7CQI+whYTUiQM5B9A8hWSM5IBJrB+API1klCEk9HYkPtBQFul8zigpzESoUAYwKuJQOUpFaUgGjn/ILKosz0jBIFR2AopSp45iXr6SgYGRiaMzCAwhyi+nMgOCwZxc4gxJrvMzDY7v////9uhJjXfgaGjUCdXDsRYhoWDAyC3AwMJ3YWJBYlgoWYgZgpLY2B4dNyBgbeSAYG4QtAPdHFacZGYHlGHicGBtZ7//9/VmNgYJ/MwPB3wv//vxf9//93MVDzHQaGA3kAFSFl7jXH0fsAAAB4ZVhJZk1NACoAAAAIAAUBBgADAAAAAQACAAABGgAFAAAAAQAAAEoBGwAFAAAAAQAAAFIBKAADAAAAAQACAACHaQAEAAAAAQAAAFoAAAAAAAABLAAAAAEAAAEsAAAAAQACoAIABAAAAAEAAAA1oAMABAAAAAEAAABGAAAAAC4/7ToAAAAJcEhZcwAALiMAAC4jAXilP3YAAAIPaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJYTVAgQ29yZSA2LjAuMCI+CiAgIDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+CiAgICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiCiAgICAgICAgICAgIHhtbG5zOnRpZmY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vdGlmZi8xLjAvIj4KICAgICAgICAgPHRpZmY6WVJlc29sdXRpb24+MzAwPC90aWZmOllSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpYUmVzb2x1dGlvbj4zMDA8L3RpZmY6WFJlc29sdXRpb24+CiAgICAgICAgIDx0aWZmOlBob3RvbWV0cmljSW50ZXJwcmV0YXRpb24+MjwvdGlmZjpQaG90b21ldHJpY0ludGVycHJldGF0aW9uPgogICAgICAgICA8dGlmZjpSZXNvbHV0aW9uVW5pdD4yPC90aWZmOlJlc29sdXRpb25Vbml0PgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KlOis2wAACF5JREFUaAXtmt+LVkUYx89abgTSKrmmq+KP0ty8sB8GqRGBdREEakV0owhF0EXddFHdFHUTXXTVPxB2E1GYUHgRikRqof3wwiyTVNTVXGtVhNRF397PvPs9Pu+cmXnP2T2vEOzAOTPzzDPPmc95Zp458+5m2WSafAOTb6DON9BTp7GUrQsnjjRse9/8e7r27K4ZtgA+kNq6BdZVqBiMoJTXDdcVqBDMgb17HcOKVavEUsjrgqsdygfyYfx6gawpmChcbVA+DINNAdDWLa9NGKoqjPVMCHro+LFsYMHCXG08Xhs31ERg8hGPFUJw0gGSNPjoE6XHWlrRWR67+UCpQdl+qTKDHx467VSYloJBgOd4xmPPbyw13lJKGowPg7wOINlP2bPQneBKQd0MGAaNR5TrZfUPzLHMriyPxuCSUDcDpjDiMYGmnwCqwEWhYkCpMBwaoN58mTzUXzLgQmD7vtnuVDa9+2HOcqs6Kf/2s0/aPjwl13RQvWyu8JzK5RXZ1DSkHvOUYNTH5lNsJVWWh8rCaaCpnDa122cjA0besR4CJgWEnYKnEGJEgxcMcpVDbbTblPKM9OQRPxeM9Mg7gVjdqKcAE5wg1BE4LuRq0xsvk/s6soutqkBzB1dkfTNnyYTL88Ul6ZZ3Xm88/ORTqrqcB5HkKVcxNwYTazNqebgGSt6hXfbtNEPeyTvATOufk10aPp2te/WNnKUw/RpTe3NjgtPD5BUfQF5jINKlrIH7OW2AjRdm4fL7sz9/+xUzwVSAypqxD5eS9KaA0wCQ+3AMEBgGrzbBCYh+mnaUsScd6iQ9r1UL3zW2cGtLWlxTRtLo7XWAPOzYwV8KdgTAwEmCw3MMmnZkakcHeVUgQMrAYJ9U9FRL3nYHrufqVQeG620SGCDyBLnqAJCUV/XOtDv77eOyBXcvzoaOHm2T+RXjF7+pvc6OzYXHYl5j4PKKAIGQZywQ3k9NN61nN4rRyw6mfUTxWtFT1+PKtOhzhChJPeY5C2DLKRDsCQY9yod+2o84O54IDE7B3AqeWr/5xWxg3oBRCRcFF/IaPTTdbO8UEAACog9l6S9Ydl9uBriRv4byeqhQ9FRIKyITWMxrAouBy6zvbcmtpyQrkxc85XfCawSJVBJcbL3F+q576ZWMi8QL0OXr4x3rrRl3pWfShDzlP1x14GJvHx2BSN9GSuvV0eutAwNAWlOUD36/W12Dee1QfLpcOHc2j5A+nA+kURE1uQgqWkuhvQk4PHX+4nl1LeTR6ce0W7TkxgIt9EwIAFn99AanoTeveqJbvs8pYJw6dKCgrmnYuFZoygW1eyq33CzgteWPrClMF+1hCtu2D2U8Jo/u2Pp5PvV8vVg96ik6jF75N9YvKmfqpZKA0MEjQyeH3EWdsjZv6kryjuqd8lo9pfWUeigD9xNHh8PNi2NELAF26sjvzmtTb7s9pubkSU8le5pG7VPWS/2zZxuNG8ULZ4tQtD6+/tls5ZrV2a4vv3Bry3r0Ru/Mhfaubr72YWXLfbMGMoFRxksAKVEGLJWIfiMj8eiXnH6Xzo+kbGfyEEqEX940SV/urjJ2G71y2ZWks3/3HgeEUF45/POP2dIHHnIX8h927sjumN7nplyVdZWEwnAsCcjChHQF47cBBwwgXGyz9zaBSP66qwJE/8pQgqEz0SsUrWiLJUL02g3PuWb1BYJpiGd6enqyeUuWxbqXkpeGmiiMHY0PBhxeA+7E4UPusvp+uVOgqBz9mG56w/7DytTx0uCDKzPAuGziK2b+0sFcZMv/XLzo5PoGzJUChY6eYr4rhb7F1FYlty8FMCBtEgxem3Ltarbnq62ZjvWsLz5om7M0mqJQFoZNlcS8JxG5eKt2cK6hwk1TDiCdbgnxNgnOfQMaisoh3e4RfLdpEx0+cyb/hgNuX/NjUx+eDKQqoMI4fQFjPbF/+WC0u9RoHUOYfp22mqintCFaSIwDSmJK8EHqT8kycBbIhm9tzDGw67f0ui8Kfk2qvPnaXV1wjqR5A5LPIR0lgFNiStoBS25ztVsY2y4wZLYsne+2f50tbq4rP3383luNzW+/71ZaMvr5QBhCxrEAGC7BMe8ZaGywdhCddOQpfU7RF5nWmLVly4BRb4MK/fXQdrJlwATHoZALsNDBzvbrBISuhbF9VdYxX1OQfMaM6Wpuh8qlJQsED8B0uvWP7tZMWZhOQNYmZcI+HhQY3so9hZcYJEm5HyRco7kRGdFlCgpM+4lR61gEJAZz6e/hjv1REBhlB7Xtow8a+3ftpO6CAGuFtcMFWCc4+lkw6mWTYGbOntvWBRguXhIXHlGSd7TGTv7RaqNOsHBQ/MFq7caXe+xPTwJRsFBdhsnlUcmYfmXfrPUOQOfOnHJmfBjZJrdgkgPCFkbb2hc2uejXtk/Zv8bRaVvmTgT53iQw7VUyXCUnkGiKCgYgvQy1WZuurblHyTM+nEK5+rRBSahckExPZILR3qRwTlunP6+gQ2LQKRhNQwuqX4AJAoBxCcwH4hlJKBRIPpxgQnCtHvG7Bk1OcJFnJKdnCMi3CJimm9+WRz+/IVQXnGAUwlUP9QnJgIkBIWe64R15yLcBTAwI3VKeskYFtmVsvQHGm2UwZVIMRt6JgWA7NNVCz6wMJSN6uE7EmkZa8H5kVD/0dH7irxzAkJ557c3ECUm9y+XjhpJ5H06eG1i0SCptOUD6u1U3gHhYpTXVNjqvIjh/GvJ55P/yCgwX3qnTQxpSbVAYFJimoB5ic85g3YLRc2qFklFFRdXJOS3rZwGtQ9teZ7m2xcmgGKw9CQOi/x2yUzAVjuuAqxVKA9rx6ZbWDwoSjOXdhtHjugIl4xbuZgHp2ZP5/+EN/Af3rvbSvPIEBwAAAABJRU5ErkJggg=="
+    },
+    {
+      "name": "PIXI_0ldeyqoos||f_gardenbasket-recolor.png",
+      "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAADXTAAA10wEMIUN3AAAAG3RFWHRTb2Z0d2FyZQBDZWxzeXMgU3R1ZGlvIFRvb2zBp+F8AAAC3UlEQVRo3u3YUUgTcRwH8O8ftKe6exEfdIS51LHFogen2JDoDCRotMgEN+ihh1bYgy97cEIE2x7uRYQx7sWHQIMyuEiIwuZDaEznQx56TNeGmAoNH9p6SoN/D3KHomLQ5m7rf4/3/9/x+9z39+OOI5RSVMJBGIRBGIRBGKTiIKnpKdp0/QZhEAZhkOMRp4VhkP8OclqzUhRIanqKAkBFQPYXziBGg5wGhkH+dtDLGnJUwRUDKTaGQSoaclKhZQdRhSC1xoaIKgQpAFhjQwRrKYqGpqJ9RBYcUruaBu/zEVUI0vqeGmxObMM62ovc+xj4bgGpzBrKArLzQQZZqEN9T82BNb5bwLI4DLKyt8Z3C0BDEzEcRGunSc6r37BTdGJzYhu0ZUvflxnLw9xqgZ5WbIgYBpKTJJptNiN5+zkAwNxqQTqRRKOXg80/APXBS9T31OCTf0Zf6xSd4H0+kpMkyvt8pOSQnCRRANhQFP1pA0A6kcQt5ak+G5P2Zweua/RyMNntBUulIIksP35MX1g3AADtgxwAIB7Oo++bCbZHA1gWh5EZyx+6Lh7Oo081wRaNGgOyvqTQxQ4RjV4OZKUOtGVLH+oNRQFZqdNT0gD+qpvYnNjeSy4/VnqIKgRpOpHUW0pDaOe04vfPjuXNfeyG5vQ9hmmtnCTR6YtLqLrzA/FwHu2DHMytFoy75+GRHRh3z6N9kEM8nIdHdiCdSOLyZz9+RiXYolEif+yn7q4IKRlEA7i7IiQQcdE+1YQzd93YCX5BZmHxwCx4ZAfOjriw2CGiU3Qi22xG7Woa4u93CPW/NUYigYiLemQHqgNt2A3NoTrQhp3XMpC8ANO9c8g5r4KfmdWLzzabsRuag3W0F/LXEfxrGgWDaK0RiLjow2tB/Mp+P3qe3K9wZfYJzl+yk0DERQuRRNHe7FqB60vKoRvvB2j7Df+n8bgWLGQKJYOU3X8tBmEQBmEQBjnp+APMlVS7/9Y4ZAAAAABJRU5ErkJggg=="
+    }
+  ],
+  "floorSetup": [
+    {
+      "key": "floor-0ldesokm3",
+      "displayname": "Wooden Floor",
+      "texturekey": "tile_floor_3",
+      "tint": 7557957
+    },
+    {
+      "key": "floor-2ldesfrog",
+      "displayname": "Brown Floor",
+      "texturekey": "tile_floor_1",
+      "tint": 7557957
+    },
+    {
+      "key": "floor-1ldesokm6",
+      "displayname": "Red Floor",
+      "texturekey": "tile_floor_1",
+      "tint": 7871773
+    },
+    {
+      "key": "floor-0ldf8nydz",
+      "displayname": "Toyshop Floor 1",
+      "texturekey": "tile_floor_1",
+      "tint": 7226950
+    },
+    {
+      "key": "floor-1ldf8nye5",
+      "displayname": "ToyShop Floor 2",
+      "texturekey": "tile_floor_1",
+      "tint": 10859926
+    },
+    {
+      "key": "floor-2ldf8nye6",
+      "displayname": "Brown Floor 2",
+      "texturekey": "tile_floor_1",
+      "tint": 8412492
+    }
+  ],
+  "wallSetup": [
+    {
+      "key": "wall-0ldesokmh",
+      "displayname": "Pink Wall 1",
+      "texturekey": "tile_wall_1",
+      "tint": 15580100
+    },
+    {
+      "key": "wall-1ldesokmi",
+      "displayname": "Pink Wall 2",
+      "texturekey": "tile_wall_1",
+      "tint": 14390176
+    },
+    {
+      "key": "wall-3ldesofrog",
+      "displayname": "Navy Wall 1",
+      "texturekey": "tile_wall_1",
+      "tint": 2301514
+    },
+    {
+      "key": "wall-4ldesofrog",
+      "displayname": "Navy Wall 2",
+      "texturekey": "tile_wall_1",
+      "tint": 1186099
+    },
+    {
+      "key": "wall-0ldf8nyet",
+      "displayname": "Yellow Wall 1",
+      "texturekey": "tile_wall_1",
+      "tint": 16113815
+    },
+    {
+      "key": "wall-1ldf8nyeu",
+      "displayname": "Yellow Wall 2",
+      "texturekey": "tile_wall_1",
+      "tint": 15254912
+    },
+    {
+      "key": "wall-2ldf8nyev",
+      "displayname": "Green Wall 1",
+      "texturekey": "tile_wall_2",
+      "tint": 10473851
+    },
+    {
+      "key": "wall-3ldf8nyew",
+      "displayname": "Green Wall 2",
+      "texturekey": "tile_wall_1",
+      "tint": 11264134
+    }
+  ],
+  "roomSetup": [
+    {
+      "key": "room_ldf8nydv",
+      "displayname": "Toyshop Room",
+      "visible": true,
+      "alpha": 1,
+      "wall": [
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 240,
+          "y": -24,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -240,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 240,
+          "y": -56,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -240,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 240,
+          "y": -88,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -240,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 240,
+          "y": -120,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -240,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 208,
+          "y": -8,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -208,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 208,
+          "y": -40,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -208,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 208,
+          "y": -72,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -208,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 208,
+          "y": -104,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -208,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 176,
+          "y": 8,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -176,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 176,
+          "y": -24,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -176,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 176,
+          "y": -56,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -176,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 176,
+          "y": -88,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -176,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 144,
+          "y": 24,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -144,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 144,
+          "y": -8,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -144,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 144,
+          "y": -40,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -144,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 144,
+          "y": -72,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -144,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 112,
+          "y": 40,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -112,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 112,
+          "y": 8,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -112,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 112,
+          "y": -24,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -112,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 112,
+          "y": -56,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -112,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 80,
+          "y": 56,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -80,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 80,
+          "y": 24,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -80,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 80,
+          "y": -8,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -80,
+          "direction": -1
+        },
+        {
+          "key": "wall-3ldf8nyew",
+          "texturekey": "tile_wall_1",
+          "x": 80,
+          "y": -40,
+          "alpha": 1,
+          "tint": 11264134,
+          "zIndex": -80,
+          "direction": -1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 272,
+          "y": -24,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 272,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 272,
+          "y": -56,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 272,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 272,
+          "y": -88,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 272,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 272,
+          "y": -120,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 272,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 304,
+          "y": -8,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 304,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 304,
+          "y": -40,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 304,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 304,
+          "y": -72,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 304,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 304,
+          "y": -104,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 304,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 336,
+          "y": 8,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 336,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 336,
+          "y": -24,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 336,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 336,
+          "y": -56,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 336,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 336,
+          "y": -88,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 336,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 368,
+          "y": 24,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 368,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 368,
+          "y": -8,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 368,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 368,
+          "y": -40,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 368,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 368,
+          "y": -72,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 368,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 400,
+          "y": 40,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 400,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 400,
+          "y": 8,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 400,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 400,
+          "y": -24,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 400,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 400,
+          "y": -56,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 400,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 432,
+          "y": 56,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 432,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 432,
+          "y": 24,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 432,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 432,
+          "y": -8,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 432,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 432,
+          "y": -40,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 432,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 464,
+          "y": 72,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 464,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 464,
+          "y": 40,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 464,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 464,
+          "y": 8,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 464,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 464,
+          "y": -24,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 464,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 496,
+          "y": 88,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 496,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 496,
+          "y": 56,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 496,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 496,
+          "y": 24,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 496,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 496,
+          "y": -8,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 496,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 528,
+          "y": 104,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 528,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 528,
+          "y": 72,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 528,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 528,
+          "y": 40,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 528,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 528,
+          "y": 8,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 528,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 560,
+          "y": 120,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 560,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 560,
+          "y": 88,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 560,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 560,
+          "y": 56,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 560,
+          "direction": 1
+        },
+        {
+          "key": "wall-2ldf8nyev",
+          "texturekey": "tile_wall_2",
+          "x": 560,
+          "y": 24,
+          "alpha": 1,
+          "tint": 10473851,
+          "zIndex": 560,
+          "direction": 1
+        }
+      ],
+      "floor": [
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 256,
+          "y": 0,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 224,
+          "y": 16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 288,
+          "y": 16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 192,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 256,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 320,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 224,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 288,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 352,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 160,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 256,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 320,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 384,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 192,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 128,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 288,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 352,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 416,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 224,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 160,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 96,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 320,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 384,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 448,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 256,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 192,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 128,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 352,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 416,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 480,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 288,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 224,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 160,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 384,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 448,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 512,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 320,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 256,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 192,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 416,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 480,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 544,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 352,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 288,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 224,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 448,
+          "y": 160,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 160
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 512,
+          "y": 160,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 160
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 384,
+          "y": 160,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 160
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 320,
+          "y": 160,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 160
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 256,
+          "y": 160,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 160
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 480,
+          "y": 176,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 176
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 416,
+          "y": 176,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 176
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 352,
+          "y": 176,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 176
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 288,
+          "y": 176,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 176
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 448,
+          "y": 192,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 192
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 384,
+          "y": 192,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 192
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 320,
+          "y": 192,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 192
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 416,
+          "y": 208,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 208
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 352,
+          "y": 208,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 208
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 384,
+          "y": 224,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 224
+        }
+      ],
+      "furni": [
+        {
+          "key": "f_floraldoor",
+          "displayname": "Floral Door",
+          "x": 162.92394167591863,
+          "y": 12.817064508139197,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "zane_default",
+          "displayname": "Zane",
+          "x": 253.070237749778,
+          "y": -8.265536993005298,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "queengee_default",
+          "displayname": "Queengee",
+          "x": 273.42585299226243,
+          "y": 3.3662431455572346,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "Purple Play Mat",
+          "displayname": "Purple Play Mat",
+          "x": 320.6799598051724,
+          "y": 78.97281404621339,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_lotusrug",
+          "displayname": "Lotus Rug",
+          "x": 285.784619389485,
+          "y": 60.07117132104935,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "Plush Fluster",
+          "displayname": "Plush Fluster",
+          "x": 307.59420714928956,
+          "y": 39.71555607856499,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_farfallaplush",
+          "displayname": "Farfalla Plush",
+          "x": 323.58790483981306,
+          "y": 48.43939118248687,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_quingeeplush",
+          "displayname": "Quingee Plush",
+          "x": 299.59735830402803,
+          "y": 14.99802328411971,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_quingeeplush",
+          "displayname": "Quingee Plush",
+          "x": 282.8766743548442,
+          "y": 22.26788587072116,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_rusticfruitcrate",
+          "displayname": "Rustic Fruit Crate",
+          "x": 234.8955812832742,
+          "y": 11.36309199081893,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_petmountain",
+          "displayname": "Pet Mountain",
+          "x": 533.686933592598,
+          "y": 130.58883841108445,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_rusticproducecrate",
+          "displayname": "Rustic Produce Crate",
+          "x": 253.79722400843812,
+          "y": 20.81391335340095,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_gardenfloraltrellis",
+          "displayname": "Garden Floral Trellis",
+          "x": 488.6137855556684,
+          "y": 126.95390711778367,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_junglestool",
+          "displayname": "Jungle Stool",
+          "x": 377.38488798066464,
+          "y": 137.85870099768601,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_logbench",
+          "displayname": "Log Bench",
+          "x": 343.2165338236372,
+          "y": 118.95705827252198,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_logwindow",
+          "displayname": "Log Window",
+          "x": 280.6957155788639,
+          "y": -34.4370423047709,
+          "alpha": 1,
+          "direction": 1
+        }
+      ]
+    },
+    {
+      "key": "room_ldexci3q",
+      "displayname": "Pink Room",
+      "visible": false,
+      "alpha": 1,
+      "wall": [
+        {
+          "texturekey": "tile_wall_1",
+          "x": 16,
+          "y": -72,
+          "alpha": 1,
+          "tint": 14390176,
+          "zIndex": -16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 16,
+          "y": -104,
+          "alpha": 1,
+          "tint": 14390176,
+          "zIndex": -16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -16,
+          "y": -56,
+          "alpha": 1,
+          "tint": 14390176,
+          "zIndex": 16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -16,
+          "y": -88,
+          "alpha": 1,
+          "tint": 14390176,
+          "zIndex": 16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 48,
+          "y": -72,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 48,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 48,
+          "y": -104,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 48,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -48,
+          "y": -40,
+          "alpha": 1,
+          "tint": 14390176,
+          "zIndex": 48,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -48,
+          "y": -72,
+          "alpha": 1,
+          "tint": 14390176,
+          "zIndex": 48,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 80,
+          "y": -56,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 80,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 80,
+          "y": -88,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 80,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -80,
+          "y": -24,
+          "alpha": 1,
+          "tint": 14390176,
+          "zIndex": 80,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -80,
+          "y": -56,
+          "alpha": 1,
+          "tint": 14390176,
+          "zIndex": 80,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 112,
+          "y": -40,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 112,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 112,
+          "y": -72,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 112,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -112,
+          "y": -8,
+          "alpha": 1,
+          "tint": 14390176,
+          "zIndex": 112,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -112,
+          "y": -40,
+          "alpha": 1,
+          "tint": 14390176,
+          "zIndex": 112,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 144,
+          "y": -24,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 144,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 144,
+          "y": -56,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 144,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -144,
+          "y": 8,
+          "alpha": 1,
+          "tint": 14390176,
+          "zIndex": 144,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -144,
+          "y": -24,
+          "alpha": 1,
+          "tint": 14390176,
+          "zIndex": 144,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 176,
+          "y": -8,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 176,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 176,
+          "y": -40,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 176,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 208,
+          "y": 8,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 208,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 208,
+          "y": -24,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 208,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 240,
+          "y": 24,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 240,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 240,
+          "y": -8,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 240,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 272,
+          "y": 40,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 272,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 272,
+          "y": 8,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 272,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 304,
+          "y": 56,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 304,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 304,
+          "y": 24,
+          "alpha": 1,
+          "tint": 15580100,
+          "zIndex": 304,
+          "direction": 1
+        }
+      ],
+      "floor": [
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 32,
+          "y": -48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": -48
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 64,
+          "y": -32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": -32
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 0,
+          "y": -32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": -32
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 96,
+          "y": -16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": -16
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": -32,
+          "y": -16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": -16
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 32,
+          "y": -16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": -16
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 128,
+          "y": 0,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": -64,
+          "y": 0,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 0,
+          "y": 0,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 64,
+          "y": 0,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 160,
+          "y": 16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": -96,
+          "y": 16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": -32,
+          "y": 16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 96,
+          "y": 16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 32,
+          "y": 16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 192,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": -128,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": -64,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 128,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 64,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 0,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 224,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": -96,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": -32,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 160,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 96,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 32,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 256,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": -64,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 0,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 192,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 128,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 64,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 288,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": -32,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 224,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 32,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 160,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 96,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 256,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 0,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 192,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 64,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 128,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 32,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 224,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 160,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 96,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 64,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 192,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 128,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 96,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 160,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-0ldesokm3",
+          "texturekey": "tile_floor_3",
+          "x": 128,
+          "y": 160,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 160
+        }
+      ],
+      "furni": [
+        {
+          "key": "f_lotusrug",
+          "displayname": "Lotus Rug",
+          "x": 40.744871027568706,
+          "y": -2.415584890401419,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_lotusrug",
+          "displayname": "Lotus Rug",
+          "x": 209.58737847239223,
+          "y": 47.79777180636842,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_floralpainting",
+          "displayname": "Floral Painting",
+          "x": 220.25770304890256,
+          "y": -1.1602216420650393,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_marblefireplace",
+          "displayname": "Marble Fireplace",
+          "x": 151.2143024339885,
+          "y": -12.458227497428311,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_floraldoor",
+          "displayname": "Floral Door",
+          "x": -62.82025383840897,
+          "y": -35.68192083232313,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_floralmirror",
+          "displayname": "Floral Mirror",
+          "x": 296.20543414786545,
+          "y": 63.48952508730278,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_floralbed",
+          "displayname": "Floral Bed",
+          "x": 256.66242434619704,
+          "y": 60.978846477841785,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_floralcabinet",
+          "displayname": "Floral Cabinet",
+          "x": 234.06636401700035,
+          "y": 34.61679290931784,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "PIXI_0ldeybat7",
+          "displayname": "f_powderpartition-recolor.png",
+          "x": 176.32094567947155,
+          "y": 17.042138417513172,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_floralvanity",
+          "displayname": "Floral Vanity",
+          "x": 192.64033322549443,
+          "y": 25.829465663415533,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "PIXI_0ldeybat7",
+          "displayname": "f_powderpartition-recolor.png",
+          "x": 151.84196013486337,
+          "y": 25.829465663415533,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_gardenfloraltrellis",
+          "displayname": "Garden Floral Trellis",
+          "x": -81.65024824432459,
+          "y": -25.639230338084587,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_gardenfloraltrellis",
+          "displayname": "Garden Floral Trellis",
+          "x": -42.73487219992438,
+          "y": -43.84159039766294,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_floralwindow",
+          "displayname": "Floral Window",
+          "x": 273.6093738186687,
+          "y": 23.31878705395448,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_gardenfloraltrellis",
+          "displayname": "Garden Floral Trellis",
+          "x": -82.27795383241238,
+          "y": -12.458203553822614,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_gardenfloraltrellis",
+          "displayname": "Garden Floral Trellis",
+          "x": -21.394199103296614,
+          "y": -53.884280891901426,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_gardenfloraltrellis",
+          "displayname": "Garden Floral Trellis",
+          "x": 0.5741316942058461,
+          "y": -63.92692349892852,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_gardenfloraltrellis",
+          "displayname": "Garden Floral Trellis",
+          "x": 21.914876621653093,
+          "y": -75.2249413260947,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_lotussofa",
+          "displayname": "Lotus Sofa",
+          "x": -138.76798493737192,
+          "y": 13.276120503321692,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_lotuschair",
+          "displayname": "Lotus Chair",
+          "x": 111.04353915701921,
+          "y": -22.500917991666824,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_lotusvase",
+          "displayname": "Lotus Vase",
+          "x": -68.46924497710177,
+          "y": 0.7227753432278519,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_lotussofa",
+          "displayname": "Lotus Sofa",
+          "x": -92.94827840892293,
+          "y": 10.765441893860555,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_lotuschest",
+          "displayname": "Lotus Chest",
+          "x": 153.7250290119137,
+          "y": 45.28714108411867,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_gardenfloraltrellis",
+          "displayname": "Garden Floral Trellis",
+          "x": -49.63922662757972,
+          "y": 8.882468852173417,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_cottagehungseat",
+          "displayname": "Cottage Hung Seat",
+          "x": 87.81986901416064,
+          "y": -52.62892961536821,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_cottageseatnook",
+          "displayname": "Cottage Seat Nook",
+          "x": 60.20254707796539,
+          "y": -73.96962596496985,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_gardenlargevase",
+          "displayname": "Garden Large Vase",
+          "x": 36.351171347018976,
+          "y": -71.4589593273117,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "PIXI_0ldeyqoos",
+          "displayname": "f_gardenbasket-recolor.png",
+          "x": -114.2889515055507,
+          "y": -25.01157265752221,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_gardenlongtable",
+          "displayname": "Garden Long Table",
+          "x": -57.7989204005911,
+          "y": 32.10613824346251,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_gardenchair",
+          "displayname": "Garden Chair",
+          "x": -10.723850583179626,
+          "y": -42.58620320572095,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_gardenchair",
+          "displayname": "Garden Chair",
+          "x": 20.659513332690437,
+          "y": -52.001283906608506,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_gardentable",
+          "displayname": "Garden Table",
+          "x": 8.106119879129437,
+          "y": -38.192575498178456,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_floralcandle",
+          "displayname": "Floral Candle",
+          "x": -60.30957514769682,
+          "y": 25.829489607021316,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_simplemakeupkit",
+          "displayname": "Simple Makeup Kit",
+          "x": 232.81104861525063,
+          "y": 26.457147287583723,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_floralvase",
+          "displayname": "Floral Vase",
+          "x": 8.733801523610794,
+          "y": -50.11819114689274,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ecotable",
+          "displayname": "Eco Table",
+          "x": -113.03363610380114,
+          "y": 34.61681685292359,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ecobanner",
+          "displayname": "Eco Banner",
+          "x": 294.32246104524097,
+          "y": 25.2018438982619,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ecobanner",
+          "displayname": "Eco Banner",
+          "x": 253.52404006739692,
+          "y": 6.371814186318204,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_golddecoration",
+          "displayname": "Gold Decoration",
+          "x": 31.957471666469303,
+          "y": -18.10724239691288,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_herbunipaintings",
+          "displayname": "Herbuni Paintings",
+          "x": 123.59693261058038,
+          "y": -50.11826297770989,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_shellarchway",
+          "displayname": "Shell Archway",
+          "x": -26.4155325411146,
+          "y": 20.808132388099153,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_shellpergola",
+          "displayname": "Shell Pergola",
+          "x": 127.99063229113,
+          "y": 136.29891743840471,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "PIXI_0ldeybat7",
+          "displayname": "f_powderpartition-recolor.png",
+          "x": 151.84200802207636,
+          "y": 55.329831578357016,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "PIXI_0ldeybat7",
+          "displayname": "f_powderpartition-recolor.png",
+          "x": 126.73526900216734,
+          "y": 33.989135228755515,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "PIXI_0ldeybat7",
+          "displayname": "f_powderpartition-recolor.png",
+          "x": 126.73531688938039,
+          "y": 44.03182572299403,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_golddivider",
+          "displayname": "Gold Divider",
+          "x": 188.2466814321578,
+          "y": 118.72423900299464,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_goldottoman",
+          "displayname": "Gold Ottoman",
+          "x": 180.71464536002117,
+          "y": 133.7882388289437,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_goldvase",
+          "displayname": "Gold Vase",
+          "x": 165.65066899017398,
+          "y": 104.91555453817023,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_golddivider",
+          "displayname": "Gold Divider",
+          "x": 142.42695096010232,
+          "y": 95.50052172449404,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_goldendtable",
+          "displayname": "Gold End Table",
+          "x": 163.76764800033658,
+          "y": 123.74557227831093,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_golddivider",
+          "displayname": "Gold Divider",
+          "x": 98.49028936509728,
+          "y": 73.53219163793557,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_goldvase",
+          "displayname": "Gold Vase",
+          "x": 119.83093851811844,
+          "y": 81.06420352271306,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_glasslargevase",
+          "displayname": "Glass Large Vase",
+          "x": 78.40490772661269,
+          "y": 73.53216769432981,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_gardenlargevase",
+          "displayname": "Garden Large Vase",
+          "x": 57.06421068637843,
+          "y": 75.41518862322852,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_glasslargevase",
+          "displayname": "Glass Large Vase",
+          "x": 38.861826094124694,
+          "y": 92.36218543447063,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_glasspitchers",
+          "displayname": "Glass Pitchers",
+          "x": -112.40593051571332,
+          "y": 26.457075456766574,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_gamingtable",
+          "displayname": "Gaming Table",
+          "x": 87.81991690137363,
+          "y": 104.2878729140021,
+          "alpha": 1,
+          "direction": 1
+        }
+      ]
+    },
+    {
+      "key": "room_ldesokm1",
+      "displayname": "Haunted House",
+      "visible": false,
+      "alpha": 1,
+      "wall": [
+        {
+          "texturekey": "tile_wall_1",
+          "x": 48,
+          "y": -56,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": -48,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 48,
+          "y": -88,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": -48,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 48,
+          "y": -120,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": -48,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 16,
+          "y": -40,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": -16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 16,
+          "y": -104,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": -16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 16,
+          "y": -72,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": -16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -16,
+          "y": -24,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -16,
+          "y": -88,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -16,
+          "y": -56,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -48,
+          "y": -8,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 48,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -48,
+          "y": -72,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 48,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -48,
+          "y": -40,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 48,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 80,
+          "y": -56,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 80,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 80,
+          "y": -88,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 80,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 80,
+          "y": -120,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 80,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -80,
+          "y": 8,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 80,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -80,
+          "y": -56,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 80,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -80,
+          "y": -24,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 80,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 112,
+          "y": -40,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 112,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 112,
+          "y": -72,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 112,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 112,
+          "y": -104,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 112,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -112,
+          "y": 24,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 112,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -112,
+          "y": -40,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 112,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -112,
+          "y": -8,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 112,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 144,
+          "y": -24,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 144,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 144,
+          "y": -56,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 144,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 144,
+          "y": -88,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 144,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -144,
+          "y": 40,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 144,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -144,
+          "y": 8,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 144,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -144,
+          "y": -24,
+          "alpha": 1,
+          "tint": 1186099,
+          "zIndex": 144,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 176,
+          "y": -8,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 176,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 176,
+          "y": -40,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 176,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 176,
+          "y": -72,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 176,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 208,
+          "y": 8,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 208,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 208,
+          "y": -24,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 208,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 208,
+          "y": -56,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 208,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 240,
+          "y": 24,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 240,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 240,
+          "y": -8,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 240,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 240,
+          "y": -40,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 240,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 272,
+          "y": 40,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 272,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 272,
+          "y": 8,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 272,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 272,
+          "y": -24,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 272,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 304,
+          "y": 56,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 304,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 304,
+          "y": 24,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 304,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 304,
+          "y": -8,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 304,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 336,
+          "y": 72,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 336,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 336,
+          "y": 40,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 336,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 336,
+          "y": 8,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 336,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 368,
+          "y": 88,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 368,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 368,
+          "y": 56,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 368,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 368,
+          "y": 24,
+          "alpha": 1,
+          "tint": 2301514,
+          "zIndex": 368,
+          "direction": 1
+        }
+      ],
+      "floor": [
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 64,
+          "y": -32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": -32
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 96,
+          "y": -16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": -16
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 32,
+          "y": -16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": -16
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 128,
+          "y": 0,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 0,
+          "y": 0,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 64,
+          "y": 0,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": 16,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": -32,
+          "y": 16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 32,
+          "y": 16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 96,
+          "y": 16,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": -64,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 0,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 128,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 64,
+          "y": 32,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 224,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": -96,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": -32,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 32,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 96,
+          "y": 48,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 256,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": -128,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": -64,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 0,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 64,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 128,
+          "y": 64,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 288,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": -96,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": -32,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 224,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 32,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 96,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": 80,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 320,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": -64,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 0,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 256,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 64,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 128,
+          "y": 96,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 352,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": -32,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 32,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 288,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 224,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 96,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": 112,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 320,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 0,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 64,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 256,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 128,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": 128,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 288,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-1ldesokm6",
+          "texturekey": "tile_floor_1",
+          "x": 32,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7871773,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 96,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 224,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": 144,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 256,
+          "y": 160,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 160
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 64,
+          "y": 160,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 160
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 128,
+          "y": 160,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 160
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": 160,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 160
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 224,
+          "y": 176,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 176
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 96,
+          "y": 176,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 176
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": 176,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 176
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": 192,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 192
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 128,
+          "y": 192,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 192
+        },
+        {
+          "key": "floor-2ldesfrog",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": 208,
+          "alpha": 1,
+          "tint": 7557957,
+          "zIndex": 208
+        }
+      ],
+      "furni": [
+        {
+          "key": "f_outdoorcellar",
+          "displayname": "Outdoor Cellar",
+          "x": 138.0332512795527,
+          "y": 168.30991407559617,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_royalrug",
+          "displayname": "Royal Rug",
+          "x": 117.9479175282811,
+          "y": 163.91628636805342,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ornatebookcase",
+          "displayname": "Ornate Bookcase",
+          "x": -20.766517458815372,
+          "y": 69.1385160431816,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_ornatebookcase",
+          "displayname": "Ornate Bookcase",
+          "x": -42.10723844265607,
+          "y": 79.1812304810258,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_basicbookcase",
+          "displayname": "Basic Bookcase",
+          "x": -57.798896456984664,
+          "y": -3.6708763079203095,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_officepapercollage",
+          "displayname": "Office Paper Collage",
+          "x": 308.7587797142136,
+          "y": 15.786775169177048,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "ADDONStairs2",
+          "displayname": "Stairs B",
+          "x": 211.4703994622294,
+          "y": -19.36255775803761,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_farfallawindow",
+          "displayname": "Farfalla Window",
+          "x": 342.6528223207958,
+          "y": 54.07451621723243,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_farfallawindow",
+          "displayname": "Farfalla Window",
+          "x": 105.39461984914607,
+          "y": -63.29926581836605,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_grandpiano",
+          "displayname": "Grand Piano",
+          "x": 66.47921986113943,
+          "y": -35.05426315176061,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_herbunicountertop",
+          "displayname": "Herbuni Countertop",
+          "x": 338.2591705274593,
+          "y": 95.50054566809979,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_royallargemirror",
+          "displayname": "Royal Large Mirror",
+          "x": 279.88614237626854,
+          "y": 25.829441719809836,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_royallargemirror",
+          "displayname": "Royal Large Mirror",
+          "x": 156.86331751628774,
+          "y": -33.79892384703021,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ornatebookcase",
+          "displayname": "Ornate Bookcase",
+          "x": 124.85224801232982,
+          "y": -17.47958471635053,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_ornatebookcase",
+          "displayname": "Ornate Bookcase",
+          "x": 117.32025982740629,
+          "y": -5.553897236819068,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ornatebookcase",
+          "displayname": "Ornate Bookcase",
+          "x": 109.16056605439479,
+          "y": 6.9994479232746585,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_ornatebookcase",
+          "displayname": "Ornate Bookcase",
+          "x": 90.33059559208584,
+          "y": 17.669820041681476,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_basiclargecandle",
+          "displayname": "Basic Large Candle",
+          "x": 349.55710491763153,
+          "y": 83.57490607577978,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basiclargecandle",
+          "displayname": "Basic Large Candle",
+          "x": 327.5888459509486,
+          "y": 71.02151302847449,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "ADDONStairs3",
+          "displayname": "Stairs C",
+          "x": 229.67261644923764,
+          "y": -8.692209583236746,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debrisivyvine",
+          "displayname": "Debris Ivy Vine",
+          "x": 50.787537903204395,
+          "y": -117.90633402529835,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debrisivysmall",
+          "displayname": "Debris Ivy Small",
+          "x": 73.38359823240131,
+          "y": -131.08734883775742,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debrissmalltree",
+          "displayname": "Debris Small Tree",
+          "x": 223.39603944048957,
+          "y": 128.1392239294592,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debriswallcrackhigh",
+          "displayname": "Debris Wall Crack High",
+          "x": 303.1098125191273,
+          "y": -1.1602216420650961,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debrissmallhole",
+          "displayname": "Debris Small Hole",
+          "x": 219.00238764715306,
+          "y": 155.7565689155022,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debrisivylarge",
+          "displayname": "Debrish Ivy Large",
+          "x": 347.0464741141324,
+          "y": 12.648462822759257,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debrisivylarge",
+          "displayname": "Debrish Ivy Large",
+          "x": 366.5041980517422,
+          "y": 23.946468678122585,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debrisivylarge",
+          "displayname": "Debrish Ivy Large",
+          "x": -43.36255384440568,
+          "y": -72.714322575648,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "debrislargetree",
+          "displayname": "Debris Large Tree",
+          "x": -145.0446816641525,
+          "y": 26.457147287583666,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debrisbush",
+          "displayname": "Debris Bush",
+          "x": -145.04465772054596,
+          "y": -14.341224482721259,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debrisivyvine",
+          "displayname": "Debris Ivy Vine",
+          "x": -126.84229707189866,
+          "y": -31.28826918117477,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debrisbush",
+          "displayname": "Debris Bush",
+          "x": -136.2573062466597,
+          "y": -33.171266166467774,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debrisbush",
+          "displayname": "Debris Bush",
+          "x": -150.6936488592387,
+          "y": -26.89456964281507,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "debrissmallcrack",
+          "displayname": "Debris Small Crack",
+          "x": 74.63891363415092,
+          "y": -3.0432425709636846,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_moderndoor",
+          "displayname": "Modern Door",
+          "x": -34.575226314125985,
+          "y": -18.734900077475288,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_photolargeprint",
+          "displayname": "Photo Large Print",
+          "x": -2.5641807537746217,
+          "y": -43.84159039766294,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_photohungprint",
+          "displayname": "Photo Hung Print",
+          "x": 19.40415004372784,
+          "y": -57.02259323831916,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_fancycertificate",
+          "displayname": "Fancy Certificate",
+          "x": 43.25550183106776,
+          "y": -67.69296535672584,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_lotuscurtain",
+          "displayname": "Lotus Curtain",
+          "x": 276.12005250938086,
+          "y": 25.201784039247457,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ornatedesk",
+          "displayname": "Ornate Desk",
+          "x": 254.15169776827184,
+          "y": 44.031825722993915,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_herbunisidetable",
+          "displayname": "Herbuni Side Table",
+          "x": 298.08845513770297,
+          "y": 63.48950114369711,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_messypaperpile",
+          "displayname": "Messy Paper Pile",
+          "x": 234.06641190421323,
+          "y": 69.1385160431816,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_messypaperpile",
+          "displayname": "Messy Paper Pile",
+          "x": 271.0987430151694,
+          "y": 78.55352491325198,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basicbookcase",
+          "displayname": "Basic Bookcase",
+          "x": -76.6289387501131,
+          "y": 7.627129547442905,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_basicbookcase",
+          "displayname": "Basic Bookcase",
+          "x": -96.71427250138476,
+          "y": 19.55279308336867,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_ornatebookcase",
+          "displayname": "Ornate Bookcase",
+          "x": 68.36224085097695,
+          "y": 28.340144272876728,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_basicbookcase",
+          "displayname": "Basic Bookcase",
+          "x": -116.17197249538816,
+          "y": 30.850798938731998,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_herbunisidetable",
+          "displayname": "Herbuni Side Table",
+          "x": -9.468535181429843,
+          "y": -14.341224482721316,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basiccandle",
+          "displayname": "Basic Candle",
+          "x": -11.351556171267362,
+          "y": -30.032929876444314,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_ornatebookcase",
+          "displayname": "Ornate Bookcase",
+          "x": 48.276859212492184,
+          "y": 39.638150128239886,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_ornatebookcase",
+          "displayname": "Ornate Bookcase",
+          "x": -63.447935482890216,
+          "y": 89.85155471222083,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_basiclongtable",
+          "displayname": "Basic Long Table",
+          "x": 116.69260212653154,
+          "y": 145.0862207407012,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basiclongtable",
+          "displayname": "Basic Long Table",
+          "x": 141.1716834455657,
+          "y": 159.52253894248219,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basiclongtable",
+          "displayname": "Basic Long Table",
+          "x": 168.16125190646022,
+          "y": 173.33127129451827,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basiclargecandle",
+          "displayname": "Basic Large Candle",
+          "x": 141.1716355583527,
+          "y": 143.83090537957645,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_simpleteaset",
+          "displayname": "Simple Tea Set",
+          "x": 170.0443207835106,
+          "y": 163.91626242444784,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_simplecoatrack",
+          "displayname": "Simple Coatrack",
+          "x": 12.49986744689204,
+          "y": -26.26691196225272,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_outdoordoormat",
+          "displayname": "Outdoor Doormat",
+          "x": -20.76651745881543,
+          "y": 7.627105603837208,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_outdoorlamp",
+          "displayname": "Outdoor Lamp",
+          "x": 118.57555128554947,
+          "y": 134.41587256590043,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_royallamp",
+          "displayname": "Royal Lamp",
+          "x": 299.34377053945246,
+          "y": 46.542480388849185,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_floorcushion",
+          "displayname": "Floor Cushion",
+          "x": 304.9927856217517,
+          "y": 81.06422746631875,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_goldgizatable",
+          "displayname": "Gold Giza Table",
+          "x": 93.46888409645982,
+          "y": -30.03290593283853,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_messylaundry",
+          "displayname": "Messy Laundry",
+          "x": 296.20543414786556,
+          "y": 134.41589650950613,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_messybookstack",
+          "displayname": "Messy Book Stack",
+          "x": 163.13994241224879,
+          "y": 205.34229187531514,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_messybottles",
+          "displayname": "Messy Bottles",
+          "x": 215.86405125556604,
+          "y": 182.74630410819418,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_messychair",
+          "displayname": "Messy Chair",
+          "x": 193.2680388135821,
+          "y": 184.001619469319,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_nostalgicplant",
+          "displayname": "Nostalgic Plant",
+          "x": 47.64920151161738,
+          "y": 151.36294120795964,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_restauranttable",
+          "displayname": "Restaurant Table",
+          "x": -100.48029053745307,
+          "y": 71.02151302847449,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_gardenbouquet",
+          "displayname": "Garden Bouquet",
+          "x": 223.39603944048957,
+          "y": 33.989159172361155,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_gardenbouquet",
+          "displayname": "Garden Bouquet",
+          "x": 157.49097521716266,
+          "y": 0.09511766266547284,
+          "alpha": 1,
+          "direction": 1
+        }
+      ]
+    },
+    {
+      "key": "room_ldfddkj3",
+      "displayname": "Winter Lights",
+      "visible": false,
+      "alpha": 1,
+      "wall": [
+        {
+          "texturekey": "tile_wall_1",
+          "x": 176,
+          "y": -88,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -176,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 176,
+          "y": -152,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -176,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 176,
+          "y": -120,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -176,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 144,
+          "y": -72,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -144,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 144,
+          "y": -136,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -144,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 144,
+          "y": -104,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -144,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 112,
+          "y": -56,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -112,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 112,
+          "y": -120,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -112,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 112,
+          "y": -88,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -112,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 80,
+          "y": -40,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -80,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 80,
+          "y": -104,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -80,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 80,
+          "y": -72,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -80,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 48,
+          "y": -24,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -48,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 48,
+          "y": -88,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -48,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 48,
+          "y": -56,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -48,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 16,
+          "y": -8,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 16,
+          "y": -40,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 16,
+          "y": -72,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": -16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -16,
+          "y": 8,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": 16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -16,
+          "y": -24,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": 16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": -16,
+          "y": -56,
+          "alpha": 1,
+          "tint": 8830370,
+          "zIndex": 16,
+          "direction": -1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 208,
+          "y": -88,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 208,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 208,
+          "y": -120,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 208,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 208,
+          "y": -152,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 208,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 240,
+          "y": -72,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 240,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 240,
+          "y": -104,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 240,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 240,
+          "y": -136,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 240,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 272,
+          "y": -56,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 272,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 272,
+          "y": -88,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 272,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 272,
+          "y": -120,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 272,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 304,
+          "y": -40,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 304,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 304,
+          "y": -72,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 304,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 304,
+          "y": -104,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 304,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 336,
+          "y": -24,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 336,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 336,
+          "y": -56,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 336,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 336,
+          "y": -88,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 336,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 368,
+          "y": -8,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 368,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 368,
+          "y": -40,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 368,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 368,
+          "y": -72,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 368,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 400,
+          "y": 8,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 400,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 400,
+          "y": -24,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 400,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 400,
+          "y": -56,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 400,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 432,
+          "y": 24,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 432,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 432,
+          "y": -8,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 432,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 432,
+          "y": -40,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 432,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 464,
+          "y": 40,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 464,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 464,
+          "y": 8,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 464,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 464,
+          "y": -24,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 464,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 496,
+          "y": 56,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 496,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 496,
+          "y": 24,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 496,
+          "direction": 1
+        },
+        {
+          "texturekey": "tile_wall_1",
+          "x": 496,
+          "y": -8,
+          "alpha": 1,
+          "tint": 12381139,
+          "zIndex": 496,
+          "direction": 1
+        }
+      ],
+      "floor": [
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": -64,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": -64
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": -48,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": -48
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 224,
+          "y": -48,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": -48
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 128,
+          "y": -32,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": -32
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 256,
+          "y": -32,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": -32
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": -32,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": -32
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 96,
+          "y": -16,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": -16
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 288,
+          "y": -16,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": -16
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": -16,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": -16
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 224,
+          "y": -16,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": -16
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 64,
+          "y": 0,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 320,
+          "y": 0,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 128,
+          "y": 0,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 256,
+          "y": 0,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": 0,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 0
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 32,
+          "y": 16,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 352,
+          "y": 16,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 96,
+          "y": 16,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 288,
+          "y": 16,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 224,
+          "y": 16,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": 16,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 16
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 0,
+          "y": 32,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 384,
+          "y": 32,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 64,
+          "y": 32,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 320,
+          "y": 32,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 256,
+          "y": 32,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 128,
+          "y": 32,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": 32,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 32
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 32,
+          "y": 48,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 416,
+          "y": 48,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 96,
+          "y": 48,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 352,
+          "y": 48,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 288,
+          "y": 48,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": 48,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 224,
+          "y": 48,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 48
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 448,
+          "y": 64,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 64,
+          "y": 64,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 128,
+          "y": 64,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 384,
+          "y": 64,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 320,
+          "y": 64,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 256,
+          "y": 64,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": 64,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 64
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 480,
+          "y": 80,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 96,
+          "y": 80,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 416,
+          "y": 80,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": 80,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 352,
+          "y": 80,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 288,
+          "y": 80,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 224,
+          "y": 80,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 80
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 448,
+          "y": 96,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 128,
+          "y": 96,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 384,
+          "y": 96,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": 96,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 320,
+          "y": 96,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 256,
+          "y": 96,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 96
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 416,
+          "y": 112,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 160,
+          "y": 112,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 352,
+          "y": 112,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 224,
+          "y": 112,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 288,
+          "y": 112,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 112
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 384,
+          "y": 128,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 192,
+          "y": 128,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 320,
+          "y": 128,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 256,
+          "y": 128,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 128
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 224,
+          "y": 144,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 352,
+          "y": 144,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 288,
+          "y": 144,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 144
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 256,
+          "y": 160,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 160
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 320,
+          "y": 160,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 160
+        },
+        {
+          "key": "floor-2ldf8nye6",
+          "texturekey": "tile_floor_1",
+          "x": 288,
+          "y": 176,
+          "alpha": 1,
+          "tint": 8412492,
+          "zIndex": 176
+        }
+      ],
+      "furni": [
+        {
+          "key": "f_basicchair",
+          "displayname": "Basic Chair",
+          "x": 324.8863664433145,
+          "y": 87.68275403378067,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_shellbar",
+          "displayname": "Shell Bar",
+          "x": 283.9062681774644,
+          "y": 32.17799914513327,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_herbunidrawers",
+          "displayname": "Herbuni Drawers",
+          "x": 324.886406019717,
+          "y": 54.48367438203164,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_officeworldmap",
+          "displayname": "Office World Map",
+          "x": 251.7446630526805,
+          "y": -88.16868190713235,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_lotusrug",
+          "displayname": "Lotus Rug",
+          "x": 284.94376356702685,
+          "y": 162.8994259811591,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_wintergiftbox",
+          "displayname": "Winter Gift Box",
+          "x": 296.8747033003772,
+          "y": 154.0809331254794,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_wintergiftbox",
+          "displayname": "Winter Gift Box",
+          "x": 272.49409592709674,
+          "y": 155.11840869326542,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_lotustallwindow",
+          "displayname": "Lotus Tall Window",
+          "x": 15.719844317995467,
+          "y": -24.364171946698207,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_lotustallwindow",
+          "displayname": "Lotus Tall Window",
+          "x": 3.788924372846452,
+          "y": -18.13933832818259,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_lotuscurtain",
+          "displayname": "Lotus Curtain",
+          "x": 27.132036356564612,
+          "y": -31.10773345500658,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_lotuscurtain",
+          "displayname": "Lotus Curtain",
+          "x": -9.1794909618649,
+          "y": -11.395776819874214,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_fleurdoor",
+          "displayname": "Fleur Door",
+          "x": 64.48101948815398,
+          "y": -35.25763572615071,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_herbunipaintings",
+          "displayname": "Herbuni Paintings",
+          "x": 97.68008042609787,
+          "y": -63.26937711537073,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_lotustallwindow",
+          "displayname": "Lotus Tall Window",
+          "x": 153.70366395858858,
+          "y": -90.24364293680472,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_lotustallwindow",
+          "displayname": "Lotus Tall Window",
+          "x": 142.29141255541575,
+          "y": -84.01879942418881,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_lotuscurtain",
+          "displayname": "Lotus Curtain",
+          "x": 128.80422973772207,
+          "y": -76.75647044968659,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_lotuscurtain",
+          "displayname": "Lotus Curtain",
+          "x": 167.19078741167854,
+          "y": -98.54340790269183,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_lotusvase",
+          "displayname": "Lotus Vase",
+          "x": 184.82773411740786,
+          "y": -87.64995401733964,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_winterwreath",
+          "displayname": "Winter Wreath",
+          "x": 62.4060682854319,
+          "y": -64.82558057294949,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_wintertree",
+          "displayname": "Winter Tree",
+          "x": 284.42499608404444,
+          "y": 149.412322752743,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_winterquingee",
+          "displayname": "Winter Quingee",
+          "x": 285.46245189720423,
+          "y": 126.06921152445989,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ecobanner",
+          "displayname": "Eco Banner",
+          "x": 163.04080585342953,
+          "y": -125.51766383002555,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_ecobanner",
+          "displayname": "Eco Banner",
+          "x": 130.87922051684657,
+          "y": -109.95559957193703,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_ecobanner",
+          "displayname": "Eco Banner",
+          "x": 22.982114162919203,
+          "y": -60.67568819590568,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_ecobanner",
+          "displayname": "Eco Banner",
+          "x": -8.66078284348606,
+          "y": -45.11359425551632,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_ceramicwindchime",
+          "displayname": "Ceramic Windchime",
+          "x": 223.73292075693817,
+          "y": -98.54339800859154,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ceramicwindchime",
+          "displayname": "Ceramic Windchime",
+          "x": 178.08419217906416,
+          "y": -117.21789886413845,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ceramicwindchime",
+          "displayname": "Ceramic Windchime",
+          "x": 113.76092256489235,
+          "y": -88.68741969102537,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ceramicwindchime",
+          "displayname": "Ceramic Windchime",
+          "x": 37.506752793772705,
+          "y": -53.413359221403425,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ceramicwindchime",
+          "displayname": "Ceramic Windchime",
+          "x": -26.816497032197844,
+          "y": -24.88291962469151,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_fancycertificate",
+          "displayname": "Fancy Certificate",
+          "x": 208.1708461011261,
+          "y": -111.51180302951582,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_cottagebooknook",
+          "displayname": "Cottage Book Nook",
+          "x": 205.57720656822644,
+          "y": -92.31857428417622,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ecosofa",
+          "displayname": "Eco Sofa",
+          "x": 222.17669746079608,
+          "y": -59.1194748442266,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ecocoffeetable",
+          "displayname": "Eco Coffee Table",
+          "x": 201.4272645863799,
+          "y": -40.96374145487363,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_comfyrockingchair",
+          "displayname": "Comfy Rocking Chair",
+          "x": 167.70943616545364,
+          "y": -68.45672527200003,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_barcart",
+          "displayname": "Bar Cart",
+          "x": 143.8475962751555,
+          "y": -56.00706792906905,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_herbunimonstera",
+          "displayname": "Herbuni Monstera",
+          "x": -10.21696656322581,
+          "y": 14.541033221974288,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_barshelving",
+          "displayname": "Bar Shelving",
+          "x": 267.3066981320901,
+          "y": -52.89467090801179,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "ADDONHALLWAY2",
+          "displayname": "Hallway B",
+          "x": 297.91211953713446,
+          "y": -46.151089611502925,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_cozyshelf",
+          "displayname": "Cozy Shelf",
+          "x": 329.0362688487587,
+          "y": -57.04453360275485,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_cozyaprons",
+          "displayname": "Cozy Aprons",
+          "x": 326.4425897394568,
+          "y": -32.663956700785974,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_shellpartition",
+          "displayname": "Shell Partition",
+          "x": 151.10994527288412,
+          "y": -7.245894336930689,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_shellpartition",
+          "displayname": "Shell Partition",
+          "x": 117.91080518213525,
+          "y": -24.36419173489878,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ornatepainting",
+          "displayname": "Ornate Painting",
+          "x": 482.58202462775546,
+          "y": 23.878253967446796,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_castpans",
+          "displayname": "Cast Pans",
+          "x": 422.408756360034,
+          "y": -5.170943201358625,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_himalautensilsdecor",
+          "displayname": "Himala Utensils Decor",
+          "x": 451.4579148925336,
+          "y": 8.316179815258124,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_cozycupboard",
+          "displayname": "Cozy Cupboard",
+          "x": 487.2507736689869,
+          "y": 62.783439347918744,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_cozydriedherbs",
+          "displayname": "Cozy Dried Herbs",
+          "x": 389.2096558456876,
+          "y": -19.176813895968593,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basicfridge",
+          "displayname": "Basic Fridge",
+          "x": 343.5608481150085,
+          "y": -14.50820352323234,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basicstove",
+          "displayname": "Basic Stove",
+          "x": 367.9414554882891,
+          "y": 3.647549654321267,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_herbunidrawers",
+          "displayname": "Herbuni Drawers",
+          "x": 361.19787397354287,
+          "y": 75.75187405114394,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_herbunicountertop",
+          "displayname": "Herbuni Countertop",
+          "x": 406.8466817042216,
+          "y": 97.02001435565444,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basickitchensink",
+          "displayname": "Basic Kitchen Sink",
+          "x": 396.9906535971911,
+          "y": 26.47195278101222,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basickitchencounter",
+          "displayname": "Basic Kitchen Counter",
+          "x": 417.22139814142986,
+          "y": 34.25295028070545,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_herbunidishcabinet",
+          "displayname": "Herbuni Dish Cabinet",
+          "x": 451.4579544689359,
+          "y": 52.9274511362523,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basiclargecandle",
+          "displayname": "Basic Large Candle",
+          "x": 321.2552315208527,
+          "y": 32.17803872153456,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basiclargecandle",
+          "displayname": "Basic Large Candle",
+          "x": 369.4976787844312,
+          "y": 58.63355686497522,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_glasspitchers",
+          "displayname": "Glass Pitchers",
+          "x": 397.5094210801735,
+          "y": 83.01414366104444,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_poinsettia",
+          "displayname": "Poinsettia",
+          "x": 343.56088769141104,
+          "y": 46.70263730593729,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basiclongtable",
+          "displayname": "Basic Long Table",
+          "x": 20.90720253659947,
+          "y": 40.47780368742164,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_ecotable",
+          "displayname": "Eco Table",
+          "x": 369.4976787844313,
+          "y": 134.88770438013984,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_basictable",
+          "displayname": "Basic Table",
+          "x": 308.2868359743426,
+          "y": 99.61367359281857,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_glassvase",
+          "displayname": "Glass Vase",
+          "x": 367.9414554882892,
+          "y": 124.51302783829459,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_simpleteaset",
+          "displayname": "Simple Tea Set",
+          "x": 307.76810806776257,
+          "y": 95.98253878786835,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_basicchair",
+          "displayname": "Basic Chair",
+          "x": 288.57489848948865,
+          "y": 86.64531804239579,
+          "alpha": 1,
+          "direction": -1
+        },
+        {
+          "key": "f_wintergiftbox",
+          "displayname": "Winter Gift Box",
+          "x": 310.36178717706457,
+          "y": 171.71799798964145,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_wintergiftbox",
+          "displayname": "Winter Gift Box",
+          "x": 257.9694770844444,
+          "y": 167.56805614209605,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_teastand",
+          "displayname": "Tea Stand",
+          "x": 413.07145615958314,
+          "y": 88.20150171177397,
+          "alpha": 1,
+          "direction": 1
+        },
+        {
+          "key": "f_glasspaludarium",
+          "displayname": "Glass Paludarium",
+          "x": 21.944678137960608,
+          "y": 26.990660882604402,
+          "alpha": 1,
+          "direction": 1
+        }
+      ]
+    }
+  ]
+}
