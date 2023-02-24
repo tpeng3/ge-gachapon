@@ -45,7 +45,7 @@ function Gachapon({ toggleHistory, completed }) {
     const pity = currentUser.pity > 9 && !completed;
     let roll;
     if (currentUser.specialTickets > 0) {
-      roll = calculateRandom(pity, 2); // TODO: better filters later
+      roll = calculateRandom(pity, 3); // TODO: better filters later
     } else {
       roll = calculateRandom(pity);
     }

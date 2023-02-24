@@ -129,6 +129,7 @@ body {
   }
 
   .cardtitle {
+    text-align: center;
     @apply font-display uppercase text-red font-bold text-[25px]
   }
 

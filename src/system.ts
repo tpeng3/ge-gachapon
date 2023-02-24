@@ -62,7 +62,7 @@ const initialState = {
 // only on page load
 const updateCatalogue = (value: { [key: string]: Bean }) => ({ censusData: value });
 const initBeanDict = (value: { [key: string]: Bean }) => {
-  const beanObj: { [key: string]: Bean } = BEAN_LIST.reduce((obj, item) => {
+  const beanObj: { [key: string]: Bean } = BEAN_LIST.filter(i => i.key !== "").reduce((obj, item) => {
     return {
       ...obj,
       [item.key]: item,

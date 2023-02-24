@@ -1,10 +1,13 @@
 import React from "react";
 import useSystemStore from "./system";
 import { motion } from "framer-motion";
+const starOne = require("./images/star_one.png");
+const starTwo = require("./images/star_two.png");
 
 function Card({ bean, index, isNew }) {
   const setSelectedBean = useSystemStore((state) => state.setSelectedBean);
   const pack = bean.pack;
+  const star = bean.artist ? starTwo : starOne;
 
   return (
     <motion.button
@@ -24,7 +27,7 @@ function Card({ bean, index, isNew }) {
         {bean.name}
       </div>
       <img
-        src={require(`./images/star_one.png`)}
+        src={star}
         className=" pixellated top-0 left-0 absolute scale-[2]"
       />
     </motion.button>

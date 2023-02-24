@@ -1,8 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+const starOne = require("./images/star_one.png");
+const starTwo = require("./images/star_two.png");
 
 function GlobalCard({ bean, index, user }) {
   const pack = bean.pack;
+  const star = bean.artist ? starTwo : starOne;
 
   return (
     <motion.div
@@ -22,7 +25,7 @@ function GlobalCard({ bean, index, user }) {
         {user}
       </div>
       <img
-        src={require(`./images/star_one.png`)}
+        src={star}
         className=" pixellated top-0 left-0 absolute scale-[2]"
       />
     </motion.div>
