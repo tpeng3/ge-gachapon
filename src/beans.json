@@ -111,6 +111,17 @@
   },
   {
     "bean": "",
+    "key": "cynn_lucky",
+    "name": "Cynn",
+    "idnum": 101,
+    "mun": "Froggo",
+    "pack": 2,
+    "direction": "left",
+    "artist": "",
+    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/cynn_lucky.png"
+  },
+  {
+    "bean": "",
     "key": "cynn_default",
     "name": "Cynn",
     "idnum": 101,
