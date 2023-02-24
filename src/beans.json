@@ -1079,14 +1079,14 @@
   },
   {
     "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
+    "key": "cashew_default",
+    "name": "Cashew",
+    "idnum": 0,
+    "mun": "Map Vendor",
     "pack": 3,
-    "direction": "",
+    "direction": "right",
     "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/.png"
+    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/cashew_default.png"
   },
   {
     "bean": "",
