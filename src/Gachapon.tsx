@@ -5,6 +5,8 @@ import useSystemStore from "./system";
 import { motion } from "framer-motion";
 import gachapic from "./images/gachapon.png";
 
+const CURRENT_PACK = 4; // TODO: change this to last 20 most recent beans
+
 function Gachapon({ toggleHistory, completed }) {
   const beans = useSystemStore((state) => state.beans);
   const currentUser = useSystemStore((state) => state.currentUser);
@@ -45,7 +47,7 @@ function Gachapon({ toggleHistory, completed }) {
     const pity = currentUser.pity > 9 && !completed;
     let roll;
     if (currentUser.specialTickets > 0) {
-      roll = calculateRandom(pity, 3); // TODO: better filters later
+      roll = calculateRandom(pity, CURRENT_PACK);
     } else {
       roll = calculateRandom(pity);
     }

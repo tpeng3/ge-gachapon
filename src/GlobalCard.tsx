@@ -2,10 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 const starOne = require("./images/star_one.png");
 const starTwo = require("./images/star_two.png");
+const starThree = require("./images/star_three.png");
 
 function GlobalCard({ bean, index, user }) {
   const pack = bean.pack;
-  const star = bean.artist ? starTwo : starOne;
+  const star = bean.rarity ? starThree : bean.artist ? starTwo : starOne;
 
   return (
     <motion.div

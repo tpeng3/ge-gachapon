@@ -11,7 +11,8 @@ export interface Bean {
   pack: number,
   revealed: boolean,
   popularity: number,
-  artist?: string
+  artist?: string,
+  rarity?: boolean
 }
 
 export interface UserData {

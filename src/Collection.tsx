@@ -2,6 +2,7 @@ import React from "react";
 import useSystemStore from "./system";
 const starOne = require("./images/star_one.png");
 const starTwo = require("./images/star_two.png");
+const starThree = require("./images/star_three.png");
 
 function Modal() {
   const setSelectedBean = useSystemStore((state) => state.setSelectedBean);
@@ -44,7 +45,7 @@ function Modal() {
 
   const renderCollectionCard = (bean) => {
     const pack = bean.pack;
-    const star = bean.artist ? starTwo : starOne;
+    const star = bean.rarity ? starThree : bean.artist ? starTwo : starOne;
     const collected =
       currentUser?.collectedBeans && currentUser?.collectedBeans[bean.key];
 
@@ -92,7 +93,7 @@ function Modal() {
   const showSelectedBean = () => {
     const bean = selectedBean;
     const pack = bean.pack;
-    const star = bean.artist ? starTwo : starOne;
+    const star = bean.rarity ? starThree : bean.artist ? starTwo : starOne;
     return (
       <div className="relative pb-4 flex flex-col items-center">
         <img

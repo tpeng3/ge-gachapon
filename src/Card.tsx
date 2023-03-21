@@ -3,11 +3,12 @@ import useSystemStore from "./system";
 import { motion } from "framer-motion";
 const starOne = require("./images/star_one.png");
 const starTwo = require("./images/star_two.png");
+const starThree = require("./images/star_three.png");
 
 function Card({ bean, index, isNew }) {
   const setSelectedBean = useSystemStore((state) => state.setSelectedBean);
   const pack = bean.pack;
-  const star = bean.artist ? starTwo : starOne;
+  const star = bean.rarity ? starThree : bean.artist ? starTwo : starOne;
 
   return (
     <motion.button

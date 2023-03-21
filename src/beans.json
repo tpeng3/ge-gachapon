@@ -7,7 +7,6 @@
     "mun": "pandi",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/ambrose_default.png"
   },
   {
@@ -18,7 +17,6 @@
     "mun": "Peapup",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/andras_default.png"
   },
   {
@@ -29,7 +27,6 @@
     "mun": "Jint",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/apricot_default.png"
   },
   {
@@ -40,7 +37,6 @@
     "mun": "Koo",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/astrea_default.png"
   },
   {
@@ -51,7 +47,6 @@
     "mun": "Dice",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/ava_default.png"
   },
   {
@@ -62,7 +57,6 @@
     "mun": "Pandi",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/bee_default.png"
   },
   {
@@ -73,7 +67,6 @@
     "mun": "pai",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/bullfrog_default.png"
   },
   {
@@ -84,7 +77,6 @@
     "mun": "vani",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/caelis_default.png"
   },
   {
@@ -95,7 +87,6 @@
     "mun": "Gabbo",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/chickaree_default.png"
   },
   {
@@ -106,19 +97,7 @@
     "mun": "Froggo",
     "pack": 3,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/cynn_fall.png"
-  },
-  {
-    "bean": "",
-    "key": "cynn_lucky",
-    "name": "Cynn",
-    "idnum": 101,
-    "mun": "Froggo",
-    "pack": 2,
-    "direction": "left",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/cynn_lucky.png"
   },
   {
     "bean": "",
@@ -128,8 +107,17 @@
     "mun": "Froggo",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/cynn_default.png"
+  },
+  {
+    "bean": "",
+    "key": "cynn_lucky",
+    "name": "Cynn",
+    "idnum": 101,
+    "mun": "Froggo",
+    "pack": 2,
+    "direction": "left",
+    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/cynn_lucky.png"
   },
   {
     "bean": "",
@@ -139,7 +127,6 @@
     "mun": "Froggo",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/cynn_spring.png"
   },
   {
@@ -150,7 +137,6 @@
     "mun": "pea",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/cyrille_default.png"
   },
   {
@@ -161,7 +147,6 @@
     "mun": "pea",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/cyrille_blindfold.png"
   },
   {
@@ -172,7 +157,6 @@
     "mun": "Fizz",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/cyrus_default.png"
   },
   {
@@ -183,7 +167,6 @@
     "mun": "teeri",
     "pack": 1,
     "direction": "Left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/deko_default.png"
   },
   {
@@ -194,7 +177,6 @@
     "mun": "Moni",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/delphi_default.png"
   },
   {
@@ -205,7 +187,6 @@
     "mun": "anne",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/edison_default.png"
   },
   {
@@ -216,7 +197,6 @@
     "mun": "Toasty",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/ezra_default.png"
   },
   {
@@ -227,7 +207,6 @@
     "mun": "Hina",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/greta_default.png"
   },
   {
@@ -238,7 +217,6 @@
     "mun": "Hina",
     "pack": 2,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/greta_spring.png"
   },
   {
@@ -249,7 +227,6 @@
     "mun": "Hissy",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/hawke_default.png"
   },
   {
@@ -260,7 +237,6 @@
     "mun": "Vice",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/hiraya_default.png"
   },
   {
@@ -271,7 +247,6 @@
     "mun": "haylee",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/ira_default.png"
   },
   {
@@ -282,7 +257,6 @@
     "mun": "nie",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/iris_default.png"
   },
   {
@@ -293,7 +267,6 @@
     "mun": "Lani",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/legretta_default.png"
   },
   {
@@ -304,7 +277,6 @@
     "mun": "Ash",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/macha_default.png"
   },
   {
@@ -315,7 +287,6 @@
     "mun": "Sachi",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/maelys_default.png"
   },
   {
@@ -326,7 +297,6 @@
     "mun": "Sachi",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/maelys_nohat.png"
   },
   {
@@ -337,7 +307,6 @@
     "mun": "geeck",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/mengji_default.png"
   },
   {
@@ -348,7 +317,6 @@
     "mun": "Kaitlin",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/mira_default.png"
   },
   {
@@ -359,7 +327,6 @@
     "mun": "Mikey",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/nikita_default.png"
   },
   {
@@ -370,7 +337,6 @@
     "mun": "Yu",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/panqing_default.png"
   },
   {
@@ -381,7 +347,6 @@
     "mun": "Yu",
     "pack": 2,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/panqing_scar.png"
   },
   {
@@ -392,7 +357,6 @@
     "mun": "Kiyo",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/queengee_default.png"
   },
   {
@@ -414,7 +378,6 @@
     "mun": "Ryn",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/sorrel_default.png"
   },
   {
@@ -425,7 +388,6 @@
     "mun": "Lok",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/starlight_default.png"
   },
   {
@@ -436,7 +398,6 @@
     "mun": "nelle",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/sylvie_default.png"
   },
   {
@@ -447,7 +408,6 @@
     "mun": "song",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/tao_default.png"
   },
   {
@@ -458,7 +418,6 @@
     "mun": "Archie",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/tempi_default.png"
   },
   {
@@ -469,7 +428,6 @@
     "mun": "knvoa",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/teri_default.png"
   },
   {
@@ -480,7 +438,6 @@
     "mun": "gel",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/thorn_default.png"
   },
   {
@@ -491,7 +448,6 @@
     "mun": "Dog",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/violet_default.png"
   },
   {
@@ -502,7 +458,6 @@
     "mun": "Coco",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/wander_default.png"
   },
   {
@@ -513,7 +468,6 @@
     "mun": "Coco",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/wander_nohat.png"
   },
   {
@@ -524,7 +478,6 @@
     "mun": "Coco",
     "pack": 3,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/wander_fall.png"
   },
   {
@@ -535,7 +488,6 @@
     "mun": "Coco",
     "pack": 3,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/wander_fallglasses.png"
   },
   {
@@ -546,7 +498,6 @@
     "mun": "Oggy",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/wren_default.png"
   },
   {
@@ -557,7 +508,6 @@
     "mun": "Goose",
     "pack": 1,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/yun_default.png"
   },
   {
@@ -568,7 +518,6 @@
     "mun": "Kiyo",
     "pack": 1,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/1/zane_default.png"
   },
   {
@@ -579,7 +528,6 @@
     "mun": "Kiyo",
     "pack": 3,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/zane_uniform.png"
   },
   {
@@ -590,7 +538,6 @@
     "mun": "Kiyo",
     "pack": 3,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/zane_uniformnohat.png"
   },
   {
@@ -601,7 +548,6 @@
     "mun": "Grey",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/sinclair_default.png"
   },
   {
@@ -612,7 +558,6 @@
     "mun": "Bec",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/piper_default.png"
   },
   {
@@ -623,7 +568,6 @@
     "mun": "EMU.",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/kyoko_default.png"
   },
   {
@@ -634,7 +578,6 @@
     "mun": "tree",
     "pack": 2,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/tomoko_default.png"
   },
   {
@@ -645,7 +588,6 @@
     "mun": "Benn",
     "pack": 2,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/irey_default.png"
   },
   {
@@ -656,7 +598,6 @@
     "mun": "tea",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/tadhana_default.png"
   },
   {
@@ -667,7 +608,6 @@
     "mun": "noot",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/odell_default.png"
   },
   {
@@ -678,7 +618,6 @@
     "mun": "Toma",
     "pack": 2,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/wynne_default.png"
   },
   {
@@ -689,7 +628,6 @@
     "mun": "cae",
     "pack": 2,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/noah_default.png"
   },
   {
@@ -700,7 +638,6 @@
     "mun": "GE",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/quingee_default.png"
   },
   {
@@ -711,7 +648,6 @@
     "mun": "Tao",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/lucky_default.png"
   },
   {
@@ -722,7 +658,6 @@
     "mun": "Trading Post",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/bullfrogjr_default.png"
   },
   {
@@ -733,7 +668,6 @@
     "mun": "Leroy",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/cameron_default.png"
   },
   {
@@ -744,7 +678,6 @@
     "mun": "King",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/oleander_default.png"
   },
   {
@@ -755,7 +688,6 @@
     "mun": "Kenny",
     "pack": 2,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/rosendo_default.png"
   },
   {
@@ -766,7 +698,6 @@
     "mun": "chu",
     "pack": 2,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/sou_default.png"
   },
   {
@@ -777,7 +708,6 @@
     "mun": "li",
     "pack": 2,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/enoch_default.png"
   },
   {
@@ -788,7 +718,6 @@
     "mun": "mochi",
     "pack": 2,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/2/caspiana_default.png"
   },
   {
@@ -1085,7 +1014,6 @@
     "mun": "Fire Station",
     "pack": 3,
     "direction": "left",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/cap_default.png"
   },
   {
@@ -1096,315 +1024,85 @@
     "mun": "Map Vendor",
     "pack": 3,
     "direction": "right",
-    "artist": "",
     "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/cashew_default.png"
   },
   {
     "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": 3,
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/.png"
+    "key": "irey_fair",
+    "name": "Irey",
+    "idnum": 247,
+    "mun": "Benn",
+    "pack": 4,
+    "direction": "right",
+    "artist": "knvoa",
+    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/4/irey_fair.png",
+    "rarity": true
   },
   {
     "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": 3,
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/.png"
+    "key": "caspiana_fair",
+    "name": "Caspiana",
+    "idnum": 151,
+    "mun": "Mochi",
+    "pack": 4,
+    "direction": "right",
+    "artist": "knvoa",
+    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/4/caspiana_fair.png",
+    "rarity": true
   },
   {
     "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": 3,
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/.png"
+    "key": "caspiana_sweets",
+    "name": "Caspiana",
+    "idnum": 151,
+    "mun": "Mochi",
+    "pack": 4,
+    "direction": "right",
+    "artist": "mochi",
+    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/4/caspiana_sweets.png"
   },
   {
     "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": 3,
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/.png"
+    "key": "valen_sweets",
+    "name": "Caspiana",
+    "idnum": 151,
+    "mun": "Mochi",
+    "pack": 4,
+    "direction": "right",
+    "artist": "mochi",
+    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/4/valen_sweets.png"
   },
   {
     "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": 3,
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/.png"
+    "key": "valen_default",
+    "name": "Caspiana",
+    "idnum": 151,
+    "mun": "Mochi",
+    "pack": 4,
+    "direction": "right",
+    "artist": "mochi",
+    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/4/valen_default.png"
   },
   {
     "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": 3,
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/3/.png"
+    "key": "tadhana_fall",
+    "name": "Tadhana",
+    "idnum": 231,
+    "mun": "Tea",
+    "pack": 4,
+    "direction": "left",
+    "artist": "tea",
+    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/4/tadhana_fall.png"
   },
   {
     "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
+    "key": "frog_default",
+    "name": "Frog",
+    "idnum": 0,
+    "mun": "GE",
+    "pack": 4,
+    "direction": "right",
     "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
-  },
-  {
-    "bean": "",
-    "key": "",
-    "name": "",
-    "idnum": "",
-    "mun": "",
-    "pack": "",
-    "direction": "",
-    "artist": "",
-    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images//.png"
+    "imgurl": "https://raw.githubusercontent.com/tpeng3/ge-gachapon/gh-pages/src/images/4/frog_default.png"
   }
 ]
