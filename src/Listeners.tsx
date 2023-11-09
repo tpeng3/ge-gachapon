@@ -22,11 +22,13 @@ function Listeners() {
   const updateCatalogue = useSystemStore((state) => state.updateCatalogue);
 
   useEffect(() => {
+    const db = getDatabase();
+
     // grab census data
-    const url =
+    const CENSUS_URL =
       "https://docs.google.com/spreadsheets/d/1tOXcZD8jTv_vOW6XscLqpcc2asjxly-EpNGiAeiiEKc/export?format=csv&gid=0";
     updateCatalogue(JSON.parse(localStorage.getItem("census")));
-    fetch(url)
+    fetch(CENSUS_URL)
       .then((result) => result.text())
       .then(function (csvtext) {
         return csvtojson().fromString(csvtext);
@@ -38,18 +40,26 @@ function Listeners() {
         }
       });
 
-    const db = getDatabase();
-    // only update bean data on page load
-    onValue(
-      ref(db, "/beans"),
-      (snapshot) => {
-        const data = snapshot.val();
-        initBeanDict(data);
-      },
-      {
-        onlyOnce: true,
-      }
-    );
+    const BEAN_URL =
+      "https://docs.google.com/spreadsheets/d/1CXvlhH7D-3do11qZXQbJj7L7dZdMVB8q7WFEJkHvtcI/export?format=csv&gid=1332276337";
+    fetch(BEAN_URL)
+      .then((result) => result.text())
+      .then(function (csvtext) {
+        return csvtojson().fromString(csvtext);
+      })
+      .then(function (csv) {
+        // only update bean data on page load
+        onValue(
+          ref(db, "/beans"),
+          (snapshot) => {
+            const data = snapshot.val();
+            initBeanDict(csv, data);
+          },
+          {
+            onlyOnce: true,
+          }
+        );
+      });
 
     // listen to when history data updates (other people roll)
     const historyRef = ref(db, "history/");

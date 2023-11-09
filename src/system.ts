@@ -1,5 +1,4 @@
 import create from "zustand";
-import BEAN_LIST from "./beans.json";
 
 export interface Bean {
   key: string;
@@ -62,8 +61,8 @@ const initialState = {
  */
 // only on page load
 const updateCatalogue = (value: { [key: string]: Bean }) => ({ censusData: value });
-const initBeanDict = (value: { [key: string]: Bean }) => {
-  const beanObj: { [key: string]: Bean } = BEAN_LIST.filter(i => i.key !== "").reduce((obj, item) => {
+const initBeanDict = (beanList, value: { [key: string]: Bean }) => {
+  const beanObj: { [key: string]: Bean } = beanList.filter(i => i.key !== "").reduce((obj, item) => {
     return {
       ...obj,
       [item.key]: item,
@@ -89,7 +88,7 @@ const setSelectedBean = (value: Bean) => ({ selectedBean: value });
 const useSystemStore = create<SystemState>((set) => ({
   ...initialState,
   updateCatalogue: (value) => set(() => updateCatalogue(value)),
-  initBeanDict: (value: { [key: string]: Bean }) => set(() => initBeanDict(value)),
+  initBeanDict: (beanList: Bean[], value: { [key: string]: Bean }) => set(() => initBeanDict(beanList, value)),
   updateHistory: (value: History[]) => set(() => updateHistory(value)),
   setCurrentUser: (value: UserData) => set(() => setCurrentUser(value)),
   setSelectedBean: (value: Bean) => set(() => setSelectedBean(value)),

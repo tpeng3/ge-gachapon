@@ -65,7 +65,7 @@ function App() {
       .sort((a, b) => b.timestamp - a.timestamp);
   };
 
-  return (
+  return Object.keys(beanDict).length > 0 && (
     <div className="App">
       <div className="max-w-[900px] mx-auto relative text-center">
         <div className="banner mb-4">
