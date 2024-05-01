@@ -15,11 +15,11 @@ export interface Bean {
 }
 
 export interface UserData {
-  key?: string;
-  tickets?: number;
-  specialTickets?: number;
-  pity?: number;
-  collectedBeans?: { [key: string]: number }
+  key: string;
+  tickets: number;
+  specialTickets: number;
+  pity: number;
+  collectedBeans: { [key: string]: number }
 }
 
 export interface History {

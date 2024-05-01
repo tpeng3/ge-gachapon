@@ -1,30 +1,102 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { ref as vRef } from "vue";
+import Modal from "./components/Modal.vue";
+import Collection from "./components/Collection.vue";
+import Gachapon from "./components/Gachapon.vue";
+import Card from "./components/Card.vue";
+import GlobalCard from "./components/GlobalCard.vue";
+import useSystemStore from "./system";
+
+const beanDict = useSystemStore((state) => state.beanDict);
+const currentUser = useSystemStore((state) => state.currentUser);
+const history = useSystemStore((state) => state.history);
+const sortedBeans = useSystemStore((state) => state.sortedBeans);
+const completed =
+  sortedBeans.length ===
+  sortedBeans.filter((i) => currentUser?.collectedBeans && currentUser.collectedBeans[i.key])
+    .length;
+
+const isOpen = vRef(false);
+const userHistory = vRef(false);
+
+const variants = {
+  open: {
+    x: [-50, 0],
+    opacity: 1,
+    transition: {
+      ease: "easeOut",
+      duration: 0.5,
+    },
+  },
+  closed: {
+    x: [50, 0],
+    opacity: 1,
+    transition: {
+      ease: "easeOut",
+      duration: 0.5,
+    },
+  },
+};
+
+const getBannerText = () => {
+  if (completed) {
+    return `Congrats ${currentUser.key} on getting all the beans!`;
+  } else if (currentUser.key) {
+    return `Hi ${currentUser.key}!`;
+  } else {
+    return `Hello!`;
+  }
+};
+
+const renderTicketInfo = () => {
+  if (completed) {
+    return `&infin;`;
+  } else if (currentUser.specialTickets > 0) {
+    return `Available Tickets: ${currentUser.specialTickets} (Special), ${currentUser.tickets} (Regular)`;
+  } else {
+    return `Available Tickets: ${currentUser.tickets}`;
+  }
+};
+
+const getCardHistory = () => {
+  return history
+    .filter((i) => (userHistory ? i.user === currentUser.key : true))
+    .sort((a, b) => b.timestamp - a.timestamp);
+};
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-</template>
+  <div class="App">
+    <div class="max-w-[900px] mx-auto relative text-center">
+      <div class="banner mb-4">
+        <span class="bannertext">{{ getBannerText() }}</span>
+        <button class="buttontext uppercase mx-auto underline" @click="isOpen = true">
+          Change user?
+        </button>
+      </div>
+      <Gachapon :toggleHistory="() => !userHistory" :completed="completed" />
+      <div class="cardtitle mb-4">
+        {{ renderTicketInfo() }}
+      </div>
+      <button class="toggle-button md:absolute right-6 top-20" @click="!userHistory">
+        <span v-if="userHistory">See everyone's rolls</span>
+        <span v-else>See your rolls</span>
+      </button>
+      <div class="transparent-clip h-[500px] overflow-auto">
+        <div
+          v-motion="userHistory ? 'open' : 'closed'"
+          :variants="variants"
+          class="p-4 flex flex-wrap gap-8 place-content-center"
+        >
+          <div v-for="(i, index) in getCardHistory().slice(0, 100)" :key="i.key">
+            <Card v-if="userHistory" :index="index" :bean="beanDict[i.key]" :isNew="i.isNew" />
+            <GlobalCard v-else :index="index" :bean="beanDict[i.key]" :user="i.user" />
+          </div>
+        </div>
+      </div>
+    </div>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+    <Modal :isOpen="isOpen" :toggleModal="() => !isOpen" />
+    <Collection />
+  </div>
+</template>
