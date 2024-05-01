@@ -1,27 +1,27 @@
 <script setup lang="ts">
-import useSystemStore, { Bean, UserData } from "../system";
+import useSystemStore, { Bean } from "../system";
 
-const currentUser = useSystemStore((state) => state.currentUser) as UserData;
+const currentUser = useSystemStore((state) => state.currentUser);
 const setSelectedBean = useSystemStore((state) => state.setSelectedBean);
 const selectedBean = useSystemStore((state) => state.selectedBean);
 const sortedBeans = useSystemStore((state) => state.sortedBeans);
-const censusData = useSystemStore((state) => state.censusData) as any;
+const censusData = useSystemStore((state) => state.censusData);
 
 const findAppLink = () => {
-  const data = selectedBean && censusData.find((i: any) => i.IdNUM == selectedBean.idnum);
+  const data = selectedBean && censusData.find((i) => i.IdNUM == selectedBean.idnum);
   return data && data.appurl;
 };
 
 const calculateBeanCount = () => {
-  const total = sortedBeans.length;
-  const current = sortedBeans.filter(
+  const total = sortedBeans.value.length;
+  const current = sortedBeans.value.filter(
     (i) => currentUser?.collectedBeans && currentUser.collectedBeans[i.key]
   ).length;
   return `(${current} / ${total})`;
 };
 
 const getRarity = (bean: Bean) => {
-  return bean.rarity ? "star_three.png" : bean.artist ? "star_two.png" : "star_one.png";
+  return bean.rarity ? "star_three" : bean.artist ? "star_two" : "star_one";
 };
 </script>
 
@@ -48,25 +48,25 @@ const getRarity = (bean: Bean) => {
               @click="() => setSelectedBean(bean)"
             >
               <img
-                :src="`./assets/beans/${bean.key}.png`"
+                :src="`/beans/${bean.key}.png`"
                 class="w-[5rem] md:w-[6rem] pixellated"
               />
               <div class="font-display uppercase text-red font-bold text-[25px]">
                 {{ bean.name }}
               </div>
               <img
-                :src="getRarity(bean)"
+                :src="`/${getRarity(bean)}.png`"
                 class=" pixellated top-0 left-0 absolute scale-[1.5]"
               />
             </button>
             <div v-else class="blank-card">
               <img
-                :src="`./assets/beans/${bean.key}.png`"
+                :src="`/beans/${bean.key}.png`"
                 class="w-[6rem] pixellated brightness-0"
               />
               <div class="font-display uppercase font-bold text-[25px]">???</div>
               <img
-                :src="getRarity(bean)"
+              :src="`/${getRarity(bean)}.png`"
                 class="pixellated top-0 left-0 brightness-50 absolute scale-[1.5]"
               />
             </div>
@@ -77,11 +77,11 @@ const getRarity = (bean: Bean) => {
           >
             <div class="relative pb-4 flex flex-col items-center">
               <img
-                :src="`./assets/beans/${selectedBean.key}.png`"
+                :src="`/beans/${selectedBean.key}.png`"
                 class="w-32 md:w-64 pixellated"
               />
               <img
-                :src="getRarity(selectedBean)"
+                :src="`/${getRarity(selectedBean)}.png`"
                 class="pixellated left-0 absolute scale-[2] top-2"
               />
               <div class="cardtitle">{{ selectedBean.name }}</div>

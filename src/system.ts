@@ -1,4 +1,4 @@
-import create from "zustand";
+import create from "zustand-vue";
 
 export interface Bean {
   key: string;
@@ -36,13 +36,13 @@ interface SystemState {
   beans: Bean[];
   queue: { [user: string]: number };
   history: History[];
-  currentUser: UserData;
+  currentUser: any;
   selectedBean: Bean | null;
-  updateCatalogue: Function;
-  initBeanDict: Function;
-  updateHistory: Function;
-  setCurrentUser: Function;
-  setSelectedBean: Function;
+  updateCatalogue: (value: any) => void;
+  initBeanDict: (value: Bean[], beanList: { [key: string]: Bean }) => void;
+  updateHistory: (value: History[]) => void;
+  setCurrentUser: (value: UserData) => void;
+  setSelectedBean: (value: Bean | null) => void;
 }
 
 const initialState = {
@@ -91,7 +91,8 @@ const useSystemStore = create<SystemState>((set) => ({
   initBeanDict: (beanList: Bean[], value: { [key: string]: Bean }) => set(() => initBeanDict(beanList, value)),
   updateHistory: (value: History[]) => set(() => updateHistory(value)),
   setCurrentUser: (value: UserData) => set(() => setCurrentUser(value)),
-  setSelectedBean: (value: Bean) => set(() => setSelectedBean(value)),
+  setSelectedBean: (value) => set(() => setSelectedBean(value)),
 }));
 
 export default useSystemStore;
+export const { getState, setState, subscribe } = useSystemStore;

@@ -2,24 +2,16 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import useSystemStore from "./system";
 import { slugify } from "./helpers";
 import csvtojson from "csvtojson";
-import WebFont from "webfontloader";
+import { watch, watchEffect } from "vue";
 
 function Listeners() {
-  useEffect(() => {
-    WebFont.load({
-      google: {
-        families: ["Amatic SC", "Lato"],
-      },
-    });
-  }, []);
-
   const initBeanDict = useSystemStore((state) => state.initBeanDict);
   const updateHistory = useSystemStore((state) => state.updateHistory);
   const setCurrentUser = useSystemStore((state) => state.setCurrentUser);
   const currentUser = useSystemStore((state) => state.currentUser);
   const updateCatalogue = useSystemStore((state) => state.updateCatalogue);
 
-  useEffect(() => {
+  watchEffect(() => {
     const db = getDatabase();
 
     // grab census data
@@ -63,11 +55,12 @@ function Listeners() {
     const historyRef = ref(db, "history/");
     onValue(historyRef, (snapshot) => {
       const data = snapshot.val();
+      console.log("update history", Object.values(data));
       if (data) updateHistory(Object.values(data));
     });
-  }, []);
+  });
 
-  useEffect(() => {
+  watch(currentUser, () => {
     if (!currentUser) return;
     const db = getDatabase();
     const userRef = ref(db, "queue/" + slugify(currentUser.key));
@@ -75,9 +68,7 @@ function Listeners() {
       const data = snapshot.val();
       if (data) setCurrentUser(data);
     });
-  }, [currentUser]);
-
-  return <div></div>;
+  });
 }
 
 export default Listeners;

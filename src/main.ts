@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
-import "./index.css";
-import Counter from "./Counter";
+import "./style.css";
+// import Counter from "./Counter";
 import { initializeApp } from "firebase/app";
 import Listeners from "./Listeners";
 
@@ -17,4 +17,5 @@ const firebaseConfig = {
 };
 
 initializeApp(firebaseConfig);
+Listeners();
 createApp(App).mount('#app')

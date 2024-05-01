@@ -104,6 +104,6 @@ const rollBean = () => {
     :variants="variants"
     :hovered="!disabled && { scale: 1.1 }"
   >
-    <img src="./assets/gachapon.png" />
+    <img src="/gachapon.png" />
   </button>
 </template>

@@ -10,10 +10,11 @@ import useSystemStore from "./system";
 const beanDict = useSystemStore((state) => state.beanDict);
 const currentUser = useSystemStore((state) => state.currentUser);
 const history = useSystemStore((state) => state.history);
+
 const sortedBeans = useSystemStore((state) => state.sortedBeans);
-const completed =
-  sortedBeans.length ===
-  sortedBeans.filter((i) => currentUser?.collectedBeans && currentUser.collectedBeans[i.key])
+const completed = sortedBeans.value.length > 0 &&
+  sortedBeans.value.length ===
+  sortedBeans.value.filter((i) => currentUser?.collectedBeans && currentUser.collectedBeans[i.key])
     .length;
 
 const isOpen = vRef(false);
@@ -59,7 +60,7 @@ const renderTicketInfo = () => {
 };
 
 const getCardHistory = () => {
-  return history
+  return history.value
     .filter((i) => (userHistory ? i.user === currentUser.key : true))
     .sort((a, b) => b.timestamp - a.timestamp);
 };
@@ -84,6 +85,7 @@ const getCardHistory = () => {
       </button>
       <div class="transparent-clip h-[500px] overflow-auto">
         <div
+          v-if="history && history.length > 0"
           v-motion="userHistory ? 'open' : 'closed'"
           :variants="variants"
           class="p-4 flex flex-wrap gap-8 place-content-center"
