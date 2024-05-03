@@ -1,36 +1,33 @@
 <script setup lang="ts">
-import { ref as vRef, watchEffect } from "vue";
+import { ref as vRef } from "vue";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { slugify } from "../helpers";
-import useSystemStore from "../system";
+import store from "../system";
 
 const props = defineProps<{ isOpen: boolean; toggleModal: Function }>();
 const errorMessage = vRef("");
-const setCurrentUser = useSystemStore((state) => state.setCurrentUser);
 
-watchEffect(() => {
-  const savedname = window.localStorage.getItem("username");
-  if (savedname) {
-    const db = getDatabase();
-    onValue(
-      ref(db, `/users/${slugify(savedname)}`),
-      (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-          setCurrentUser(data);
-          props.toggleModal(false);
-        } else {
-          props.toggleModal(true);
-        }
-      },
-      {
-        onlyOnce: true,
+const savedname = window.localStorage.getItem("username");
+if (savedname) {
+  const db = getDatabase();
+  onValue(
+    ref(db, `/users/${slugify(savedname)}`),
+    (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        store.setCurrentUser(data);
+        props.toggleModal(false);
+      } else {
+        props.toggleModal(true);
       }
-    );
-  } else {
-    props.toggleModal(true);
-  }
-});
+    },
+    {
+      onlyOnce: true,
+    }
+  );
+} else {
+  props.toggleModal(true);
+}
 
 const updateError = (msg: string) => {
   errorMessage.value = msg;
@@ -47,7 +44,7 @@ const setUser = (e: any) => {
       const data = snapshot.val();
       if (data) {
         window.localStorage.setItem("username", slugify(name));
-        setCurrentUser(data);
+        store.setCurrentUser(data);
         props.toggleModal(false);
       } else {
         updateError("Sorry, this name hasn't been registered yet. Please check with a cashier!");
@@ -84,11 +81,11 @@ const setUser = (e: any) => {
         among certain residents, starting what is described to be a
         <i class="italics text-red">"gacha fever"</i>. While the owner of the machine is currently
         unavailable, one can speak to Greta (at the Lucky Toyshop) or Bullfrog (at the Trading Post)
-        in order to purchase a ticket under their<span class="font-bold text-red">name</span>.
+        in order to purchase a ticket under their <b class="font-bold text-red">name</b>.
       </div>
       <form class="flex flex-col gap-2" @submit="(e) => setUser(e)">
         <label htmlFor="name">What is your name?</label>
-        <input type="text" id="username" name="name" class="input" />
+        <input type="text" id="username" name="name" class="input" :value="store.currentUser?.key" />
         <input class="button" type="submit" value="Start!" />
         <span>{{ errorMessage }}</span>
       </form>

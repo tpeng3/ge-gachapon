@@ -1,15 +1,11 @@
 import { getDatabase, ref, onValue } from "firebase/database";
-import useSystemStore from "./system";
+import store from "./system";
 import { slugify } from "./helpers";
 import csvtojson from "csvtojson";
 import { watch, watchEffect } from "vue";
 
 function Listeners() {
-  const initBeanDict = useSystemStore((state) => state.initBeanDict);
-  const updateHistory = useSystemStore((state) => state.updateHistory);
-  const setCurrentUser = useSystemStore((state) => state.setCurrentUser);
-  const currentUser = useSystemStore((state) => state.currentUser);
-  const updateCatalogue = useSystemStore((state) => state.updateCatalogue);
+  const currentUser = store.currentUser;
 
   watchEffect(() => {
     const db = getDatabase();
@@ -17,15 +13,15 @@ function Listeners() {
     // grab census data
     const CENSUS_URL =
       "https://docs.google.com/spreadsheets/d/1tOXcZD8jTv_vOW6XscLqpcc2asjxly-EpNGiAeiiEKc/export?format=csv&gid=0";
-    updateCatalogue(JSON.parse(localStorage.getItem("census")));
+    store.updateCatalogue(JSON.parse(localStorage.getItem("census")));
     fetch(CENSUS_URL)
       .then((result) => result.text())
       .then(function (csvtext) {
         return csvtojson().fromString(csvtext);
       })
-      .then(function (csv) {
+      .then(function (csv: any) {
         if (JSON.stringify(csv) !== localStorage.getItem("census")) {
-          updateCatalogue(csv);
+          store.updateCatalogue(csv);
           localStorage.setItem("census", JSON.stringify(csv));
         }
       });
@@ -43,7 +39,7 @@ function Listeners() {
           ref(db, "/beans"),
           (snapshot) => {
             const data = snapshot.val();
-            initBeanDict(csv, data);
+            store.initBeanDict(csv, data);
           },
           {
             onlyOnce: true,
@@ -55,8 +51,7 @@ function Listeners() {
     const historyRef = ref(db, "history/");
     onValue(historyRef, (snapshot) => {
       const data = snapshot.val();
-      console.log("update history", Object.values(data));
-      if (data) updateHistory(Object.values(data));
+      if (data) store.updateHistory(Object.values(data));
     });
   });
 
@@ -66,7 +61,7 @@ function Listeners() {
     const userRef = ref(db, "queue/" + slugify(currentUser.key));
     onValue(userRef, (snapshot) => {
       const data = snapshot.val();
-      if (data) setCurrentUser(data);
+      if (data) store.setCurrentUser(data);
     });
   });
 }

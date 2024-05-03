@@ -1,4 +1,4 @@
-import create from "zustand-vue";
+import { reactive } from 'vue'
 
 export interface Bean {
   key: string;
@@ -54,45 +54,42 @@ const initialState = {
   history: [],
   currentUser: {},
   selectedBean: null
-};
-
-/**
- * Bean functions
- */
-// only on page load
-const updateCatalogue = (value: { [key: string]: Bean }) => ({ censusData: value });
-const initBeanDict = (beanList, value: { [key: string]: Bean }) => {
-  const beanObj: { [key: string]: Bean } = beanList.filter(i => i.key !== "").reduce((obj, item) => {
-    return {
-      ...obj,
-      [item.key]: item,
-    };
-  }, {});
-  const beans = { ...value, ...beanObj }
-  const sortedBeans = Object.values(beans).sort((a, b) => a.key.localeCompare(b.key));
-  return {
-    beanDict: beans,
-    beans: Object.values(beans),
-    sortedBeans
-  }
-};
-
-// after an action
-const updateHistory = (value: History[]) => ({ history: value });
-const setCurrentUser = (value: UserData) => ({ currentUser: value });
-const setSelectedBean = (value: Bean) => ({ selectedBean: value });
+} as SystemState;
 
 /**
  * Init store
  */
-const useSystemStore = create<SystemState>((set) => ({
+const store = reactive({
   ...initialState,
-  updateCatalogue: (value) => set(() => updateCatalogue(value)),
-  initBeanDict: (beanList: Bean[], value: { [key: string]: Bean }) => set(() => initBeanDict(beanList, value)),
-  updateHistory: (value: History[]) => set(() => updateHistory(value)),
-  setCurrentUser: (value: UserData) => set(() => setCurrentUser(value)),
-  setSelectedBean: (value) => set(() => setSelectedBean(value)),
-}));
 
-export default useSystemStore;
-export const { getState, setState, subscribe } = useSystemStore;
+  // only on page load
+  updateCatalogue(value: { [key: string]: Bean }) {
+    this.censusData = value;
+  },
+  initBeanDict(beanList, value: { [key: string]: Bean }) {
+    const beanObj: { [key: string]: Bean } = beanList.filter(i => i.key !== "").reduce((obj, item) => {
+      return {
+        ...obj,
+        [item.key]: item,
+      };
+    }, {});
+    const beans = { ...value, ...beanObj }
+    const sortedBeans = Object.values(beans).sort((a, b) => a.key.localeCompare(b.key));
+    this.beanDict = beans;
+    this.beans = Object.values(beans);
+    this.sortedBeans = sortedBeans;
+  },
+
+  // after an action
+  updateHistory(value: History[]) {
+    this.history = value;
+  },
+  setCurrentUser(value: UserData) {
+    this.currentUser = value;
+  },
+  setSelectedBean(value: Bean) {
+    this.selectedBean = value;
+  }
+});
+
+export default store;

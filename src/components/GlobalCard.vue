@@ -5,22 +5,16 @@ const star = props.bean.rarity ? "star_three" : props.bean.artist ? "star_two" :
 </script>
 
 <template>
-  <div
-    v-motion
-    :initial="index === 0 && { opacity: 0.2, scale: 0.2 }"
-    :enter="
-      index === 0 && {
-        opacity: 1,
-        scale: 1,
-        transition: {
-          duration: 500,
-          type: 'keyframes',
-          ease: 'easeIn',
-        },
-      }
-    "
-    class="global-card"
-  >
+  <div v-motion :initial="index === 0 && { opacity: 0.2, scale: 0.2 }" :enter="index === 0 && {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 50,
+      type: 'keyframes',
+      ease: 'easeIn',
+    },
+  }
+    " class="global-card">
     <img :src="`/beans/${bean.key}.png`" class="w-32 pixellated" />
     <div class="font-display uppercase text-red font-bold text-[25px]"></div>
     <div class="font-display uppercase text-red font-bold text-[25px]">
