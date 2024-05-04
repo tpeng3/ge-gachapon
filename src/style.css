@@ -19,6 +19,11 @@ body {
   image-rendering: pixelated;
 }
 
+[v-cloak] {
+  opacity: 0;
+  transition: all 0.5s;
+}
+
 @layer components {
   .modal {
     position: fixed;

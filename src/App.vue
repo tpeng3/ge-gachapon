@@ -69,7 +69,7 @@ const easeIn = {
           <div v-motion :initial="{ opacity: 0, x: 50 }"
             :enter="{ opacity: 1, x: 0, transition: { ease: 'ease', duration: 300, type: 'keyframes' } }"
             v-if="showUserHistory" class="p-4 flex flex-wrap gap-8 place-content-center">
-            <div v-for="(i, index) in getSortedHistory().slice(0, 100)" :key="i.key + index">
+            <div v-cloak v-for="(i, index) in getSortedHistory().slice(0, 100)" :key="i.key + index">
               <Card :index="index" :bean="store.beanDict[i.key]" :isNew="i.isNew" />
             </div>
           </div>
