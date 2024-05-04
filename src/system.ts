@@ -7,7 +7,6 @@ export interface Bean {
   mun: string,
   direction: "left" | "right",
   idnum: number,
-  pack: number,
   revealed: boolean,
   popularity: number,
   artist?: string,

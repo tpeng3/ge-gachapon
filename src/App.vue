@@ -49,7 +49,7 @@ const easeIn = {
           Change user?
         </button>
       </div>
-      <Gachapon :toggleHistory="() => !showUserHistory" :completed="getCheckCompleted()" />
+      <Gachapon :toggleHistory="toggleHistory" :completed="getCheckCompleted()" />
       <div class="cardtitle mb-4" v-if="store.currentProfile">
         <span v-if="getCheckCompleted()">&infin;</span>
         <span v-else-if="store.currentProfile.toyshoptickets?.amount > 0">

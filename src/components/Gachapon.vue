@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref as vRef } from "vue";
 import { getDatabase, ref, runTransaction, set } from "firebase/database";
-import store, { Bean } from "../system";
+import store from "../system";
 
 const PACK_SIZE = 20;
 
@@ -31,16 +31,9 @@ const calculateRandom = (pity = false, recent = false) => {
 const rollBean = async () => {
   props.toggleHistory(true);
   isRolling.value = true;
-  setTimeout(() => {
-    isRolling.value = false;
-  }, 500);
   const pity = store.currentUser.pity > 9 && !props.completed;
-  let roll: Bean;
-  if (store.currentUser.specialTickets > 0) {
-    roll = calculateRandom(pity, true);
-  } else {
-    roll = calculateRandom(pity);
-  }
+  const useSpecial = store.currentProfile.toyshoptickets?.amount > 0;
+  const roll = calculateRandom(pity, useSpecial);
   let isNew = false;
   const db = getDatabase();
 
@@ -57,11 +50,6 @@ const rollBean = async () => {
   runTransaction(ref(db, `users/${store.currentUser.key}`), (currentData) => {
     if (currentData) {
       if (!props.completed) {
-        if (currentData.specialTickets > 0) {
-          currentData.specialTickets--;
-        } else {
-          currentData.tickets--;
-        }
         if (currentData.collectedBeans) {
           if (currentData.collectedBeans[roll.key]) {
             currentData.collectedBeans[roll.key]++;
@@ -76,6 +64,8 @@ const rollBean = async () => {
           currentData.collectedBeans = { [roll.key]: 1 };
           currentData.pity = 0;
         }
+        currentData.key = store.currentUser.key;
+        currentData.id = store.currentUser.id;
         store.setCurrentUser(currentData, store.currentProfile);
       }
       // update history
@@ -92,14 +82,15 @@ const rollBean = async () => {
   });
 
   // take ticket
-  const ticketType = store.currentUser.specialTickets > 0 ? "toyshoptickets" : "toyshopticket";
+  const ticketType = useSpecial ? "toyshoptickets" : "toyshopticket";
+  store.currentProfile[ticketType].amount--;
   const response = await fetch(`https://data.mongodb-api.com/app/data-ycjna/endpoint/useTicket?id=${store.currentUser.id}&profile=${store.currentUser.key}&ticketType=${ticketType}`);
   const resultJson = await response.json();
-  if (!resultJson || !resultJson.success) {
+  if (!resultJson || !resultJson.modifiedCount) {
     alert("Error using ticket. Please contact Froggo.");
     return;
   };
-  store.currentProfile[ticketType].amount--;
+  isRolling.value = false;
 };
 </script>
 
