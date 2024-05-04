@@ -1,19 +1,17 @@
 <script setup lang="ts">
 import { ref as vRef } from "vue";
 import { getDatabase, ref, runTransaction, set } from "firebase/database";
-import { slugify } from "../helpers";
 import store, { Bean } from "../system";
 
 const PACK_SIZE = 20;
 
 const props = defineProps<{ toggleHistory: Function; completed: boolean }>();
 const isRolling = vRef(false);
-
-const disabled = store.currentUser.tickets < 1 && store.currentUser.specialTickets < 1 && !props.completed;
-const variants = {
-  rolling: { y: [0, -25, 0], transition: { duration: 0.3 } },
-  rolled: { y: 0, scale: 1 },
-};
+const isDisabled = () => {
+  const special = store.currentProfile?.toyshoptickets?.amount || 0;
+  const ticket = store.currentProfile?.toyshopticket?.amount || 0;
+  return special < 1 && ticket < 1 && !props.completed;
+}
 
 const calculateRandom = (pity = false, recent = false) => {
   let pool = store.beans;
@@ -30,10 +28,12 @@ const calculateRandom = (pity = false, recent = false) => {
   return selectedArray[Math.floor(Math.random() * selectedArray.length)];
 };
 
-const rollBean = () => {
+const rollBean = async () => {
   props.toggleHistory(true);
   isRolling.value = true;
-  setTimeout(() => isRolling.value = false, 500);
+  setTimeout(() => {
+    isRolling.value = false;
+  }, 500);
   const pity = store.currentUser.pity > 9 && !props.completed;
   let roll: Bean;
   if (store.currentUser.specialTickets > 0) {
@@ -41,18 +41,20 @@ const rollBean = () => {
   } else {
     roll = calculateRandom(pity);
   }
-  const db = getDatabase();
   let isNew = false;
+  const db = getDatabase();
+
   // update popularity
-  runTransaction(ref(db, `beans/${roll.key}`), (currentData) => {
+  runTransaction(ref(db, `/beans/${roll.key}`), (currentData) => {
     if (currentData) {
-      if (!currentData.revealed) currentData.revealed = slugify(store.currentUser.key);
+      if (!currentData.revealed) currentData.revealed = store.currentUser.key;
       currentData.popularity++;
     }
     return currentData;
   });
+
   // update user info
-  runTransaction(ref(db, `users/${slugify(store.currentUser.key)}`), (currentData) => {
+  runTransaction(ref(db, `users/${store.currentUser.key}`), (currentData) => {
     if (currentData) {
       if (!props.completed) {
         if (currentData.specialTickets > 0) {
@@ -74,7 +76,7 @@ const rollBean = () => {
           currentData.collectedBeans = { [roll.key]: 1 };
           currentData.pity = 0;
         }
-        store.setCurrentUser(currentData);
+        store.setCurrentUser(currentData, store.currentProfile);
       }
       // update history
       const timestamp = Date.now();
@@ -88,12 +90,21 @@ const rollBean = () => {
     }
     return currentData;
   });
+
+  // take ticket
+  const ticketType = store.currentUser.specialTickets > 0 ? "toyshoptickets" : "toyshopticket";
+  const response = await fetch(`https://data.mongodb-api.com/app/data-ycjna/endpoint/useTicket?id=${store.currentUser.id}&profile=${store.currentUser.key}&ticketType=${ticketType}`);
+  const resultJson = await response.json();
+  if (!resultJson || !resultJson.success) {
+    alert("Error using ticket. Please contact Froggo.");
+    return;
+  };
+  store.currentProfile[ticketType].amount--;
 };
 </script>
 
 <template>
-  <button v-motion="isRolling ? 'rolling' : 'rolled'" @click="rollBean" :class="disabled ? 'brightness-75' : ''"
-    :disabled="disabled" :variants="variants" :hovered="!disabled && { scale: 1.1 }">
+  <button @click="rollBean" :class="['gachapon', isRolling ? 'shake' : '']" :disabled="isDisabled()">
     <img src="/gachapon.png" />
   </button>
 </template>

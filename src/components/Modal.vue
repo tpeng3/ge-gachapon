@@ -8,53 +8,68 @@ const props = defineProps<{ isOpen: boolean; toggleModal: Function }>();
 const errorMessage = vRef("");
 
 const savedname = window.localStorage.getItem("username");
-if (savedname) {
-  const db = getDatabase();
-  onValue(
-    ref(db, `/users/${slugify(savedname)}`),
-    (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        store.setCurrentUser(data);
-        props.toggleModal(false);
-      } else {
-        props.toggleModal(true);
-      }
-    },
-    {
-      onlyOnce: true,
-    }
-  );
+if (savedname && store.censusData) {
+  await setUserProfile(savedname);
+  if (store.currentUser) {
+    props.toggleModal(false);
+  } else {
+    props.toggleModal(true);
+  }
 } else {
   props.toggleModal(true);
 }
+
+const setUser = async (e: any) => {
+  e.preventDefault(); // prevent page refresh
+  const name = e.target[0].value;
+  if (!name) return updateError("Name can't be empty.");
+  await setUserProfile(name);
+};
 
 const updateError = (msg: string) => {
   errorMessage.value = msg;
 };
 
-const setUser = (e: any) => {
-  e.preventDefault(); // prevent page refresh
-  const name = e.target[0].value;
-  if (!name) return updateError("Name can't be empty.");
+async function setUserProfile(name) {
+  // find profile first
+  const chara = store.censusData.find(i => i.homesteadprofile.toLowerCase() === name.toLowerCase());
+  if (!chara) return updateError("Sorry, this name hasn't been registered yet. Please check with a cashier!");
+
+  const profileId = slugify(chara.homesteadprofile);
+
+  // fetch mongo database
+  const profileResponse = await fetch(`https://data.mongodb-api.com/app/data-ycjna/endpoint/getProfile?id=${chara.discordID}&profile=${profileId}`);
+  const profileJson = await profileResponse.json();
+  if (!profileJson || !profileJson[profileId]) return updateError("Sorry, couldn't find your toyshop tickets. Please check with a cashier!");
+
   const db = getDatabase();
   onValue(
-    ref(db, `/users/${slugify(name)}`),
+    ref(db, `/users/${profileId}`),
     (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        window.localStorage.setItem("username", slugify(name));
-        store.setCurrentUser(data);
+        data.id = chara.discordID;
+        data.key = profileId;
+        window.localStorage.setItem("username", profileId);
+        store.setCurrentUser(data, profileJson[profileId]);
         props.toggleModal(false);
       } else {
-        updateError("Sorry, this name hasn't been registered yet. Please check with a cashier!");
+        const newUser = {
+          id: chara.discordID,
+          key: profileId,
+          collectedBeans: {},
+          pity: 0
+        };
+        window.localStorage.setItem("username", profileId);
+        store.setCurrentUser(newUser, profileJson[profileId]);
+        props.toggleModal(false);
       }
     },
     {
       onlyOnce: true,
     }
   );
-};
+}
 </script>
 
 <template>

@@ -12,7 +12,7 @@ function Listeners() {
 
     // grab census data
     const CENSUS_URL =
-      "https://docs.google.com/spreadsheets/d/1tOXcZD8jTv_vOW6XscLqpcc2asjxly-EpNGiAeiiEKc/export?format=csv&gid=0";
+      "https://docs.google.com/spreadsheets/d/1x78IkYaoxkCZf10HBkRGYlE9lIT1mkFvMAXgtNq89S0/export?format=csv&gid=1195434871";
     store.updateCatalogue(JSON.parse(localStorage.getItem("census")));
     fetch(CENSUS_URL)
       .then((result) => result.text())
@@ -26,6 +26,7 @@ function Listeners() {
         }
       });
 
+    // grab bean data
     const BEAN_URL =
       "https://docs.google.com/spreadsheets/d/1CXvlhH7D-3do11qZXQbJj7L7dZdMVB8q7WFEJkHvtcI/export?format=csv&gid=1332276337";
     fetch(BEAN_URL)
@@ -48,7 +49,7 @@ function Listeners() {
       });
 
     // listen to when history data updates (other people roll)
-    const historyRef = ref(db, "history/");
+    const historyRef = ref(db, "/history/");
     onValue(historyRef, (snapshot) => {
       const data = snapshot.val();
       if (data) store.updateHistory(Object.values(data));
