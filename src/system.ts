@@ -43,7 +43,7 @@ interface SystemState {
   updateCatalogue: (value: any) => void;
   initBeanDict: (value: Bean[], beanList: { [key: string]: Bean }) => void;
   updateHistory: (value: History[]) => void;
-  setCurrentUser: (value: UserData, value: ProfileInventory) => void;
+  setCurrentUser: (value: UserData, profile: ProfileInventory) => void;
   setSelectedBean: (value: Bean | null) => void;
 }
 
