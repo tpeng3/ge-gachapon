@@ -18,8 +18,8 @@ const toggleHistory = (value) => {
 const getSortedHistory = () => {
   const history = showUserHistory.value ? store.history.filter((i) => (i.user === store.currentUser.key)) : store.history;
   return history
-    .slice(0, 200)
     .sort((a, b) => b.timestamp - a.timestamp)
+    .slice(0, 200)
 }
 const getCheckCompleted = () => {
   return store.sortedBeans.length > 0 &&
