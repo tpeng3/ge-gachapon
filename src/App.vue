@@ -7,7 +7,7 @@ import Card from "./components/Card.vue";
 import GlobalCard from "./components/GlobalCard.vue";
 import store from "./system";
 
-const isOpen = vRef(!store.currentUser?.key);
+const isOpen = vRef(true);
 const showUserHistory = vRef(false);
 const toggleModal = (value) => {
   isOpen.value = typeof value === "boolean" ? value : !isOpen.value;
@@ -27,24 +27,13 @@ const getCheckCompleted = () => {
       .length
 }
 
-const variants = {
-  open: {
-    x: [-50, 0],
-    opacity: 1,
-    transition: {
-      ease: "easeOut",
-      duration: 0.5,
-    },
-  },
-  closed: {
-    x: [50, 0],
-    opacity: 1,
-    transition: {
-      ease: "easeOut",
-      duration: 0.5,
-    },
-  },
-};
+const easeIn = {
+  opacity: 1, x: 0,
+  transition: {
+    ease: 'easeIn',
+    duration: 0.5,
+  }
+}
 </script>
 
 <template>
@@ -61,13 +50,14 @@ const variants = {
         </button>
       </div>
       <Gachapon :toggleHistory="() => !showUserHistory" :completed="getCheckCompleted()" />
-      <div class="cardtitle mb-4">
+      <div class="cardtitle mb-4" v-if="store.currentProfile">
         <span v-if="getCheckCompleted()">&infin;</span>
-        <span v-else-if="store.currentUser.specialTickets > 0">
-          Available Tickets: {{ store.currentUser.specialTickets }} (Special),
-          {{ store.currentUser.tickets }} (Regular)
+        <span v-else-if="store.currentProfile.toyshoptickets?.amount > 0">
+          Available Tickets: {{ store.currentProfile.toyshoptickets.amount }} (Special),
+          {{ store.currentProfile.toyshopticket?.amount }} (Regular)
         </span>
-        <span v-else>Available Tickets: {{ store.currentUser.tickets }}</span>
+        <span v-else>Available Tickets: {{ store.currentProfile.toyshopticket ?
+          store.currentProfile.toyshopticket.amount : 0 }}</span>
       </div>
       <button class="toggle-button md:absolute right-6 top-20" @click="toggleHistory">
         <span v-if="showUserHistory">See everyone's rolls</span>
@@ -76,26 +66,26 @@ const variants = {
       <div class="transparent-clip h-[500px] overflow-auto">
         <div v-if="store.currentUser && Object.keys(store.beanDict).length > 0 && store.history.length > 0"
           class="p-4 flex flex-wrap gap-8 place-content-center">
-          <div v-for="(i, index) in getSortedHistory().slice(0, 100)" :key="i.key + index">
-            <Card v-motion :initial="{ opacity: 0, x: 50 }" :visible="{
-              opacity: 1, x: 0,
-              transition: {
-                ease: 'easeIn',
-                duration: 0.5,
-              }
-            }" v-show="showUserHistory" :index="index" :bean="store.beanDict[i.key]" :isNew="i.isNew" />
-            <GlobalCard v-motion :initial="{ opacity: 0, x: -50 }" :visible="{
-              opacity: 1, x: 0,
-              transition: {
-                ease: 'easeOut',
-                duration: 0.5,
-              }
-            }" v-show="!showUserHistory" :index="index" :bean="store.beanDict[i.key]" :user="i.user" />
+          <div v-motion :initial="{ opacity: 0, x: 50 }"
+            :enter="{ opacity: 1, x: 0, transition: { ease: 'ease', duration: 300, type: 'keyframes' } }"
+            v-if="showUserHistory" class="p-4 flex flex-wrap gap-8 place-content-center">
+            <div v-for="(i, index) in getSortedHistory().slice(0, 100)" :key="i.key + index">
+              <Card :index="index" :bean="store.beanDict[i.key]" :isNew="i.isNew" />
+            </div>
+          </div>
+          <div v-motion :initial="{ opacity: 0, x: -50 }"
+            :enter="{ opacity: 1, x: 0, transition: { ease: 'ease', duration: 300, type: 'keyframes' } }"
+            v-if="!showUserHistory" class="p-4 flex flex-wrap gap-8 place-content-center">
+            <div v-for="(i, index) in getSortedHistory().slice(0, 100)" :key="i.key + index" :visible="easeIn">
+              <GlobalCard :index="index" :bean="store.beanDict[i.key]" :user="i.user" />
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <Modal :isOpen="isOpen" :toggleModal="toggleModal" />
+    <Suspense>
+      <Modal :isOpen="isOpen" :toggleModal="toggleModal" />
+    </Suspense>
     <Collection />
   </div>
 </template>

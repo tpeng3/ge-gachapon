@@ -16,8 +16,6 @@ export interface Bean {
 
 export interface UserData {
   key: string;
-  tickets: number;
-  specialTickets: number;
   pity: number;
   collectedBeans: { [key: string]: number }
 }
@@ -29,6 +27,10 @@ export interface History {
   isNew: boolean;
 }
 
+export interface ProfileInventory {
+  [key: string]: { amount: number }
+}
+
 interface SystemState {
   censusData: any;
   beanDict: { [key: string]: Bean };
@@ -37,11 +39,12 @@ interface SystemState {
   queue: { [user: string]: number };
   history: History[];
   currentUser: any;
+  currentProfile: ProfileInventory;
   selectedBean: Bean | null;
   updateCatalogue: (value: any) => void;
   initBeanDict: (value: Bean[], beanList: { [key: string]: Bean }) => void;
   updateHistory: (value: History[]) => void;
-  setCurrentUser: (value: UserData) => void;
+  setCurrentUser: (value: UserData, value: ProfileInventory) => void;
   setSelectedBean: (value: Bean | null) => void;
 }
 
@@ -84,8 +87,9 @@ const store = reactive({
   updateHistory(value: History[]) {
     this.history = value;
   },
-  setCurrentUser(value: UserData) {
+  setCurrentUser(value: UserData, profile: ProfileInventory) {
     this.currentUser = value;
+    this.currentProfile = profile;
   },
   setSelectedBean(value: Bean) {
     this.selectedBean = value;

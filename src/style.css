@@ -45,6 +45,21 @@ body {
     @apply border-[3px] rounded-lg border-pink bg-beige p-8
   }
 
+  .fade {
+    animation: fade 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+  
+  @keyframes fade {
+    0% {
+      opacity: 0;
+      transform: translate3d(-50%, calc(-50% + 20px), 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(-50%, -50%, 0);
+    }
+  }
+
   .button {
     /* Please style this better */
     -webkit-transition: 0.5s;
@@ -67,6 +82,32 @@ body {
     letter-spacing: 1px;
     -webkit-transition: 0.5s;
     @apply hover:scale-105
+  }
+
+  .gachapon {
+    -webkit-transition: 0.5s;
+    @apply hover:scale-105
+  }
+
+  .gachapon:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    @apply brightness-75
+  }
+
+  .shake {
+    animation: bump 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+  }
+  
+  @keyframes bump {
+    67% {
+      transform: translate3d(0, 0, 0);
+    }
+  
+    10% {
+      transform: translate3d(0, -25px, 0);
+    }
   }
 
   .input {
