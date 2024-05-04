@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref as vRef } from "vue";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 import { slugify } from "../helpers";
 import store from "../system";
 
@@ -60,6 +60,7 @@ async function setUserProfile(name) {
           collectedBeans: {},
           pity: 0
         };
+        set(ref(db, `/users/${profileId}`), newUser);
         window.localStorage.setItem("username", profileId);
         store.setCurrentUser(newUser, profileJson[profileId]);
         props.toggleModal(false);
@@ -76,7 +77,7 @@ async function setUserProfile(name) {
   <div :class="['modal', isOpen ? 'block' : 'hidden']">
     <div class="modal-content max-w-[600px] w-full flex flex-col gap-2 md:text-center">
       <div>
-        Welcome!
+        Welcome to the Lucky Toyshop!
         <br />
         <br />
         Nestled by the entrance of the store is a toy vending machine filled with what seems to be
@@ -84,22 +85,22 @@ async function setUserProfile(name) {
         <br />
         <br />
         <i>
-          <span class="font-bold text-red">25 gald per roll.</span> Please speak to the cashier to
-          exchange for a ticket. WARNING: Choking hazard. Adult supervision required!
+          <span class="font-bold text-red">25 gald per roll.</span> Purchase a <span class="font-bold text-red">Toyshop
+            Ticket</span> at the counter to play. WARNING: Choking hazard. Adult supervision required!
         </i>
         <br />
         <br />
-        <i>"Please spend in moderation."</i>
+        <i>"Do not ask the toymakers where the beans come from. They are from joy."</i>
         <br />
         <br />
         The last message appears to be a newly added note. The toys inside have grown quite popular
         among certain residents, starting what is described to be a
-        <i class="italics text-red">"gacha fever"</i>. While the owner of the machine is currently
-        unavailable, one can speak to Greta (at the Lucky Toyshop) or Bullfrog (at the Trading Post)
-        in order to purchase a ticket under their <b class="font-bold text-red">name</b>.
+        <i class="italics text-red">"gacha fever"</i>. When purchasing a ticket at the counter using /shop The Lucky
+        Toyshop, make sure to transfer the ticket to a <b class="font-bold text-red">character profile</b> to order to
+        register them!
       </div>
       <form class="flex flex-col gap-2" @submit="(e) => setUser(e)">
-        <label htmlFor="name">What is your name?</label>
+        <label htmlFor="name">Enter your character profile name:</label>
         <input type="text" id="username" name="name" class="input" :value="store.currentUser?.key" />
         <input class="button" type="submit" value="Start!" />
         <span>{{ errorMessage }}</span>
@@ -110,6 +111,11 @@ async function setUserProfile(name) {
           Gale's End
         </a>
         , used with permission.
+      </div>
+      <div class="footnote">
+        If you would like to add a bean, you can <a
+          href="https://docs.google.com/spreadsheets/d/1CXvlhH7D-3do11qZXQbJj7L7dZdMVB8q7WFEJkHvtcI/edit#gid=0"
+          target="_blank">request it here</a>.
       </div>
       <div class="footnote">Site and sprites made by Froggo, unless specified otherwise.</div>
       <div class="footnote">

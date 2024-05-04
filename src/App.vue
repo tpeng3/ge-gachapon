@@ -8,7 +8,7 @@ import GlobalCard from "./components/GlobalCard.vue";
 import store from "./system";
 
 const isOpen = vRef(true);
-const showUserHistory = vRef(false);
+const showUserHistory = vRef(true);
 const toggleModal = (value) => {
   isOpen.value = typeof value === "boolean" ? value : !isOpen.value;
 }
@@ -16,8 +16,9 @@ const toggleHistory = (value) => {
   showUserHistory.value = typeof value === "boolean" ? value : !showUserHistory.value;
 }
 const getSortedHistory = () => {
-  return store.history
-    .filter((i) => (showUserHistory ? i.user === store.currentUser.key : true))
+  const history = showUserHistory.value ? store.history.filter((i) => (i.user === store.currentUser.key)) : store.history;
+  return history
+    .slice(0, 200)
     .sort((a, b) => b.timestamp - a.timestamp)
 }
 const getCheckCompleted = () => {
@@ -69,14 +70,14 @@ const easeIn = {
           <div v-motion :initial="{ opacity: 0, x: 50 }"
             :enter="{ opacity: 1, x: 0, transition: { ease: 'ease', duration: 300, type: 'keyframes' } }"
             v-if="showUserHistory" class="p-4 flex flex-wrap gap-8 place-content-center">
-            <div v-cloak v-for="(i, index) in getSortedHistory().slice(0, 100)" :key="i.key + index">
+            <div v-cloak v-for="(i, index) in getSortedHistory()" :key="i.key + index">
               <Card :index="index" :bean="store.beanDict[i.key]" :isNew="i.isNew" />
             </div>
           </div>
           <div v-motion :initial="{ opacity: 0, x: -50 }"
             :enter="{ opacity: 1, x: 0, transition: { ease: 'ease', duration: 300, type: 'keyframes' } }"
             v-if="!showUserHistory" class="p-4 flex flex-wrap gap-8 place-content-center">
-            <div v-for="(i, index) in getSortedHistory().slice(0, 100)" :key="i.key + index" :visible="easeIn">
+            <div v-for="(i, index) in getSortedHistory()" :key="i.key + index" :visible="easeIn">
               <GlobalCard :index="index" :bean="store.beanDict[i.key]" :user="i.user" />
             </div>
           </div>
