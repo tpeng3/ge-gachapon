@@ -101,16 +101,12 @@ body {
   }
 
   .shake {
-    animation: bump 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    animation: bump 0.3s ease-in-out;
     transform: translate3d(0, 0, 0);
   }
   
   @keyframes bump {
-    67% {
-      transform: translate3d(0, 0, 0);
-    }
-  
-    10% {
+    15% {
       transform: translate3d(0, -25px, 0);
     }
   }

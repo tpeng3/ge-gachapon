@@ -6,5 +6,8 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     outDir: './docs',
+    rollupOptions: {
+      external: ['./docs/CNAME'],
+    }
   },
 })
