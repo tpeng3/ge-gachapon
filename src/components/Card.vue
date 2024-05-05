@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import store, { Bean } from "../system";
-const props = defineProps<{ bean: Bean; index: number; isNew: boolean }>();
-const star = props.bean.rarity ? "star_three" : props.bean.artist ? "star_two" : "star_one";
+defineProps<{ bean: Bean; index: number; isNew: boolean }>();
 </script>
 
 <template>
@@ -20,6 +19,6 @@ const star = props.bean.rarity ? "star_three" : props.bean.artist ? "star_two" :
     <div class="font-display uppercase text-red font-bold text-[25px]">
       {{ bean.name }}
     </div>
-    <img :src="`/${star}.png`" class="pixellated top-0 left-0 absolute scale-[2]" />
+    <img :src="`/${bean.rarity}.png`" class="pixellated top-0 left-0 absolute scale-[2]" />
   </button>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import store, { Bean } from "../system";
+import store from "../system";
 
 const getAppLink = () => store.censusData.find((i) => i.IdNUM == store.selectedBean.idnum)?.appurl;
 const getBeanCount = () => {
@@ -8,10 +8,6 @@ const getBeanCount = () => {
     (i) => store.currentUser.collectedBeans[i.key]
   ).length;
   return `(${current} / ${total})`;
-};
-
-const getRarity = (bean: Bean) => {
-  return bean.rarity ? "star_three" : bean.artist ? "star_two" : "star_one";
 };
 </script>
 
@@ -37,20 +33,19 @@ const getRarity = (bean: Bean) => {
                 <div class="font-display uppercase text-red font-bold text-[25px]">
                   {{ bean.name }}
                 </div>
-                <img :src="`/${getRarity(bean)}.png`" class=" pixellated top-0 left-0 absolute scale-[1.5]" />
+                <img :src="`/${bean.rarity}.png`" class=" pixellated top-0 left-0 absolute scale-[1.5]" />
               </button>
               <div v-else class="blank-card">
                 <img :src="`/beans/${bean.key}.png`" class="w-[6rem] pixellated brightness-0" />
                 <div class="font-display uppercase font-bold text-[25px]">???</div>
-                <img :src="`/${getRarity(bean)}.png`"
-                  class="pixellated top-0 left-0 brightness-50 absolute scale-[1.5]" />
+                <img :src="`/${bean.rarity}.png`" class="pixellated top-0 left-0 brightness-50 absolute scale-[1.5]" />
               </div>
             </div>
           </div>
           <div class="min-w-[200px] h-fit border-[3px] border-pink rounded-xl p-4">
             <div class="relative pb-4 flex flex-col items-center">
               <img :src="`/beans/${store.selectedBean.key}.png`" class="w-32 md:w-64 pixellated" />
-              <img :src="`/${getRarity(store.selectedBean)}.png`" class="pixellated left-0 absolute scale-[2] top-2" />
+              <img :src="`/${store.selectedBean.rarity}.png`" class="pixellated left-0 absolute scale-[2] top-2" />
               <div class="cardtitle">{{ store.selectedBean.name }}</div>
               <div class="cardtitle">Belongs to {{ store.selectedBean.mun }}</div>
               <div class="cardtitle mb-4">

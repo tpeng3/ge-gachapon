@@ -5,12 +5,12 @@ export interface Bean {
   census: string;
   name: string;
   mun: string,
-  direction: "left" | "right",
+  direction: string,
   idnum: number,
   revealed: boolean,
   popularity: number,
-  artist?: string,
-  rarity?: boolean
+  artist: string,
+  rarity: string
 }
 
 export interface UserData {
@@ -72,11 +72,15 @@ const store = reactive({
     const beanObj: { [key: string]: Bean } = beanList.filter(i => i.key !== "").reduce((obj, item) => {
       return {
         ...obj,
-        [item.key]: item,
+        [item.key]: {
+          ...item,
+          rarity: item.rarity === "TRUE" ? "star_three" : item.artist ? "star_two" : "star_one",
+        },
       };
     }, {});
     const beans = { ...value, ...beanObj }
     const sortedBeans = Object.values(beans).sort((a, b) => a.key.localeCompare(b.key));
+    console.log(beans)
     this.beanDict = beans;
     this.beans = Object.values(beans);
     this.sortedBeans = sortedBeans;
